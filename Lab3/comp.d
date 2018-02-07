@@ -1,0 +1,10 @@
+.\comp.o: driverlib\comp.c
+.\comp.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\comp.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\comp.o: driverlib\../inc/hw_comp.h
+.\comp.o: driverlib\../inc/hw_ints.h
+.\comp.o: driverlib\../inc/hw_memmap.h
+.\comp.o: driverlib\../inc/hw_types.h
+.\comp.o: driverlib\../driverlib/comp.h
+.\comp.o: driverlib\../driverlib/debug.h
+.\comp.o: driverlib\../driverlib/interrupt.h

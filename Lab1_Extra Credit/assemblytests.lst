@@ -1,0 +1,175 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Version 3 assembly floating point
+    2 00000000         ; run with floating-point hardware active
+    3 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+    4 00000000                 THUMB
+    5 00000000                 ALIGN
+    6 00000000         
+    7 00000000                 EXPORT           Test3
+    8 00000000                 EXPORT           Test4
+    9 00000000         
+   10 00000000 00 00 00 
+              00       T       SPACE            4
+   11 00000004 00 00 00 
+              00       N       SPACE            4
+   12 00000008         
+   13 00000008         Test3
+   14 00000008         
+   15 00000008 F04F 0000       MOV              R0,#0
+   16 0000000C 491A            LDR              R1,=N       ;pointer to N
+   17 0000000E 4A1B            LDR              R2,=T       ;pointer to T
+   18 00000010 EDDF 0A1B       VLDR.F32         S1,=0.009768
+   19 00000014 EEB2 1A04       VLDR.F32         S2,=10
+   20 00000018 6008    loop3   STR              R0,[R1]     ; N is volatile
+   21 0000001A EE00 0A10       VMOV.F32         S0,R0
+   22 0000001E EEB8 0A40       VCVT.F32.U32     S0,S0       ; S0 has N
+   23 00000022 EE20 0A20       VMUL.F32         S0,S0,S1    ; N*0.09768
+   24 00000026 EE30 0A01       VADD.F32         S0,S0,S2    ; 10+N*0.0968
+   25 0000002A ED82 0A00       VSTR.F32         S0,[R2]     ; T=10+N*0.0968
+   26 0000002E F100 0001       ADD              R0,R0,#1
+   27 00000032 F5B0 5F80       CMP              R0,#4096
+   28 00000036 D1EF            BNE              loop3
+   29 00000038 4770            BX               LR
+   30 0000003A         
+   31 0000003A         ;version 4, assembly fixed point
+   32 0000003A         
+   33 0000003A 00 00 00 
+              00       A       SPACE            4
+   34 0000003E 00 00 00 
+              00       C       SPACE            4
+   35 00000042         
+   36 00000042         Test4
+   37 00000042         
+   38 00000042 B570            PUSH             {R4,R5,R6,LR}
+   39 00000044 F04F 0000       MOV              R0,#0
+   40 00000048 490E            LDR              R1,=C       ;pointer to C
+   41 0000004A 4A0F            LDR              R2,=A       ;pointer to A
+   42 0000004C F04F 037D       MOV              R3,#125
+   43 00000050 F04F 0440       MOV              R4,#64
+   44 00000054 F44F 757A       MOV              R5,#1000
+   45 00000058 6008    loop4   STR              R0,[R1]     ; N is volatile
+   46 0000005A FB00 F603       MUL              R6,R0,R3    ; N*125
+   47 0000005E 4426            ADD              R6,R6,R4    ; N*125+64
+   48 00000060 EA4F 16D6       LSR              R6,R6,#7    ; (N*125+64)/128
+   49 00000064 442E            ADD              R6,R6,R5    ; 1000+(N*125+64)/1
+                                                            28
+   50 00000066 6016            STR              R6,[R2]     ; T = 1000+(N*125+6
+                                                            4)/128
+   51 00000068 F100 0001       ADD              R0,R0,#1
+   52 0000006C F5B0 5F80       CMP              R0,#4096
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   53 00000070 D1F2            BNE              loop4
+   54 00000072 BD70            POP              {R4,R5,R6,PC}
+   55 00000074         
+   56 00000074 4770            BX               LR          ;return from subrou
+                                                            tine
+   57 00000076         
+   58 00000076         
+   59 00000076 00 00           ALIGN
+   60 00000078                 END
+              00000000 
+              00000000 
+              3C2009F6 
+              00000000 
+              00000000 
+Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\ass
+emblytests.d -o.\assemblytests.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Inc
+lude -IC:\Keil\ARM\Inc\TI\TM4C123 --predefine="__EVAL SETA 1" --list=.\assembly
+tests.lst assemblyTests.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 3 in file assemblyTests.s
+   Uses
+      None
+Comment: .text unused
+A 0000003A
+
+Symbol: A
+   Definitions
+      At line 33 in file assemblyTests.s
+   Uses
+      At line 41 in file assemblyTests.s
+Comment: A used once
+C 0000003E
+
+Symbol: C
+   Definitions
+      At line 34 in file assemblyTests.s
+   Uses
+      At line 40 in file assemblyTests.s
+Comment: C used once
+N 00000004
+
+Symbol: N
+   Definitions
+      At line 11 in file assemblyTests.s
+   Uses
+      At line 16 in file assemblyTests.s
+Comment: N used once
+T 00000000
+
+Symbol: T
+   Definitions
+      At line 10 in file assemblyTests.s
+   Uses
+      At line 17 in file assemblyTests.s
+Comment: T used once
+Test3 00000008
+
+Symbol: Test3
+   Definitions
+      At line 13 in file assemblyTests.s
+   Uses
+      At line 7 in file assemblyTests.s
+Comment: Test3 used once
+Test4 00000042
+
+Symbol: Test4
+   Definitions
+      At line 36 in file assemblyTests.s
+   Uses
+      At line 8 in file assemblyTests.s
+Comment: Test4 used once
+loop3 00000018
+
+Symbol: loop3
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+   Definitions
+      At line 20 in file assemblyTests.s
+   Uses
+      At line 28 in file assemblyTests.s
+Comment: loop3 used once
+loop4 00000058
+
+Symbol: loop4
+   Definitions
+      At line 45 in file assemblyTests.s
+   Uses
+      At line 53 in file assemblyTests.s
+Comment: loop4 used once
+9 symbols
+343 symbols in table
