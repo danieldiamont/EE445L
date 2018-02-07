@@ -49,8 +49,8 @@
 void Draw_Clock(void);
 void Change_Background(void);
 
-double X_Rotation(int cur_x, int cur_y, double angle);
-double Y_Rotation(int cur_x, int cur_y, double angle);
+int X_Rotation(int cur_x, int cur_y, int angle);
+int Y_Rotation(int cur_x, int cur_y, int angle);
 
 void Set_Time(uint32_t hr, uint32_t min);
 void Update_Time(void);

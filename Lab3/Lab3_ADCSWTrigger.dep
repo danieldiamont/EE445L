@@ -1,5 +1,5 @@
 Dependencies for Project 'Lab3', Target 'ADCSWTrigger': (DO NOT MODIFY !)
-F (.\startup.s)(0x5A7B403A)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\startup.s)(0x5A7B540F)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
 F (.\ADCSWTrigger.c)(0x5A714982)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\adcswtrigger.o --omf_browse .\adcswtrigger.crf --depend .\adcswtrigger.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (tm4c123gh6pm.h)(0x58D9DD2A)
@@ -18,7 +18,7 @@ I (sound.h)(0x5A7A95DF)
 I (switches.h)(0x5A7A95E4)
 I (sevensegment.h)(0x5A7A9479)
 I (timer.h)(0x5A7B49B5)
-I (clock.h)(0x5A7B4687)
+I (clock.h)(0x5A7B5452)
 I (driverlib/pin_map.h)(0x5A790579)
 I (inc/hw_memmap.h)(0x5A790588)
 I (inc/hw_ints.h)(0x5A790588)
@@ -148,12 +148,12 @@ F (.\timer.c)(0x5A7B4994)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --
 I (timer.h)(0x5A7B49B5)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 F (.\timer.h)(0x5A7B49B5)()
-F (.\clock.c)(0x5A7B4874)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\clock.o --omf_browse .\clock.crf --depend .\clock.d)
-I (clock.h)(0x5A7B4687)
+F (.\clock.c)(0x5A7B544D)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\clock.o --omf_browse .\clock.crf --depend .\clock.d)
+I (clock.h)(0x5A7B5452)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (C:\Keil\ARM\ARMCC\include\math.h)(0x51C87C24)
 I (switches.h)(0x5A7A95E4)
 I (ST7735.h)(0x5A79DD2F)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C87C24)
 I (fixed.h)(0x5A79DCB7)
-F (.\clock.h)(0x5A7B4687)()
+F (.\clock.h)(0x5A7B5452)()
