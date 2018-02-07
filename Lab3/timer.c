@@ -57,3 +57,11 @@ void Timer1A_Init(void(*task)(void), uint32_t period){
   TIMER1_CTL_R = 0x00000001;    // 10) enable wTIMER0A
   EndCritical(sr);
 }
+
+void Timer1A_Handler(void)
+{
+	//acknowledge interrupt
+	TIMER1_ICR_R = TIMER_ICR_TATOCINT;
+	
+	//do whatever you need to do
+}
