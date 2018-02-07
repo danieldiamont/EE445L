@@ -7,28 +7,22 @@ const int32_t CircleXbuf[180] = {2000, 1999, 1995, 1989, 1981, 1970, 1956, 1941,
 const int32_t CircleYbuf[180] = {0, 70, 140, 209, 278, 347, 416, 484, 551, 618, 684, 749, 813, 877, 939, 1000, 1060, 1118, 1176, 1231, 1286, 1338, 1389, 1439, 1486, 1532, 1576, 1618, 1658, 1696, 1732, 1766, 1798, 1827, 1854, 1879, 1902, 1923, 1941, 1956, 1970, 1981, 1989, 1995, 1999, 2000, 1999, 1995, 1989, 1981, 1970, 1956, 1941, 1923, 1902, 1879, 1854, 1827, 1798, 1766, 1732, 1696, 1658, 1618, 1576, 1532, 1486, 1439, 1389, 1338, 1286, 1231, 1176, 1118, 1060, 1000, 939, 877, 813, 749, 684, 618, 551, 484, 416, 347, 278, 209, 140, 70, 0, -70, -140, -209, -278, -347, -416, -484, -551, -618, -684, -749, -813, -877, -939, -1000, -1060, -1118, -1176, -1231, -1286, -1338, -1389, -1439, -1486, -1532, -1576, -1618, -1658, -1696, -1732, -1766, -1798, -1827, -1854, -1879, -1902, -1923, -1941, -1956, -1970, -1981, -1989, -1995, -1999, -2000, -1999, -1995, -1989, -1981, -1970, -1956, -1941, -1923, -1902, -1879, -1854, -1827, -1798, -1766, -1732, -1696, -1658, -1618, -1576, -1532, -1486, -1439, -1389, -1338, -1286, -1231, -1176, -1118, -1060, -1000, -939, -877, -813, -749, -684, -618, -551, -484, -416, -347, -278, -209, -140, -70
 };
 
-static uint32_t hour;
-static uint32_t minute;
+const int min_x_coord_LUT[] = {64, 70, 51, 82, 39, 93, 28, 104, 19, 112, 12, 118, 6, 122, 4, 124, 4, 122, 6, 118, 12, 112, 19, 104, 28, 93, 39, 82, 51, 70, 64, 57, 76, 45, 88, 34, 99, 23, 108, 15, 115, 9, 121, 5, 123, 4, 123, 5, 121, 9, 115, 15, 108, 23, 99, 33, 88, 45, 76, 57};
+
+const int min_y_coord_LUT[] = {36, 155, 37, 153, 41, 147, 47, 140, 55, 131, 65, 120, 77, 108, 89, 95, 102, 83, 114, 71, 125, 60, 136, 51, 144, 44, 150, 38, 154, 36, 156, 36, 154, 38, 150, 44, 144, 51, 136, 60, 126, 71, 114, 83, 102, 96, 89, 108, 77, 120, 65, 131, 55, 140, 47, 147, 41, 153, 37, 155};
+
+const int hr_x_LUT[] = {64, 68, 55, 76, 46, 84, 39, 92, 32, 97, 27, 102, 24, 105, 22, 106, 22, 105, 24, 102, 27, 97, 32, 92, 39, 84, 46, 76, 55, 68, 64, 59, 72, 51, 81, 43, 88, 35, 95, 30, 100, 25, 103, 22, 105, 22, 105, 22, 103, 25, 100, 30, 95, 35, 88, 42, 81, 51, 72, 59};
+	
+const int hr_y_LUT[] = 	{54, 137, 54, 135, 57, 132, 62, 127, 67, 120, 74, 113, 83, 104, 91, 95, 100, 87, 108, 78, 116, 71, 124, 64, 129, 59, 134, 56, 137, 54, 138, 54, 137, 56, 134, 59, 129, 64, 124, 71, 117, 78, 108, 87, 100, 96, 91, 104, 83, 113, 74, 120, 67, 127, 62, 132, 57, 135, 54, 137};
+	
+uint32_t hour;
+uint32_t minute;
 
 uint16_t hour_x_coord;
 uint16_t hour_y_coord;
 
 uint16_t minute_x_coord;
 uint16_t minute_y_coord;
-
-int hour_angle; //in radians
-int minute_angle; //in radians
-
-int X_Rotation(int cur_x, int cur_y, int angle){
-		int x = cos(angle)*(cur_x-CENTER_X) - sin(angle)*(cur_y-CENTER_Y) + CENTER_X;
-		
-		return x;
-}
-int Y_Rotation(int cur_x, int cur_y, int angle){
-		int y = sin(angle)*(cur_x-CENTER_X) + cos(angle)*(cur_y-CENTER_Y) + CENTER_Y;
-	
-	return y;
-}
 
 uint16_t colorArr[NUM_COLORS] = {ST7735_BLACK, ST7735_RED, ST7735_BLUE, ST7735_WHITE, ST7735_GREEN, ST7735_YELLOW};
 uint8_t colorIndex;
@@ -71,13 +65,12 @@ void Draw_Clock(){
 	ST7735_OutUDec(11,color);
 	
 	//Draw lines
-	ST7735_Line(CENTER_X,CENTER_Y,
-				X_Rotation(hour_x_coord,hour_y_coord,hour_angle),
-					Y_Rotation(hour_x_coord,hour_y_coord,hour_angle),color); //draw hour hand
+	ST7735_Line(CENTER_X,CENTER_Y,hr_x_LUT[hour],
+					hr_y_LUT[hour],color); //draw hour hand
 				
 	ST7735_Line(CENTER_X,CENTER_Y,
-				X_Rotation(minute_x_coord,minute_y_coord,minute_angle),
-					Y_Rotation(minute_x_coord,minute_y_coord,minute_angle),color);//draw minute hand x2>x1 and y1>y2
+				min_x_coord_LUT[minute],
+						min_y_coord_LUT[minute],color);//draw minute hand x2>x1 and y1>y2
 	
 	ST7735_SetCursor(14,2);
 	
@@ -96,8 +89,11 @@ void Set_Time(uint32_t hr, uint32_t min){ //yet to implement
 }
 	
 void Update_Time(){
-	
-	pushHour(&hour);
-	pushMinute(&minute);
+	PF1 ^= 0x02;
+	PF1 ^= 0x02;
+	PF1 ^= 0x02;
+	hour = (hour + 1) %13;
+	minute = (minute+1) % 60;
+	Draw_Clock();
 	
 }
