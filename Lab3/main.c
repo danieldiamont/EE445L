@@ -70,6 +70,8 @@ void Change_Background(void);
 void Set_Time(uint32_t hr, uint32_t min);
 void Update_Time(void);
 
+extern uint8_t play_Flag;
+
 int main(void){
 	
 	SysCtlClockSet(SYSCTL_SYSDIV_2_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
@@ -78,8 +80,8 @@ int main(void){
 //	 sysClockFreq = SysCtlClockGet();
 	
 	GPIO_PortF_Init(); //initialize Port F
-	//LCD_Init(); //init LCD screen
-	//WideTimer0A_Init(&Update_Time, CYCLES_PER_MINUTE); //initialize timer to countdown per minute
+	LCD_Init(); //init LCD screen
+	WideTimer0A_Init(&Update_Time, CYCLES_PER_MINUTE); //initialize timer to countdown per minute
 	
   EnableInterrupts();
 	
@@ -88,11 +90,11 @@ int main(void){
 		//main program goes here
 		
 		//test sound module
-		TestSound();
+//		TestSound();
 //		//test timer module
 		//TestTimer();
 //		//test graphics module
-		//TestGraphics();
+		TestGraphics();
 		//test switch module
 //		TestSwitches();
 //		//test 7-segment module
@@ -167,11 +169,13 @@ void Test7SegmentDisplay(){
 }
 
 void TestGraphics(){
+	SysTick_Init();
 	ST7735_FillScreen(0);
 	ST7735_SetCursor(0,0);
 	ST7735_OutString("Graphics Test..",ST7735_YELLOW);
 	ST7735_OutString("Start time: 12:44" ,ST7735_YELLOW); //print out the time
 	DelayWait10ms(1000);
+	play_Flag = 1;
 	Draw_Clock();
 	
 	Pause();

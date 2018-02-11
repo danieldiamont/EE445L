@@ -14,6 +14,9 @@ void SysTick_Init(void);
 //static unsigned long wave[32]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 static unsigned long wave[]={0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1};
 static uint8_t idx=0;
+	
+uint8_t play_Flag;
+	
 // Initialize SysTick with busy wait running at bus clock.
 void SysTick_Init(void){
   
@@ -34,13 +37,16 @@ void SysTick_Init(void){
 	NVIC_SYS_PRI3_R = (NVIC_SYS_PRI3_R&0x00FFFFFF)|0x40000000; 
 	NVIC_ST_CTRL_R|=0x07;
 	idx=0;
+	play_Flag = 0;
 }
 // Time delay using busy wait.
 // The delay parameter is in units of the core clock. (units of 20 nsec for 50 MHz clock)
 
 void SysTick_Handler()
 {
-	idx= (idx+1)&0x0F;
-	//GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_1,) ^= (0x10)*wave[idx];
-	GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, GPIO_PIN_2*wave[idx]);
+	if(play_Flag == 1)
+	{
+		idx= (idx+1)&0x0F;
+		GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_2, GPIO_PIN_2*wave[idx]);
+	}
 }
