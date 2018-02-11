@@ -78,8 +78,8 @@ int main(void){
 //	 sysClockFreq = SysCtlClockGet();
 	
 	GPIO_PortF_Init(); //initialize Port F
-	LCD_Init(); //init LCD screen
-	WideTimer0A_Init(&Update_Time, CYCLES_PER_MINUTE); //initialize timer to countdown per minute
+	//LCD_Init(); //init LCD screen
+	//WideTimer0A_Init(&Update_Time, CYCLES_PER_MINUTE); //initialize timer to countdown per minute
 	
   EnableInterrupts();
 	
@@ -88,11 +88,11 @@ int main(void){
 		//main program goes here
 		
 		//test sound module
-//		TestSound();
+		TestSound();
 //		//test timer module
-		TestTimer();
+		//TestTimer();
 //		//test graphics module
-		TestGraphics();
+		//TestGraphics();
 		//test switch module
 //		TestSwitches();
 //		//test 7-segment module
@@ -147,6 +147,9 @@ void LCD_Init(){
 }
 
 void TestSound(){
+	SysTick_Init();
+	
+	while(1){}
 }
 
 void TestSwitches(){

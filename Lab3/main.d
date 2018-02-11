@@ -6,16 +6,10 @@
 .\main.o: C:\Keil\ARM\ARMCC\bin\..\include\math.h
 .\main.o: fixed.h
 .\main.o: sound.h
-.\main.o: switches.h
-.\main.o: sevensegment.h
-.\main.o: timer.h
-.\main.o: clock.h
-.\main.o: switches.h
+.\main.o: inc/hw_sysctl.h
 .\main.o: driverlib/pin_map.h
 .\main.o: inc/hw_memmap.h
-.\main.o: inc/hw_ints.h
 .\main.o: inc/hw_types.h
-.\main.o: inc/hw_sysctl.h
 .\main.o: inc/hw_gpio.h
 .\main.o: driverlib/debug.h
 .\main.o: driverlib/interrupt.h
@@ -23,3 +17,9 @@
 .\main.o: driverlib/comp.h
 .\main.o: driverlib/sysctl.h
 .\main.o: inc/hw_comp.h
+.\main.o: switches.h
+.\main.o: sevensegment.h
+.\main.o: timer.h
+.\main.o: clock.h
+.\main.o: switches.h
+.\main.o: inc/hw_ints.h

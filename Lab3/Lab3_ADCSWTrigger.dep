@@ -7,30 +7,30 @@ F (.\PLL.c)(0x5A70A88C)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --sp
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (PLL.h)(0x5A70A788)
 I (tm4c123gh6pm.h)(0x58D9DD2A)
-F (.\main.c)(0x5A8095F7)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+F (.\main.c)(0x5A80BE91)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\main.o --omf_browse .\main.crf --depend .\main.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C87C24)
 I (PLL.h)(0x5A70A788)
 I (ST7735.h)(0x5A808A0C)
 I (C:\Keil\ARM\ARMCC\include\math.h)(0x51C87C24)
 I (fixed.h)(0x5A79DCB7)
-I (sound.h)(0x5A7A95DF)
+I (sound.h)(0x5A80C238)
+I (inc/hw_sysctl.h)(0x5A790588)
+I (driverlib/pin_map.h)(0x5A790579)
+I (inc/hw_memmap.h)(0x5A790588)
+I (inc/hw_types.h)(0x5A790589)
+I (inc/hw_gpio.h)(0x5A790588)
+I (driverlib/debug.h)(0x5A80C260)
+I (driverlib/interrupt.h)(0x5A80C26C)
+I (driverlib/gpio.h)(0x5A80C21F)
+I (driverlib/comp.h)(0x5A790579)
+I (driverlib/sysctl.h)(0x5A80C1ED)
+I (inc/hw_comp.h)(0x5A790588)
 I (switches.h)(0x5A7A95E4)
 I (sevensegment.h)(0x5A7A9479)
 I (timer.h)(0x5A7B49B5)
 I (clock.h)(0x5A7B6A7E)
-I (driverlib/pin_map.h)(0x5A790579)
-I (inc/hw_memmap.h)(0x5A790588)
 I (inc/hw_ints.h)(0x5A790588)
-I (inc/hw_types.h)(0x5A790589)
-I (inc/hw_sysctl.h)(0x5A790588)
-I (inc/hw_gpio.h)(0x5A790588)
-I (driverlib/debug.h)(0x5A790579)
-I (driverlib/interrupt.h)(0x5A790579)
-I (driverlib/gpio.h)(0x5A790579)
-I (driverlib/comp.h)(0x5A790579)
-I (driverlib/sysctl.h)(0x5A790579)
-I (inc/hw_comp.h)(0x5A790588)
 F (.\tm4c123gh6pm.h)(0x58D9DD2A)()
 F (.\ST7735.h)(0x5A808A0C)()
 F (.\ST7735.c)(0x5A808A04)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\st7735.o --omf_browse .\st7735.crf --depend .\st7735.d)
@@ -57,14 +57,14 @@ I (inc/hw_ints.h)(0x5A790588)
 I (inc/hw_memmap.h)(0x5A790588)
 I (inc/hw_sysctl.h)(0x5A790588)
 I (inc/hw_types.h)(0x5A790589)
-I (driverlib/debug.h)(0x5A790579)
-I (driverlib/gpio.h)(0x5A790579)
-I (driverlib/interrupt.h)(0x5A790579)
+I (driverlib/debug.h)(0x5A80C260)
+I (driverlib/gpio.h)(0x5A80C21F)
+I (driverlib/interrupt.h)(0x5A80C26C)
 F (.\gpio.h)(0x5A790579)()
-F (.\driverlib\debug.h)(0x5A790579)()
-F (.\driverlib\interrupt.h)(0x5A790579)()
+F (.\driverlib\debug.h)(0x5A80C260)()
+F (.\driverlib\interrupt.h)(0x5A80C26C)()
 F (.\driverlib\pin_map.h)(0x5A790579)()
-F (.\driverlib\sysctl.h)(0x5A790579)()
+F (.\driverlib\sysctl.h)(0x5A80C1ED)()
 F (.\driverlib\systick.h)(0x5A790579)()
 F (.\inc\hw_gpio.h)(0x5A790588)()
 F (.\inc\hw_ints.h)(0x5A790588)()
@@ -81,8 +81,8 @@ I (driverlib\../inc/hw_ints.h)(0x5A790588)
 I (driverlib\../inc/hw_nvic.h)(0x5A790588)
 I (driverlib\../inc/hw_types.h)(0x5A790589)
 I (driverlib\../driverlib/cpu.h)(0x5A790579)
-I (driverlib\../driverlib/debug.h)(0x5A790579)
-I (driverlib\../driverlib/interrupt.h)(0x5A790579)
+I (driverlib\../driverlib/debug.h)(0x5A80C260)
+I (driverlib\../driverlib/interrupt.h)(0x5A80C26C)
 F (.\driverlib\sysctl.c)(0x5A793D84)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\sysctl.o --omf_browse .\sysctl.crf --depend .\sysctl.d)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C87C24)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
@@ -92,9 +92,9 @@ I (driverlib\../inc/hw_sysctl.h)(0x5A790588)
 I (driverlib\../inc/hw_types.h)(0x5A790589)
 I (driverlib\../inc/hw_flash.h)(0x5A790588)
 I (driverlib\../driverlib/cpu.h)(0x5A790579)
-I (driverlib\../driverlib/debug.h)(0x5A790579)
-I (driverlib\../driverlib/interrupt.h)(0x5A790579)
-I (driverlib\../driverlib/sysctl.h)(0x5A790579)
+I (driverlib\../driverlib/debug.h)(0x5A80C260)
+I (driverlib\../driverlib/interrupt.h)(0x5A80C26C)
+I (driverlib\../driverlib/sysctl.h)(0x5A80C1ED)
 F (.\driverlib\sysexc.c)(0x5A793D92)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\sysexc.o --omf_browse .\sysexc.crf --depend .\sysexc.d)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C87C24)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
@@ -102,16 +102,16 @@ I (driverlib\../inc/hw_ints.h)(0x5A790588)
 I (driverlib\../inc/hw_sysctl.h)(0x5A790588)
 I (driverlib\../inc/hw_sysexc.h)(0x5A790588)
 I (driverlib\../inc/hw_types.h)(0x5A790589)
-I (driverlib\../driverlib/debug.h)(0x5A790579)
-I (driverlib\../driverlib/interrupt.h)(0x5A790579)
+I (driverlib\../driverlib/debug.h)(0x5A80C260)
+I (driverlib\../driverlib/interrupt.h)(0x5A80C26C)
 F (.\driverlib\systick.c)(0x5A793D6B)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\systick.o --omf_browse .\systick.crf --depend .\systick.d)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C87C24)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (driverlib\../inc/hw_ints.h)(0x5A790588)
 I (driverlib\../inc/hw_nvic.h)(0x5A790588)
 I (driverlib\../inc/hw_types.h)(0x5A790589)
-I (driverlib\../driverlib/debug.h)(0x5A790579)
-I (driverlib\../driverlib/interrupt.h)(0x5A790579)
+I (driverlib\../driverlib/debug.h)(0x5A80C260)
+I (driverlib\../driverlib/interrupt.h)(0x5A80C26C)
 I (driverlib\../driverlib/systick.h)(0x5A790579)
 F (.\driverlib\cpu.c)(0x5A794340)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\cpu.o --omf_browse .\cpu.crf --depend .\cpu.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
@@ -125,8 +125,8 @@ I (driverlib\../inc/hw_ints.h)(0x5A790588)
 I (driverlib\../inc/hw_memmap.h)(0x5A790588)
 I (driverlib\../inc/hw_types.h)(0x5A790589)
 I (driverlib\../driverlib/comp.h)(0x5A790579)
-I (driverlib\../driverlib/debug.h)(0x5A790579)
-I (driverlib\../driverlib/interrupt.h)(0x5A790579)
+I (driverlib\../driverlib/debug.h)(0x5A80C260)
+I (driverlib\../driverlib/interrupt.h)(0x5A80C26C)
 F (.\driverlib\comp.h)(0x5A790579)()
 F (.\inc\hw_comp.h)(0x5A790588)()
 F (.\sevensegment.c)(0x5A808994)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\sevensegment.o --omf_browse .\sevensegment.crf --depend .\sevensegment.d)
@@ -134,16 +134,28 @@ I (ST7735.h)(0x5A808A0C)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (fixed.h)(0x5A79DCB7)
 I (tm4c123gh6pm.h)(0x58D9DD2A)
-F (.\sound.c)(0x5A7A9228)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\sound.o --omf_browse .\sound.crf --depend .\sound.d)
-I (sound.h)(0x5A7A95DF)
+F (.\sound.c)(0x5A80D192)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\sound.o --omf_browse .\sound.crf --depend .\sound.d)
+I (sound.h)(0x5A80C238)
+I (inc/hw_sysctl.h)(0x5A790588)
+I (driverlib/pin_map.h)(0x5A790579)
+I (inc/hw_memmap.h)(0x5A790588)
+I (inc/hw_types.h)(0x5A790589)
+I (inc/hw_gpio.h)(0x5A790588)
+I (driverlib/debug.h)(0x5A80C260)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (driverlib/interrupt.h)(0x5A80C26C)
+I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C87C24)
+I (driverlib/gpio.h)(0x5A80C21F)
+I (driverlib/comp.h)(0x5A790579)
+I (driverlib/sysctl.h)(0x5A80C1ED)
+I (inc/hw_comp.h)(0x5A790588)
 I (tm4c123gh6pm.h)(0x58D9DD2A)
 F (.\switches.c)(0x5A7A95EE)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\switches.o --omf_browse .\switches.crf --depend .\switches.d)
 I (tm4c123gh6pm.h)(0x58D9DD2A)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (switches.h)(0x5A7A95E4)
 F (.\sevensegment.h)(0x5A7A9479)()
-F (.\sound.h)(0x5A7A95DF)()
+F (.\sound.h)(0x5A80C238)()
 F (.\switches.h)(0x5A7A95E4)()
 F (.\timer.c)(0x5A7B6D79)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --c99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\timer.o --omf_browse .\timer.crf --depend .\timer.d)
 I (timer.h)(0x5A7B49B5)

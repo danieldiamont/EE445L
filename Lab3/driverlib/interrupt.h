@@ -51,6 +51,8 @@ extern "C"
 {
 #endif
 
+#include <stdint.h>
+#include <stdbool.h>
 //*****************************************************************************
 //
 // Macro to generate an interrupt priority mask based on the number of bits

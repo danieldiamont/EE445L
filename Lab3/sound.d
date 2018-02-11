@@ -1,4 +1,16 @@
 .\sound.o: sound.c
 .\sound.o: sound.h
+.\sound.o: inc/hw_sysctl.h
+.\sound.o: driverlib/pin_map.h
+.\sound.o: inc/hw_memmap.h
+.\sound.o: inc/hw_types.h
+.\sound.o: inc/hw_gpio.h
+.\sound.o: driverlib/debug.h
 .\sound.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\sound.o: driverlib/interrupt.h
+.\sound.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\sound.o: driverlib/gpio.h
+.\sound.o: driverlib/comp.h
+.\sound.o: driverlib/sysctl.h
+.\sound.o: inc/hw_comp.h
 .\sound.o: tm4c123gh6pm.h
