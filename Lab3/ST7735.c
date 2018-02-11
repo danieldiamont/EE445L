@@ -57,6 +57,8 @@
 #include <stdint.h>
 #include "ST7735.h"
 #include "tm4c123gh6pm.h"
+//#include <math.h>
+#include <stdlib.h>
 
 // 16 rows (0 to 15) and 21 characters (0 to 20)
 // Requires (11 + size*size*6*8) bytes of transmission for each character
@@ -1578,68 +1580,79 @@ void Output_Color(uint32_t newColor){ // Set color of future output
 //               159 is near the wires, 0 is the side opposite the wires
 //        color 16-bit color, which can be produced by ST7735_Color565() 
 // Output: none
-void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, 
-                 uint16_t color)
+void ST7735_Line(int x0, int y0, int x1, int y1, 
+                 int color)
 {
-		if(x1 < x2 && y1 < y2) //negative slope
-		{
-			int slope = (y2-y1)/(x2-x1);
-		
-			for(int i= x1; i < x2; i++){
-				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
-			}
-		}
-		else if(x1 < x2 && y1 > y2)//positive slope (TESTED)
-		{
-			int slope = (y2-y1)/(x2-x1);
-		
-			for(int i= x1; i < x2; i++){
-				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
-			}
-		}
-		else if(x2 < x1 && y1 > y2)
-		{
-			int slope = (y2-y1)/(x2-x1);
-		
-			for(int i= x2; i < x1; i++){
-				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
-			}
-		}
-		else if(x2 < x1 && y1 < y2)
-		{
-			int slope = (y2-y1)/(x2-x1);
-		
-			for(int i= x2; i < x1; i++){
-				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
-			}
-		}
-		else if(x1 == x2 && y1 > y2) //vertical
-		{
-			for(int i = y2; i < y1; i+=2)
-			{
-				ST7735_DrawPixel(x1,i,color);
-			}
-		}
-		else if(x1 == x2 && y1 < y2) //vertical line
-		{
-			for(int i = y1; i < y2; i+=2)
-			{
-				ST7735_DrawPixel(x1,i,color);
-			}
-		}
-		else if(x1 > x2 && y1 == y2) //horizontal line
-		{
-			for(int i= x2; i < x1; i++)
-			{
-				ST7735_DrawPixel(i,y1,color);
-			}
-		}
-		else if(x2 > x1 && y1 == y2) //horizontal line
-		{
-			for(int i= x1; i < x2; i++)
-			{
-				ST7735_DrawPixel(i,y1,color);
-			}
-		}
+	int dx =  abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+  int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
+  int err = dx + dy, e2; /* error value e_xy */
+ 
+  for (;;){  /* loop */
+    ST7735_DrawPixel(x0,y0,color);
+    if (x0 == x1 && y0 == y1) break;
+    e2 = 2 * err;
+    if (e2 >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+    if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+  }
+//		if(x1 < x2 && y1 < y2) //negative slope
+//		{
+//			int slope = (y2-y1)/(x2-x1);
+//		
+//			for(int i= x1; i < x2; i++){
+//				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
+//			}
+//		}
+//		else if(x1 < x2 && y1 > y2)//positive slope (TESTED)
+//		{
+//			int slope = (y2-y1)/(x2-x1);
+//		
+//			for(int i= x1; i < x2; i++){
+//				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
+//			}
+//		}
+//		else if(x2 < x1 && y1 > y2)
+//		{
+//			int slope = (y2-y1)/(x2-x1);
+//		
+//			for(int i= x2; i < x1; i++){
+//				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
+//			}
+//		}
+//		else if(x2 < x1 && y1 < y2)
+//		{
+//			int slope = (y2-y1)/(x2-x1);
+//		
+//			for(int i= x2; i < x1; i++){
+//				ST7735_DrawPixel(i,slope*(i-x1)+y1,color);
+//			}
+//		}
+//		else if(x1 == x2 && y1 > y2) //vertical
+//		{
+//			for(int i = y2; i < y1; i+=2)
+//			{
+//				ST7735_DrawPixel(x1,i,color);
+//			}
+//		}
+//		else if(x1 == x2 && y1 < y2) //vertical line
+//		{
+//			for(int i = y1; i < y2; i+=2)
+//			{
+//				ST7735_DrawPixel(x1,i,color);
+//			}
+//		}
+//		else if(x1 > x2 && y1 == y2) //horizontal line
+//		{
+//			for(int i= x2; i < x1; i++)
+//			{
+//				ST7735_DrawPixel(i,y1,color);
+//			}
+//		}
+//		else if(x2 > x1 && y1 == y2) //horizontal line
+//		{
+//			for(int i= x1; i < x2; i++)
+//			{
+//				ST7735_DrawPixel(i,y1,color);
+//			}
+//		}
 			return;		
 }

@@ -434,7 +434,7 @@ void Output_Color(uint32_t newColor);
 //               159 is near the wires, 0 is the side opposite the wires
 //        color 16-bit color, which can be produced by ST7735_Color565() 
 // Output: none
-void ST7735_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, 
-                 uint16_t color);
+void ST7735_Line(int x1, int y1, int x2, int y2, 
+                 int color);
 
 #endif

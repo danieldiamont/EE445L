@@ -44,7 +44,7 @@
 #define CR_REG					(*((volatile uint32_t *)(GPIO_O_CR + GPIO_PORTF_BASE)))
 	
 //#define CYCLES_PER_MINUTE 4800000000
-#define CYCLES_PER_MINUTE 80000000
+#define CYCLES_PER_MINUTE 8000000
 
 //interrupt enable/disable declarations
 void DisableInterrupts(void); // Disable interrupts
