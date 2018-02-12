@@ -6,3 +6,4 @@
 .\clock.o: ST7735.h
 .\clock.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
 .\clock.o: fixed.h
+.\clock.o: switches.h

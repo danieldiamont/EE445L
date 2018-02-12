@@ -12,16 +12,21 @@
 #define CENTER_Y 96
 
 #define PF1             (*((volatile uint32_t *)0x40025008))
+#define PF4   					(*((volatile uint32_t *)0x40025040))
+#define PF3							(*((volatile uint32_t *)0x40025020))
+#define PF2             (*((volatile uint32_t *)0x40025010))
+#define PF0             (*((volatile uint32_t *)0x40025004))
 
 #define NUM_COLORS 6
 
 void Draw_Clock(void);
+void Draw_Clock_Update(void);
 void Change_Background(void);
 
 int X_Rotation(int cur_x, int cur_y);
 int Y_Rotation(int cur_x, int cur_y);
 
-void Set_Time(uint32_t hr, uint32_t min);
+void Set_Time(void);
 void Update_Time(void);
 
 #endif

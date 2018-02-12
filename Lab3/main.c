@@ -13,7 +13,7 @@
 #include "fixed.h"
 #include "sound.h"
 #include "switches.h"
-#include "sevensegment.h"
+//#include "sevensegment.h"
 #include "timer.h"
 #include "clock.h"
 
@@ -44,7 +44,7 @@
 #define CR_REG					(*((volatile uint32_t *)(GPIO_O_CR + GPIO_PORTF_BASE)))
 	
 //#define CYCLES_PER_MINUTE 4800000000
-#define CYCLES_PER_MINUTE 8000000
+#define CYCLES_PER_MINUTE 80000000
 
 //interrupt enable/disable declarations
 void DisableInterrupts(void); // Disable interrupts
@@ -67,10 +67,15 @@ void LCD_Init(void);
 void Clock_Init(void);
 void Change_Background(void);
 
-void Set_Time(uint32_t hr, uint32_t min);
 void Update_Time(void);
 
 extern uint8_t play_Flag;
+extern uint32_t hour;
+extern uint32_t minute;
+
+extern uint32_t alarmhour;
+extern uint32_t alarmminute;
+extern bool should_Update;
 
 int main(void){
 	
@@ -80,12 +85,47 @@ int main(void){
 //	 sysClockFreq = SysCtlClockGet();
 	
 	GPIO_PortF_Init(); //initialize Port F
+	PortD_Init();
 	LCD_Init(); //init LCD screen
+	//WideTimer0A_Init(&Update_Time, CYCLES_PER_MINUTE); //initialize timer to countdown per minute
+	
+	SysTick_Init();
+	ST7735_FillScreen(0);
+	ST7735_SetCursor(0,0);
+	ST7735_OutString("Enter start time",ST7735_YELLOW);
+	DelayWait10ms(1000);
+	play_Flag = 0;
+	
+	Set_Time();
+	
 	WideTimer0A_Init(&Update_Time, CYCLES_PER_MINUTE); //initialize timer to countdown per minute
+	Draw_Clock();
+	
 	
   EnableInterrupts();
 	
   while(1){	
+		
+		Draw_Clock();
+		
+		DelayWait10ms(100);
+		
+		if(hour == alarmhour && minute == alarmminute){
+			play_Flag = 1;
+		}
+		
+		if(PF0 == 0x00){
+			play_Flag = 0;
+		}
+		
+		if(PF4 == 0x00){
+			should_Update = false;
+			Set_Time();
+		}
+		
+		if(GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_2) == GPIO_PIN_2){
+			Change_Background();
+		}
 		
 		//main program goes here
 		
@@ -94,7 +134,7 @@ int main(void){
 //		//test timer module
 		//TestTimer();
 //		//test graphics module
-		TestGraphics();
+//		TestGraphics();
 		//test switch module
 //		TestSwitches();
 //		//test 7-segment module
@@ -112,18 +152,18 @@ void Pause(void){
   }
 }
 
-void DelayWait10ms(uint32_t n){
-	
-	uint32_t volatile timer;
-	
-  while(n){
-    timer = 727240*2/91;  // 10msec
-    while(timer){
-	  	timer--;
-    }
-    n--;
-  }
-}
+//void DelayWait10ms(uint32_t n){
+//	
+//	uint32_t volatile timer;
+//	
+//  while(n){
+//    timer = 727240*2/91;  // 10msec
+//    while(timer){
+//	  	timer--;
+//    }
+//    n--;
+//  }
+//}
 
 void GPIO_PortF_Init(){
 	

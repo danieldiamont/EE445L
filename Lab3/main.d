@@ -18,7 +18,6 @@
 .\main.o: driverlib/sysctl.h
 .\main.o: inc/hw_comp.h
 .\main.o: switches.h
-.\main.o: sevensegment.h
 .\main.o: timer.h
 .\main.o: clock.h
 .\main.o: switches.h
