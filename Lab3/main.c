@@ -76,6 +76,8 @@ extern uint32_t minute;
 extern uint32_t alarmhour;
 extern uint32_t alarmminute;
 extern bool should_Update;
+extern uint8_t isAM;
+extern uint8_t alarmAM;
 
 int main(void){
 	
@@ -110,7 +112,7 @@ int main(void){
 		
 		DelayWait10ms(100);
 		
-		if(hour == alarmhour && minute == alarmminute){
+		if(hour == alarmhour && minute == alarmminute && alarmAM == isAM){
 			play_Flag = 1;
 		}
 		

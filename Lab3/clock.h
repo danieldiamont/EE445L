@@ -20,7 +20,6 @@
 #define NUM_COLORS 6
 
 void Draw_Clock(void);
-void Draw_Clock_Update(void);
 void Change_Background(void);
 
 int X_Rotation(int cur_x, int cur_y);

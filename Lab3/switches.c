@@ -13,6 +13,8 @@ uint32_t alarmhour=0;
 uint32_t alarmminute=0;
 
 extern uint8_t play_Flag;
+extern uint8_t isAM;
+extern uint8_t alarmAM;
 
 
 void delay1ms0(uint32_t n){uint32_t volatile time;
@@ -51,6 +53,9 @@ void pushHour(uint32_t *hour)
 //	isPushedHour=(GPIO_PORTD_DATA_R>>3)&0x01;
 //	*hour=(*hour+(isPushedHour*(1-wasPushedHour)))%13;	
 	if(((GPIO_PORTD_DATA_R>>2)&0x01) == 1){
+		if(*hour == 11){
+			isAM ^= 1;
+		}		
 		*hour = (*hour+1) % 13;
 	}
 }
@@ -77,6 +82,9 @@ void alarmpushHour(void)
 //	isPushedHour=(GPIO_PORTD_DATA_R>>3)&0x01;
 //	alarmhour=(alarmhour+(isPushedHour*(1-wasPushedHour)))%13;
  if(((GPIO_PORTD_DATA_R>>2)&0x01) == 1){
+	 if(alarmhour == 11){
+			alarmAM ^= 1;
+		}		
 		alarmhour = (alarmhour+1) % 13;
 	}	
 }
