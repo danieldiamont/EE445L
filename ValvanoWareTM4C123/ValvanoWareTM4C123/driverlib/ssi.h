@@ -65,6 +65,7 @@ extern "C"
 #define SSI_RXTO                0x00000002  // RX timeout
 #define SSI_RXOR                0x00000001  // RX overrun
 
+#include <stdint.h>
 //*****************************************************************************
 //
 // Values that can be passed to SSIConfigSetExpClk.

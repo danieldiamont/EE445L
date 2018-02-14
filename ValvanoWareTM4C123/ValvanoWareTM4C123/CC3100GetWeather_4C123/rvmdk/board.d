@@ -29,3 +29,9 @@
 .\rvmdk\board.o: ..\inc/hw_ssi.h
 .\rvmdk\board.o: ..\inc/hw_types.h
 .\rvmdk\board.o: ..\driverlib/ssi.h
+.\rvmdk\board.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\board.o: ..\driverlib/rom.h
+.\rvmdk\board.o: ..\driverlib/gpio.h
+.\rvmdk\board.o: ..\driverlib/sysctl.h
+.\rvmdk\board.o: ..\driverlib/fpu.h
+.\rvmdk\board.o: ..\driverlib/uart.h

@@ -32,3 +32,8 @@
 .\rvmdk\spi.o: ..\driverlib/pin_map.h
 .\rvmdk\spi.o: ..\inc/hw_ints.h
 .\rvmdk\spi.o: ..\driverlib/ssi.h
+.\rvmdk\spi.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\spi.o: ..\driverlib/rom.h
+.\rvmdk\spi.o: ..\driverlib/gpio.h
+.\rvmdk\spi.o: ..\driverlib/sysctl.h
+.\rvmdk\spi.o: ..\driverlib/interrupt.h

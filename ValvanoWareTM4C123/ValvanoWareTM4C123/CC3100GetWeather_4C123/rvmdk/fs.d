@@ -25,3 +25,5 @@
 .\rvmdk\fs.o: ..\cc3100\simplelink\include\wlan_rx_filters.h
 .\rvmdk\fs.o: ..\cc3100\simplelink\include\simplelink.h
 .\rvmdk\fs.o: ..\cc3100\simplelink\source\protocol.h
+.\rvmdk\fs.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\rvmdk\fs.o: ..\cc3100\simplelink\source\driver.h

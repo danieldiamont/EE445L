@@ -19,6 +19,9 @@
 ".\rvmdk\uartstdio.o"
 ".\rvmdk\ustdlib.o"
 ".\rvmdk\adcswtrigger.o"
+".\rvmdk\st7735.o"
+".\rvmdk\print.o"
+".\rvmdk\lcd.o"
 "..\driverlib\rvmdk\driverlib.lib"
 --library_type=microlib --strict --scatter "cc31000_starter.sct"
 

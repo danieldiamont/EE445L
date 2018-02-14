@@ -60,34 +60,34 @@
 **  Definitions for SimpleLink Commands
 **
 ****************************************************************************/
-
+#include <stdint.h>
 
 /* pattern for LE 8/16/32 or BE*/
 #define H2N_SYNC_PATTERN     {0xBBDDEEFF,0x4321,0x34,0x12}
 #define H2N_CNYS_PATTERN     {0xBBDDEEFF,0x8765,0x78,0x56}
 
-#define H2N_DUMMY_PATTERN    (UINT32)0xFFFFFFFF
-#define N2H_SYNC_PATTERN     (UINT32)0xABCDDCBA
-#define SYNC_PATTERN_LEN     (UINT32)sizeof(UINT32)
-#define UART_SET_MODE_MAGIC_CODE    (UINT32)0xAA55AA55
-#define SPI_16BITS_BUG(pattern)     (UINT32)((UINT32)pattern & (UINT32)0xFFFF7FFF)
-#define SPI_8BITS_BUG(pattern)      (UINT32)((UINT32)pattern & (UINT32)0xFFFFFF7F)
+#define H2N_DUMMY_PATTERN    (int32_t)0xFFFFFFFF
+#define N2H_SYNC_PATTERN     (int32_t)0xABCDDCBA
+#define SYNC_PATTERN_LEN     (int32_t)sizeof(int32_t)
+#define UART_SET_MODE_MAGIC_CODE    (int32_t)0xAA55AA55
+#define SPI_16BITS_BUG(pattern)     (int32_t)((int32_t)pattern & (int32_t)0xFFFF7FFF)
+#define SPI_8BITS_BUG(pattern)      (int32_t)((int32_t)pattern & (int32_t)0xFFFFFF7F)
 
 
 
 typedef struct
 {
-	UINT16 Opcode;
-	UINT16 Len;
+	int16_t Opcode;
+	int16_t Len;
 }_SlGenericHeader_t;
 
 
 typedef struct
 {
-    UINT32  Long;
-    UINT16  Short;
-    UINT8  Byte1;
-    UINT8  Byte2;
+    int32_t  Long;
+    int16_t  Short;
+    int8_t  Byte1;
+    int8_t  Byte2;
 }_SlSyncPattern_t;
 
 typedef _SlGenericHeader_t _SlCommandHeader_t;
@@ -95,10 +95,10 @@ typedef _SlGenericHeader_t _SlCommandHeader_t;
 typedef struct
 {
     _SlGenericHeader_t  GenHeader;
-    UINT8               TxPoolCnt;
-    UINT8               DevStatus;
-    UINT8               SocketTXFailure;
-    UINT8               SocketNonBlocking;
+    int8_t               TxPoolCnt;
+    int8_t               DevStatus;
+    int8_t               SocketTXFailure;
+    int8_t               SocketNonBlocking;
 }_SlResponseHeader_t;
 
 #define _SL_RESP_SPEC_HDR_SIZE (sizeof(_SlResponseHeader_t) - sizeof(_SlGenericHeader_t))
@@ -111,7 +111,7 @@ typedef struct
 typedef struct
 {
     _SlCommandHeader_t  sl_hdr;
-    UINT8   func_args_start;
+    int8_t   func_args_start;
 } T_SCMD;
 
 
@@ -365,35 +365,35 @@ typedef struct
 #define SL_OPCODE_WLAN_WLANRXFILTERGETINFO                              0x8C70
 #define SL_OPCODE_WLAN_WLANRXFILTERGETINFORESPONSE                      0x0C70
 
-
+#include <stdint.h>
 /******************************************************************************************/
 /*   Device structs  */
 /******************************************************************************************/
-typedef UINT32 InitStatus_t;
+typedef int32_t InitStatus_t;
 
 
 typedef struct
 {
-    INT32 Status;
+    int32_t Status;
 }InitComplete_t;
 
 typedef struct
 {
-  INT16 status;
-  UINT16 padding;
+  int16_t status;
+  int16_t padding;
 
 }_BasicResponse_t;
 
 typedef struct
 {
-  UINT16 Timeout;
-  UINT16 padding;
+  int16_t Timeout;
+  int16_t padding;
 }_DevStopCommand_t;
 
 typedef struct
 {
-  UINT32 group;
-  UINT32 mask;
+  int32_t group;
+  int32_t mask;
 }_DevMaskEventSetCommand_t;
 
 typedef _BasicResponse_t _DevMaskEventSetResponse_t;
@@ -401,49 +401,49 @@ typedef _BasicResponse_t _DevMaskEventSetResponse_t;
 
 typedef struct
 {
-  UINT32 group;
+  int32_t group;
 }_DevMaskEventGetCommand_t;
 
 
 typedef struct
 {
-  UINT32 group;
-  UINT32 mask;
+  int32_t group;
+  int32_t mask;
 }_DevMaskEventGetResponse_t;
 
 
 typedef struct
 {
-  UINT32 group;
+  int32_t group;
 }_DevStatusGetCommand_t;
 
 
 typedef struct
 {
-  UINT32 group;
-  UINT32 status;
+  int32_t group;
+  int32_t status;
 }_DevStatusGetResponse_t;
 
 typedef struct
 {
-    UINT32  ChipId;
-    UINT32  FwVersion[4];
-    UINT8   PhyVersion[4];
+    int32_t  ChipId;
+    int32_t  FwVersion[4];
+    int8_t   PhyVersion[4];
 }_Device_VersionReadResponsePart_t;
 
 typedef struct
 {
     _Device_VersionReadResponsePart_t part;
-    UINT32                            NwpVersion[4];
-    UINT16                            RomVersion;
-    UINT16                            Padding;
+    int32_t                            NwpVersion[4];
+    int16_t                            RomVersion;
+    int16_t                            Padding;
 }_Device_VersionReadResponseFull_t;
 
 
 typedef struct
 {
-	UINT32 BaudRate;
-	UINT8  FlowControlEnable;
+	int32_t BaudRate;
+	int8_t  FlowControlEnable;
 }_DevUartSetModeCommand_t;
 
 typedef _BasicResponse_t _DevUartSetModeResponse_t;
@@ -452,8 +452,8 @@ typedef _BasicResponse_t _DevUartSetModeResponse_t;
 
 typedef struct
 {
-    UINT8 SsiSizeInBytes;
-    UINT8 Padding[3];
+    int8_t SsiSizeInBytes;
+    int8_t Padding[3];
 }_StellarisSsiSizeSet_t;
 
 /*****************************************************************************************/
@@ -462,10 +462,10 @@ typedef struct
 #define MAXIMAL_PASSWORD_LENGTH					(64)
 
 typedef struct{
-	UINT8	SecType;
-	UINT8	SsidLen;
-    UINT8	Bssid[6];
-	UINT8	PasswordLen;
+	int8_t	SecType;
+	int8_t	SsidLen;
+    int8_t	Bssid[6];
+	int8_t	PasswordLen;
 }_WlanConnectCommon_t;
 
 #define SSID_STRING(pCmd)       (char *)((_WlanConnectCommon_t *)(pCmd) + 1)
@@ -473,10 +473,10 @@ typedef struct{
 
 typedef struct{
 	_WlanConnectCommon_t            Common;
-	UINT8							UserLen;
-	UINT8							AnonUserLen;
-    UINT8   						CertIndex;
-    UINT32  						EapBitmask;
+	int8_t							UserLen;
+	int8_t							AnonUserLen;
+    int8_t   						CertIndex;
+    int32_t  						EapBitmask;
 }_WlanConnectEapCommand_t;
 
 #define EAP_SSID_STRING(pCmd)       (char *)((_WlanConnectEapCommand_t *)(pCmd) + 1)
@@ -487,42 +487,42 @@ typedef struct{
 
 typedef struct
 {
-    UINT8	PolicyType;
-    UINT8       Padding;
-    UINT8	PolicyOption;
-    UINT8	PolicyOptionLen;
+    int8_t	PolicyType;
+    int8_t       Padding;
+    int8_t	PolicyOption;
+    int8_t	PolicyOptionLen;
 }_WlanPoliciySetGet_t;
 
 
 typedef struct{
-	UINT32  minDwellTime;
-	UINT32  maxDwellTime;
-	UINT32  numProbeResponse;
-	UINT32  G_Channels_mask;
-	INT32   rssiThershold;
-	INT32   snrThershold;
-	INT32   defaultTXPower;
-	UINT16  intervalList[16];
+	int32_t  minDwellTime;
+	int32_t  maxDwellTime;
+	int32_t  numProbeResponse;
+	int32_t  G_Channels_mask;
+	int32_t   rssiThershold;
+	int32_t   snrThershold;
+	int32_t   defaultTXPower;
+	int16_t  intervalList[16];
 }_WlanScanParamSetCommand_t;
 
 
 typedef struct{
-	INT8	SecType;
-	UINT8	SsidLen;
-	UINT8	Priority;
-	UINT8	Bssid[6];
-    UINT8   PasswordLen;
-    UINT8   WepKeyId;
+	int8_t	SecType;
+	int8_t	SsidLen;
+	int8_t	Priority;
+	int8_t	Bssid[6];
+    int8_t   PasswordLen;
+    int8_t   WepKeyId;
 }_WlanAddGetProfile_t;
 
 
 typedef struct{
        _WlanAddGetProfile_t              Common;
-       UINT8                             UserLen;
-       UINT8                             AnonUserLen;
-       UINT8                             CertIndex;
-       UINT16                            padding;
-       UINT32                            EapBitmask;
+       int8_t                             UserLen;
+       int8_t                             AnonUserLen;
+       int8_t                             CertIndex;
+       int16_t                            padding;
+       int32_t                            EapBitmask;
 }_WlanAddGetEapProfile_t;
 
 
@@ -540,16 +540,16 @@ typedef struct{
 
 typedef struct
 {
-	UINT8	index;
-	UINT8	padding[3];
+	int8_t	index;
+	int8_t	padding[3];
 }_WlanProfileDelGetCommand_t;
 
 typedef _BasicResponse_t _WlanGetNetworkListResponse_t;
 
 typedef struct
 {
-	UINT8 	index;
-	UINT8 	count;
+	int8_t 	index;
+	int8_t 	count;
 	char 	padding[2];
 }_WlanGetNetworkListCommand_t;
 
@@ -558,11 +558,11 @@ typedef struct
 
 typedef struct
 {
-    UINT32  						groupIdBitmask;
-    UINT8                           cipher;
-    UINT8                           publicKeyLen;
-    UINT8                           group1KeyLen;
-    UINT8                           group2KeyLen;
+    int32_t  						groupIdBitmask;
+    int8_t                           cipher;
+    int8_t                           publicKeyLen;
+    int8_t                           group1KeyLen;
+    int8_t                           group2KeyLen;
 }_WlanSmartConfigStartCommand_t;
 
 #define SMART_CONFIG_START_PUBLIC_KEY_STRING(pCmd)       ((char *)((_WlanSmartConfigStartCommand_t *)(pCmd) + 1))
@@ -573,8 +573,8 @@ typedef struct
 
 typedef	struct
 {
-	UINT8	mode;
-    UINT8   padding[3];
+	int8_t	mode;
+    int8_t   padding[3];
 }_WlanSetMode_t;
 
 
@@ -582,10 +582,10 @@ typedef	struct
 
 typedef struct
 {
-    UINT16  Status;
-    UINT16  ConfigId;
-    UINT16  ConfigOpt;
-    UINT16  ConfigLen;
+    int16_t  Status;
+    int16_t  ConfigId;
+    int16_t  ConfigOpt;
+    int16_t  ConfigLen;
 }_WlanCfgSetGet_t;
 
 
@@ -602,7 +602,7 @@ typedef struct _WlanRxFilterAddCommand_t
 	/*  --  1 byte */
 	SlrxFilterID_t FilterId;
 	/*  --  1 byte */
-	UINT8 Padding;
+	int8_t Padding;
 	/*  -- 56 byte */
 	SlrxFilterRule_t Rule;
 	/*  --  12 byte ( 3 padding ) */
@@ -619,9 +619,9 @@ typedef struct l_WlanRxFilterAddCommandReponse_t
 	/*  -- 1 byte */
 	SlrxFilterID_t FilterId;
 	/* -- 1 Byte */
-	UINT8          Status;
+	int8_t          Status;
 	/*  -- 2 byte */
-	UINT8  Padding[2];
+	int8_t  Padding[2];
 
 }_WlanRxFilterAddCommandReponse_t;
 
@@ -632,7 +632,7 @@ typedef struct l_WlanRxFilterAddCommandReponse_t
  */
 typedef struct _WlanRxFilterSetCommand_t
 {
-	UINT16 InputBufferLength;
+	int16_t InputBufferLength;
 	/* 1 byte */
 	SLrxFilterOperation_t RxFilterOperation;
 	unsigned char Padding[1];
@@ -644,7 +644,7 @@ typedef struct _WlanRxFilterSetCommand_t
 typedef struct _WlanRxFilterSetCommandReponse_t
 {
 	/* 1 byte */
-	UINT8  Status;
+	int8_t  Status;
 	/* 3 bytes  */
 	unsigned char Padding[3];
 
@@ -655,7 +655,7 @@ typedef struct _WlanRxFilterSetCommandReponse_t
  */
 typedef struct _WlanRxFilterGetCommand_t
 {
-	UINT16 OutputBufferLength;
+	int16_t OutputBufferLength;
 	/* 1 byte  */
 	SLrxFilterOperation_t RxFilterOperation;
 	unsigned char Padding[1];
@@ -667,11 +667,11 @@ typedef struct _WlanRxFilterGetCommand_t
 typedef struct _WlanRxFilterGetCommandReponse_t
 {
 	/* 1 byte  */
-	UINT8  Status;
+	int8_t  Status;
 	/* 1 bytes  */
 	unsigned char Padding;
 	/* 2 byte  */
-	UINT16 OutputBufferLength;
+	int16_t OutputBufferLength;
 
 }_WlanRxFilterGetCommandReponse_t;
 
@@ -683,52 +683,52 @@ typedef struct _WlanRxFilterGetCommandReponse_t
 
 typedef struct
 {
-    UINT16 status;
-    UINT8  WlanRole;     /* 0 = station, 2 = AP */
-    UINT8  Ipv6Enabled;
-    UINT8  Ipv6DhcpEnabled;
+    int16_t status;
+    int8_t  WlanRole;     /* 0 = station, 2 = AP */
+    int8_t  Ipv6Enabled;
+    int8_t  Ipv6DhcpEnabled;
 
-    UINT32 ipV6Global[4];
-    UINT32 ipV6Local[4];
-    UINT32 ipV6DnsServer[4];
-    UINT8  Ipv6DhcpState;
+    int32_t ipV6Global[4];
+    int32_t ipV6Local[4];
+    int32_t ipV6DnsServer[4];
+    int8_t  Ipv6DhcpState;
 
 }_NetappIpV6configRetArgs_t;
 
 
 typedef struct
 {
-    UINT8  ipV4[4];
-    UINT8  ipV4Mask[4];
-    UINT8  ipV4Gateway[4];
-    UINT8  ipV4DnsServer[4];
-	UINT8  ipV4Start[4];
-	UINT8  ipV4End[4];
+    int8_t  ipV4[4];
+    int8_t  ipV4Mask[4];
+    int8_t  ipV4Gateway[4];
+    int8_t  ipV4DnsServer[4];
+	int8_t  ipV4Start[4];
+	int8_t  ipV4End[4];
 }_NetCfgIpV4AP_Args_t;
 
 
 
 typedef struct
 {
-  UINT16 status;
-  UINT8  MacAddr[6];
+  int16_t status;
+  int8_t  MacAddr[6];
 } _MAC_Address_SetGet_t;
 
 
 typedef struct
 {
-    UINT16  Status;
-    UINT16	ConfigId;
-	UINT16	ConfigOpt;
-    UINT16	ConfigLen;
+    int16_t  Status;
+    int16_t	ConfigId;
+	int16_t	ConfigOpt;
+    int16_t	ConfigLen;
 }_NetCfgSetGet_t;
 
 typedef struct
 {
-	UINT16  Status;
-	UINT16  DeviceSetId;
-	UINT16  Option;
-	UINT16  ConfigLen;
+	int16_t  Status;
+	int16_t  DeviceSetId;
+	int16_t  Option;
+	int16_t  ConfigLen;
 }_DeviceSetGet_t;
 
 
@@ -740,84 +740,84 @@ typedef struct
 
 typedef struct
 {
-  UINT8 Domain;
-  UINT8 Type;
-  UINT8 Protocol;
-  UINT8 Padding;
+  int8_t Domain;
+  int8_t Type;
+  int8_t Protocol;
+  int8_t Padding;
 }_SocketCommand_t;
 
 
 typedef struct
 {
-  INT16 statusOrLen;
-  UINT8  sd;
-  UINT8  padding;
+  int16_t statusOrLen;
+  int8_t  sd;
+  int8_t  padding;
 }_SocketResponse_t;
 
 typedef struct
 {
-  UINT8 sd;
-  UINT8 family;
-  UINT8 padding1;
-  UINT8 padding2;
+  int8_t sd;
+  int8_t family;
+  int8_t padding1;
+  int8_t padding2;
 }_AcceptCommand_t;
 
 
 typedef struct
 {
-  INT16 statusOrLen;
-  UINT8 sd;
-  UINT8 family;
-  UINT16 port;
-  UINT16 paddingOrAddr;
-  UINT32 address;
+  int16_t statusOrLen;
+  int8_t sd;
+  int8_t family;
+  int16_t port;
+  int16_t paddingOrAddr;
+  int32_t address;
 }_SocketAddrAsyncIPv4Response_t;
 
 typedef struct
 {
-  INT16 statusOrLen;
-  UINT8 sd;
-  UINT8 family;
-  UINT16 port;
-  UINT8 address[6];
+  int16_t statusOrLen;
+  int8_t sd;
+  int8_t family;
+  int16_t port;
+  int8_t address[6];
 }_SocketAddrAsyncIPv6EUI48Response_t;
 typedef struct
 {
-  INT16 statusOrLen;
-  UINT8 sd;
-  UINT8 family;
-  UINT16 port;
-  UINT16 paddingOrAddr;
-  UINT32 address[4];
+  int16_t statusOrLen;
+  int8_t sd;
+  int8_t family;
+  int16_t port;
+  int16_t paddingOrAddr;
+  int32_t address[4];
 }_SocketAddrAsyncIPv6Response_t;
 
 
 typedef struct
 {
-  INT16 lenOrPadding;
-  UINT8 sd;
-  UINT8 FamilyAndFlags;
-  UINT16 port;
-  UINT16 paddingOrAddr;
-  UINT32 address;
+  int16_t lenOrPadding;
+  int8_t sd;
+  int8_t FamilyAndFlags;
+  int16_t port;
+  int16_t paddingOrAddr;
+  int32_t address;
 }_SocketAddrIPv4Command_t;
 
 typedef struct
 {
-  INT16 lenOrPadding;
-  UINT8 sd;
-  UINT8 FamilyAndFlags;
-  UINT16 port;
-  UINT8 address[6];
+  int16_t lenOrPadding;
+  int8_t sd;
+  int8_t FamilyAndFlags;
+  int16_t port;
+  int8_t address[6];
 }_SocketAddrIPv6EUI48Command_t;
 typedef struct
 {
-  INT16 lenOrPadding;
-  UINT8 sd;
-  UINT8 FamilyAndFlags;
-  UINT16 port;
-  UINT16 paddingOrAddr;
-  UINT32 address[4];
+  int16_t lenOrPadding;
+  int8_t sd;
+  int8_t FamilyAndFlags;
+  int16_t port;
+  int16_t paddingOrAddr;
+  int32_t address[4];
 }_SocketAddrIPv6Command_t;
 
 typedef union {
@@ -838,72 +838,72 @@ typedef union {
 
 typedef struct
 {
-  UINT8 sd;
-  UINT8 backlog;
-  UINT8 padding1;
-  UINT8 padding2;
+  int8_t sd;
+  int8_t backlog;
+  int8_t padding1;
+  int8_t padding2;
 }_ListenCommand_t;
 
 typedef struct
 {
-  UINT8 sd;
-  UINT8 padding0;
-  UINT8 padding1;
-  UINT8 padding2;
+  int8_t sd;
+  int8_t padding0;
+  int8_t padding1;
+  int8_t padding2;
 }_CloseCommand_t;
 
 
 typedef struct
 {
-  UINT8 nfds;
-  UINT8 readFdsCount;
-  UINT8 writeFdsCount;
-  UINT8 padding;
-  UINT16 readFds;
-  UINT16 writeFds;
-  UINT16 tv_usec;
-  UINT16 tv_sec;
+  int8_t nfds;
+  int8_t readFdsCount;
+  int8_t writeFdsCount;
+  int8_t padding;
+  int16_t readFds;
+  int16_t writeFds;
+  int16_t tv_usec;
+  int16_t tv_sec;
 }_SelectCommand_t;
 
 
 typedef struct
 {
-  UINT16 status;
-  UINT8 readFdsCount;
-  UINT8 writeFdsCount;
-  UINT16 readFds;
-  UINT16 writeFds;
+  int16_t status;
+  int8_t readFdsCount;
+  int8_t writeFdsCount;
+  int16_t readFds;
+  int16_t writeFds;
 }_SelectAsyncResponse_t;
 
 typedef struct
 {
-  UINT8 sd;
-  UINT8 level;
-  UINT8 optionName;
-  UINT8 optionLen;
+  int8_t sd;
+  int8_t level;
+  int8_t optionName;
+  int8_t optionLen;
 }_setSockOptCommand_t;
 
 typedef struct
 {
-  UINT8 sd;
-  UINT8 level;
-  UINT8 optionName;
-  UINT8 optionLen;
+  int8_t sd;
+  int8_t level;
+  int8_t optionName;
+  int8_t optionLen;
 }_getSockOptCommand_t;
 
 typedef struct
 {
-  INT16 status;
-  UINT8 sd;
-  UINT8 optionLen;
+  int16_t status;
+  int8_t sd;
+  int8_t optionLen;
 }_getSockOptResponse_t;
 
 
 typedef struct
 {
-  UINT16 StatusOrLen;
-  UINT8  sd;
-  UINT8 FamilyAndFlags;
+  int16_t StatusOrLen;
+  int8_t  sd;
+  int8_t FamilyAndFlags;
 }_sendRecvCommand_t;
 
 /*****************************************************************************************
@@ -915,73 +915,73 @@ typedef _BasicResponse_t _NetAppStartStopResponse_t;
 
 typedef struct
 {
-    UINT32  appId;
+    int32_t  appId;
 }_NetAppStartStopCommand_t;
 
 typedef struct
 {
-    UINT16  Status;
-    UINT16	AppId;
-    UINT16	ConfigOpt;
-    UINT16	ConfigLen;
+    int16_t  Status;
+    int16_t	AppId;
+    int16_t	ConfigOpt;
+    int16_t	ConfigLen;
 }_NetAppSetGet_t;
 typedef struct
 {
-    UINT16  port_number;
+    int16_t  port_number;
 } _NetAppHttpServerGetSet_port_num_t;
 
 typedef struct
 {
-    UINT8  auth_enable;
+    int8_t  auth_enable;
 }_NetAppHttpServerGetSet_auth_enable_t;
 
 typedef struct _sl_NetAppHttpServerGetToken_t
 {
-	UINT8	token_name_len;
-	UINT8	padd1;
-	UINT16	padd2;
+	int8_t	token_name_len;
+	int8_t	padd1;
+	int16_t	padd2;
 }sl_NetAppHttpServerGetToken_t;
 
 typedef struct _sl_NetAppHttpServerSendToken_t
 {
-	UINT8	token_value_len;
-	UINT8	token_name_len;
-	UINT8   token_name[MAX_TOKEN_NAME_LEN];
-	UINT16	padd;
+	int8_t	token_value_len;
+	int8_t	token_name_len;
+	int8_t   token_name[MAX_TOKEN_NAME_LEN];
+	int16_t	padd;
 }sl_NetAppHttpServerSendToken_t;
 
 typedef struct _sl_NetAppHttpServerPostToken_t
 {
-	UINT8 post_action_len;
-	UINT8 token_name_len;
-	UINT8 token_value_len;
-	UINT8 padding;
+	int8_t post_action_len;
+	int8_t token_name_len;
+	int8_t token_value_len;
+	int8_t padding;
 }sl_NetAppHttpServerPostToken_t;
 
 
 typedef struct
 {
-  UINT16 Len;
-  UINT8  family;
-  UINT8  padding;
+  int16_t Len;
+  int8_t  family;
+  int8_t  padding;
 }_GetHostByNameCommand_t;
 
 typedef struct
 {
-  UINT16 status;
-  UINT16 padding;
-  UINT32 ip0;
-  UINT32 ip1;
-  UINT32 ip2;
-  UINT32 ip3;
+  int16_t status;
+  int16_t padding;
+  int32_t ip0;
+  int32_t ip1;
+  int32_t ip2;
+  int32_t ip3;
 }_GetHostByNameIPv6AsyncResponse_t;
 
 typedef struct
 {
-  UINT16 status;
-  UINT8  padding1;
-  UINT8  padding2;
-  UINT32 ip0;
+  int16_t status;
+  int8_t  padding1;
+  int8_t  padding2;
+  int32_t ip0;
 }_GetHostByNameIPv4AsyncResponse_t;
 
 
@@ -1007,61 +1007,61 @@ typedef enum
 
 typedef struct _sl_protocol_CtestStartCommand_t
 {
-    UINT32 Test;
-    UINT16 DestPort;
-    UINT16 SrcPort;
-    UINT32 DestAddr[4];
-    UINT32 PayloadSize;
-    UINT32 timeout;
-    UINT32 csEnabled;
-    UINT32 secure;
-    UINT32 rawProtocol;
-    UINT8  reserved1[4];
+    int32_t Test;
+    int16_t DestPort;
+    int16_t SrcPort;
+    int32_t DestAddr[4];
+    int32_t PayloadSize;
+    int32_t timeout;
+    int32_t csEnabled;
+    int32_t secure;
+    int32_t rawProtocol;
+    int8_t  reserved1[4];
 }_CtestStartCommand_t;
 
 typedef struct
 {
-  UINT8  test;
-  UINT8  socket;
-  INT16  status;
-  UINT32 startTime;
-  UINT32 endTime;
-  UINT16 txKbitsSec;
-  UINT16 rxKbitsSec;
-  UINT32 outOfOrderPackets;
-  UINT32 missedPackets;
+  int8_t  test;
+  int8_t  socket;
+  int16_t  status;
+  int32_t startTime;
+  int32_t endTime;
+  int16_t txKbitsSec;
+  int16_t rxKbitsSec;
+  int32_t outOfOrderPackets;
+  int32_t missedPackets;
 }_CtestAsyncResponse_t;
 
 typedef struct
 {
-    UINT32 pingIntervalTime;
-    UINT16 PingSize;
-    UINT16 pingRequestTimeout;
-    UINT32 totalNumberOfAttempts;
-    UINT32 flags;
-    UINT32 ip0;
-    UINT32 ip1OrPaadding;
-    UINT32 ip2OrPaadding;
-    UINT32 ip3OrPaadding;
+    int32_t pingIntervalTime;
+    int16_t PingSize;
+    int16_t pingRequestTimeout;
+    int32_t totalNumberOfAttempts;
+    int32_t flags;
+    int32_t ip0;
+    int32_t ip1OrPaadding;
+    int32_t ip2OrPaadding;
+    int32_t ip3OrPaadding;
 }_PingStartCommand_t;
 
 typedef struct
 {
-    UINT16 status;
-    UINT16 rttMin;
-    UINT16 rttMax;
-    UINT16 rttAvg;
-    UINT32 numSuccsessPings;
-    UINT32 numSendsPings;
-    UINT32 testTime;
+    int16_t status;
+    int16_t rttMin;
+    int16_t rttMax;
+    int16_t rttAvg;
+    int32_t numSuccsessPings;
+    int32_t numSendsPings;
+    int32_t testTime;
 }_PingReportResponse_t;
 
 
 typedef struct
 {
-    UINT32 ip;
-    UINT32 gateway;
-    UINT32 dns;
+    int32_t ip;
+    int32_t gateway;
+    int32_t dns;
 }_IpV4AcquiredAsync_t;
 
 
@@ -1074,10 +1074,10 @@ typedef enum
 
 typedef struct
 {
-    UINT32 type;
-    UINT32 ip[4];
-    UINT32 gateway[4];
-    UINT32 dns[4];
+    int32_t type;
+    int32_t ip[4];
+    int32_t gateway[4];
+    int32_t dns[4];
 }_IpV6AcquiredAsync_t;
 
 
@@ -1093,30 +1093,30 @@ typedef union
 
 typedef struct
 {
-    UINT32 FileHandle;
-    UINT32 Offset;
-    UINT16 Len;  
-    UINT16 Padding;  
+    int32_t FileHandle;
+    int32_t Offset;
+    int16_t Len;  
+    int16_t Padding;  
 }_FsReadCommand_t;
 
 typedef struct
 {
-  UINT32 Mode;
-  UINT32 Token;
+  int32_t Mode;
+  int32_t Token;
 }_FsOpenCommand_t;
 
 typedef struct 
 {
-  UINT32 FileHandle;
-  UINT32 Token;
+  int32_t FileHandle;
+  int32_t Token;
 }_FsOpenResponse_t;
 
 
 typedef struct
 {
-  UINT32 FileHandle;
-  UINT32 CertificFileNameLength;
-  UINT32 SignatureLen;
+  int32_t FileHandle;
+  int32_t CertificFileNameLength;
+  int32_t SignatureLen;
 }_FsCloseCommand_t;
 
 
@@ -1126,34 +1126,34 @@ typedef _BasicResponse_t _FsCloseResponse_t;
 
 typedef struct
 {
-    UINT16 Status;
-    UINT16 flags;
-    UINT32 FileLen;
-    UINT32 AllocatedLen;
-    UINT32 Token[4];
+    int16_t Status;
+    int16_t flags;
+    int32_t FileLen;
+    int32_t AllocatedLen;
+    int32_t Token[4];
 }_FsGetInfoResponse_t;
 
 typedef struct
 {
-    UINT8 DeviceID;
-    UINT8 Padding[3];
+    int8_t DeviceID;
+    int8_t Padding[3];
 }_FsFormatCommand_t;
 
 typedef _BasicResponse_t _FsFormatResponse_t;
 
 typedef struct
 {
-    UINT32 Token;
+    int32_t Token;
 }_FsDeleteCommand_t;
 
 typedef   _FsDeleteCommand_t  _FsGetInfoCommand_t;
 
 typedef struct
 {
-    UINT32 FileHandle;
-    UINT32 Offset;
-    UINT16 Len;
-    UINT16 Padding;
+    int32_t FileHandle;
+    int32_t Offset;
+    int16_t Len;
+    int16_t Padding;
 }_FsWriteCommand_t;
 
 typedef _BasicResponse_t _FsWriteResponse_t;
@@ -1168,7 +1168,7 @@ typedef _BasicResponse_t _FsWriteResponse_t;
 #define RECVFROM_IPV4_ARGS_SIZE         (sizeof(_SocketAddrAsyncIPv4Response_t))
 #define RECVFROM_IPV6_ARGS_SIZE         (sizeof(_SocketAddrAsyncIPv6Response_t))
 
-#define SL_IPV4_ADDRESS_SIZE 			(sizeof(UINT32))
-#define SL_IPV6_ADDRESS_SIZE 			(4 * sizeof(UINT32))
+#define SL_IPV4_ADDRESS_SIZE 			(sizeof(int32_t))
+#define SL_IPV6_ADDRESS_SIZE 			(4 * sizeof(int32_t))
 
 #endif /*  _SL_PROTOCOL_TYPES_H_  */

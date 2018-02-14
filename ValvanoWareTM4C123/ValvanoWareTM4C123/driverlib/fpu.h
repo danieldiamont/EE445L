@@ -101,6 +101,7 @@ extern void FPUNaNModeSet(uint32_t ui32Mode);
 extern void FPUFlushToZeroModeSet(uint32_t ui32Mode);
 extern void FPURoundingModeSet(uint32_t ui32Mode);
 
+#include <stdint.h>
 //*****************************************************************************
 //
 // Mark the end of the C bindings section for C++ compilers.

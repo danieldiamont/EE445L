@@ -133,6 +133,7 @@ extern "C"
 #define GPIO_INT_PIN_7          0x00000080
 #define GPIO_INT_DMA            0x00000100
 
+#include <stdint.h>
 //*****************************************************************************
 //
 // Prototypes for the APIs.
