@@ -19,4 +19,742 @@ compiling main.c...
   extern void FPUFlushToZeroModeSet(uint32_t ui32Mode);
 ..\driverlib/fpu.h(102): error:  #20: identifier "UINT32" is undefined
   extern void FPURoundingModeSet(uint32_t ui32Mode);
-..\driverlib/gp
+..\driverlib/gpio.h(141): error:  #20: identifier "UINT32" is undefined
+  extern void GPIODirModeSet(uint32_t ui32Port, uint8_t ui8Pins,
+..\driverlib/gpio.h(142): error:  #20: identifier "UINT32" is undefined
+                             uint32_t ui32PinIO);
+..\driverlib/gpio.h(143): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t GPIODirModeGet(uint32_t ui32Port, uint8_t ui8Pin);
+..\driverlib/gpio.h(143): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t GPIODirModeGet(uint32_t ui32Port, uint8_t ui8Pin);
+..\driverlib/gpio.h(144): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntTypeSet(uint32_t ui32Port, uint8_t ui8Pins,
+..\driverlib/gpio.h(145): error:  #20: identifier "UINT32" is undefined
+                             uint32_t ui32IntType);
+..\driverlib/gpio.h(146): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t GPIOIntTypeGet(uint32_t ui32Port, uint8_t ui8Pin);
+..\driverlib/gpio.h(146): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t GPIOIntTypeGet(uint32_t ui32Port, uint8_t ui8Pin);
+..\driverlib/gpio.h(147): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOPadConfigSet(uint32_t ui32Port, uint8_t ui8Pins,
+..\driverlib/gpio.h(148): error:  #20: identifier "UINT32" is undefined
+                               uint32_t ui32Strength, uint32_t ui32PadType);
+..\driverlib/gpio.h(148): error:  #20: identifier "UINT32" is undefined
+                               uint32_t ui32Strength, uint32_t ui32PadType);
+..\driverlib/gpio.h(149): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOPadConfigGet(uint32_t ui32Port, uint8_t ui8Pin,
+..\driverlib/gpio.h(150): error:  #20: identifier "UINT32" is undefined
+                               uint32_t *pui32Strength, uint32_t *pui32PadType);
+..\driverlib/gpio.h(150): error:  #20: identifier "UINT32" is undefined
+                               uint32_t *pui32Strength, uint32_t *pui32PadType);
+..\driverlib/gpio.h(151): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntEnable(uint32_t ui32Port, uint32_t ui32IntFlags);
+..\driverlib/gpio.h(151): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntEnable(uint32_t ui32Port, uint32_t ui32IntFlags);
+..\driverlib/gpio.h(152): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntDisable(uint32_t ui32Port, uint32_t ui32IntFlags);
+..\driverlib/gpio.h(152): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntDisable(uint32_t ui32Port, uint32_t ui32IntFlags);
+..\driverlib/gpio.h(153): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t GPIOIntStatus(uint32_t ui32Port, bool bMasked);
+..\driverlib/gpio.h(153): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t GPIOIntStatus(uint32_t ui32Port, bool bMasked);
+..\driverlib/gpio.h(154): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntClear(uint32_t ui32Port, uint32_t ui32IntFlags);
+..\driverlib/gpio.h(154): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntClear(uint32_t ui32Port, uint32_t ui32IntFlags);
+..\driverlib/gpio.h(155): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntRegister(uint32_t ui32Port, void (*pfnIntHandler)(void));
+..\driverlib/gpio.h(156): error:  #20: identifier "UINT32" is undefined
+  extern void GPIOIntUnregister(uint32_t ui32Port);
+..\driverlib/gpio.h(157): error:  #20: identifier "INT32" is undefined
+  extern int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins);
+main.c: 0 warnings, 30 errors
+compiling board.c...
+..\driverlib/ssi.h(119): error:  #20: identifier "UINT32" is undefined
+  extern void SSIConfigSetExpClk(uint32_t ui32Base, uint32_t ui32SSIClk,
+..\driverlib/ssi.h(119): error:  #20: identifier "UINT32" is undefined
+  extern void SSIConfigSetExpClk(uint32_t ui32Base, uint32_t ui32SSIClk,
+..\driverlib/ssi.h(120): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32Protocol, uint32_t ui32Mode,
+..\driverlib/ssi.h(120): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32Protocol, uint32_t ui32Mode,
+..\driverlib/ssi.h(121): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32BitRate,
+..\driverlib/ssi.h(122): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32DataWidth);
+..\driverlib/ssi.h(123): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataGet(uint32_t ui32Base, uint32_t *pui32Data);
+..\driverlib/ssi.h(123): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataGet(uint32_t ui32Base, uint32_t *pui32Data);
+..\driverlib/ssi.h(124): error:  #20: identifier "INT32" is undefined
+  extern int32_t SSIDataGetNonBlocking(uint32_t ui32Base,
+..\driverlib/ssi.h(124): error:  #20: identifier "UINT32" is undefined
+  extern int32_t SSIDataGetNonBlocking(uint32_t ui32Base,
+..\driverlib/ssi.h(125): error:  #20: identifier "UINT32" is undefined
+                                    uint32_t *pui32Data);
+..\driverlib/ssi.h(126): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataPut(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(126): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataPut(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(127): error:  #20: identifier "INT32" is undefined
+  extern int32_t SSIDataPutNonBlocking(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(127): error:  #20: identifier "UINT32" is undefined
+  extern int32_t SSIDataPutNonBlocking(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(127): error:  #20: identifier "UINT32" is undefined
+  extern int32_t SSIDataPutNonBlocking(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(128): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDisable(uint32_t ui32Base);
+..\driverlib/ssi.h(129): error:  #20: identifier "UINT32" is undefined
+  extern void SSIEnable(uint32_t ui32Base);
+..\driverlib/ssi.h(130): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntClear(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(130): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntClear(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(131): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntDisable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(131): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntDisable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(132): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntEnable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(132): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntEnable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(133): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntRegister(uint32_t ui32Base, void (*pfnHandler)(void));
+..\driverlib/ssi.h(134): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t SSIIntStatus(uint32_t ui32Base, bool bMasked);
+..\driverlib/ssi.h(134): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t SSIIntStatus(uint32_t ui32Base, bool bMasked);
+..\driverlib/ssi.h(135): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntUnregister(uint32_t ui32Base);
+..\driverlib/ssi.h(136): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDMAEnable(uint32_t ui32Base, uint32_t ui32DMAFlags);
+..\driverlib/ssi.h(136): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDMAEnable(uint32_t ui32Base, uint32_t ui32DMAFlags);
+..\cc3100\platform\ek-tm4c123gxl\board.c: 0 warnings, 30 errors
+compiling device.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\device.c: 0 warnings, 30 errors
+compiling driver.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\driver.c: 0 warnings, 30 errors
+compiling flowcont.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\flowcont.c: 0 warnings, 30 errors
+compiling fs.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\fs.c: 0 warnings, 30 errors
+compiling netapp.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\netapp.c: 0 warnings, 30 errors
+compiling netcfg.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\netcfg.c: 0 warnings, 30 errors
+compiling nonos.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\nonos.c: 0 warnings, 30 errors
+compiling socket.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\socket.c: 0 warnings, 30 errors
+compiling spawn.c...
+compiling spi.c...
+..\driverlib/ssi.h(119): error:  #20: identifier "UINT32" is undefined
+  extern void SSIConfigSetExpClk(uint32_t ui32Base, uint32_t ui32SSIClk,
+..\driverlib/ssi.h(119): error:  #20: identifier "UINT32" is undefined
+  extern void SSIConfigSetExpClk(uint32_t ui32Base, uint32_t ui32SSIClk,
+..\driverlib/ssi.h(120): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32Protocol, uint32_t ui32Mode,
+..\driverlib/ssi.h(120): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32Protocol, uint32_t ui32Mode,
+..\driverlib/ssi.h(121): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32BitRate,
+..\driverlib/ssi.h(122): error:  #20: identifier "UINT32" is undefined
+                                 uint32_t ui32DataWidth);
+..\driverlib/ssi.h(123): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataGet(uint32_t ui32Base, uint32_t *pui32Data);
+..\driverlib/ssi.h(123): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataGet(uint32_t ui32Base, uint32_t *pui32Data);
+..\driverlib/ssi.h(124): error:  #20: identifier "INT32" is undefined
+  extern int32_t SSIDataGetNonBlocking(uint32_t ui32Base,
+..\driverlib/ssi.h(124): error:  #20: identifier "UINT32" is undefined
+  extern int32_t SSIDataGetNonBlocking(uint32_t ui32Base,
+..\driverlib/ssi.h(125): error:  #20: identifier "UINT32" is undefined
+                                    uint32_t *pui32Data);
+..\driverlib/ssi.h(126): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataPut(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(126): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDataPut(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(127): error:  #20: identifier "INT32" is undefined
+  extern int32_t SSIDataPutNonBlocking(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(127): error:  #20: identifier "UINT32" is undefined
+  extern int32_t SSIDataPutNonBlocking(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(127): error:  #20: identifier "UINT32" is undefined
+  extern int32_t SSIDataPutNonBlocking(uint32_t ui32Base, uint32_t ui32Data);
+..\driverlib/ssi.h(128): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDisable(uint32_t ui32Base);
+..\driverlib/ssi.h(129): error:  #20: identifier "UINT32" is undefined
+  extern void SSIEnable(uint32_t ui32Base);
+..\driverlib/ssi.h(130): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntClear(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(130): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntClear(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(131): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntDisable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(131): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntDisable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(132): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntEnable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(132): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntEnable(uint32_t ui32Base, uint32_t ui32IntFlags);
+..\driverlib/ssi.h(133): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntRegister(uint32_t ui32Base, void (*pfnHandler)(void));
+..\driverlib/ssi.h(134): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t SSIIntStatus(uint32_t ui32Base, bool bMasked);
+..\driverlib/ssi.h(134): error:  #20: identifier "UINT32" is undefined
+  extern uint32_t SSIIntStatus(uint32_t ui32Base, bool bMasked);
+..\driverlib/ssi.h(135): error:  #20: identifier "UINT32" is undefined
+  extern void SSIIntUnregister(uint32_t ui32Base);
+..\driverlib/ssi.h(136): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDMAEnable(uint32_t ui32Base, uint32_t ui32DMAFlags);
+..\driverlib/ssi.h(136): error:  #20: identifier "UINT32" is undefined
+  extern void SSIDMAEnable(uint32_t ui32Base, uint32_t ui32DMAFlags);
+..\cc3100\platform\ek-tm4c123gxl\spi.c: 0 warnings, 30 errors
+compiling wlan.c...
+..\cc3100\simplelink\source\protocol.h(87): error:  #20: identifier "UINT32" is undefined
+      UINT32  Long;
+..\cc3100\simplelink\source\protocol.h(372): error:  #20: identifier "UINT32" is undefined
+  typedef UINT32 InitStatus_t;
+..\cc3100\simplelink\source\protocol.h(377): error:  #20: identifier "INT32" is undefined
+      INT32 Status;
+..\cc3100\simplelink\source\protocol.h(395): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(396): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(404): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(410): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(411): error:  #20: identifier "UINT32" is undefined
+    UINT32 mask;
+..\cc3100\simplelink\source\protocol.h(417): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(423): error:  #20: identifier "UINT32" is undefined
+    UINT32 group;
+..\cc3100\simplelink\source\protocol.h(424): error:  #20: identifier "UINT32" is undefined
+    UINT32 status;
+..\cc3100\simplelink\source\protocol.h(429): error:  #20: identifier "UINT32" is undefined
+      UINT32  ChipId;
+..\cc3100\simplelink\source\protocol.h(430): error:  #20: identifier "UINT32" is undefined
+      UINT32  FwVersion[4];
+..\cc3100\simplelink\source\protocol.h(437): error:  #20: identifier "UINT32" is undefined
+      UINT32                            NwpVersion[4];
+..\cc3100\simplelink\source\protocol.h(445): error:  #20: identifier "UINT32" is undefined
+        UINT32 BaudRate;
+..\cc3100\simplelink\source\protocol.h(479): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(498): error:  #20: identifier "UINT32" is undefined
+        UINT32  minDwellTime;
+..\cc3100\simplelink\source\protocol.h(499): error:  #20: identifier "UINT32" is undefined
+        UINT32  maxDwellTime;
+..\cc3100\simplelink\source\protocol.h(500): error:  #20: identifier "UINT32" is undefined
+        UINT32  numProbeResponse;
+..\cc3100\simplelink\source\protocol.h(501): error:  #20: identifier "UINT32" is undefined
+        UINT32  G_Channels_mask;
+..\cc3100\simplelink\source\protocol.h(502): error:  #20: identifier "INT32" is undefined
+        INT32   rssiThershold;
+..\cc3100\simplelink\source\protocol.h(503): error:  #20: identifier "INT32" is undefined
+        INT32   snrThershold;
+..\cc3100\simplelink\source\protocol.h(504): error:  #20: identifier "INT32" is undefined
+        INT32   defaultTXPower;
+..\cc3100\simplelink\source\protocol.h(525): error:  #20: identifier "UINT32" is undefined
+         UINT32                            EapBitmask;
+..\cc3100\simplelink\source\protocol.h(561): error:  #20: identifier "UINT32" is undefined
+      UINT32                                            groupIdBitmask;
+..\cc3100\simplelink\source\protocol.h(691): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Global[4];
+..\cc3100\simplelink\source\protocol.h(692): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6Local[4];
+..\cc3100\simplelink\source\protocol.h(693): error:  #20: identifier "UINT32" is undefined
+      UINT32 ipV6DnsServer[4];
+..\cc3100\simplelink\source\protocol.h(773): error:  #20: identifier "UINT32" is undefined
+    UINT32 address;
+..\cc3100\simplelink\source\protocol.h(791): error:  #20: identifier "UINT32" is undefined
+    UINT32 address[4];
+..\cc3100\simplelink\source\wlan.c: 0 warnings, 30 errors
+".\rvmdk\getWeather.axf" - 360 Error(s), 0 Warning(s).
+Target not created
+</pre>
+</body>
+</html>
