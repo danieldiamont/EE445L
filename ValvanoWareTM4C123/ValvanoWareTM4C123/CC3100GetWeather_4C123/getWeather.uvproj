@@ -520,6 +520,16 @@
               <FileType>5</FileType>
               <FilePath>.\ST7735.h</FilePath>
             </File>
+            <File>
+              <FileName>Print.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Print.s</FilePath>
+            </File>
+            <File>
+              <FileName>LCD.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\LCD.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
