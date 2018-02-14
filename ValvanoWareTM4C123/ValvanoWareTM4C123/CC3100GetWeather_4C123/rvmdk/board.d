@@ -1,7 +1,7 @@
 .\rvmdk\board.o: ..\cc3100\platform\ek-tm4c123gxl\board.c
 .\rvmdk\board.o: ..\cc3100\simplelink\include\simplelink.h
 .\rvmdk\board.o: ..\cc3100\platform\ek-tm4c123gxl\user.h
-.\rvmdk\board.o: D:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\rvmdk\board.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
 .\rvmdk\board.o: ..\cc3100\platform\ek-tm4c123gxl\board.h
 .\rvmdk\board.o: ..\cc3100\platform\ek-tm4c123gxl\spi.h
 .\rvmdk\board.o: ..\cc3100\simplelink\include\../source/nonos.h
@@ -29,8 +29,3 @@
 .\rvmdk\board.o: ..\inc/hw_ssi.h
 .\rvmdk\board.o: ..\inc/hw_types.h
 .\rvmdk\board.o: ..\driverlib/ssi.h
-.\rvmdk\board.o: ..\driverlib/rom.h
-.\rvmdk\board.o: ..\driverlib/gpio.h
-.\rvmdk\board.o: ..\driverlib/sysctl.h
-.\rvmdk\board.o: ..\driverlib/fpu.h
-.\rvmdk\board.o: ..\driverlib/uart.h

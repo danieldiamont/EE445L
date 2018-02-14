@@ -1,7 +1,7 @@
 .\rvmdk\main.o: main.c
 .\rvmdk\main.o: ..\cc3100\simplelink\include\simplelink.h
 .\rvmdk\main.o: ..\cc3100\platform\ek-tm4c123gxl\user.h
-.\rvmdk\main.o: D:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\rvmdk\main.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
 .\rvmdk\main.o: ..\cc3100\platform\ek-tm4c123gxl\board.h
 .\rvmdk\main.o: ..\cc3100\platform\ek-tm4c123gxl\spi.h
 .\rvmdk\main.o: ..\cc3100\simplelink\include\../source/nonos.h
@@ -29,13 +29,3 @@
 .\rvmdk\main.o: ..\driverlib/debug.h
 .\rvmdk\main.o: ..\driverlib/fpu.h
 .\rvmdk\main.o: ..\driverlib/gpio.h
-.\rvmdk\main.o: ..\driverlib/pin_map.h
-.\rvmdk\main.o: ..\driverlib/rom.h
-.\rvmdk\main.o: ..\driverlib/sysctl.h
-.\rvmdk\main.o: ..\driverlib/uart.h
-.\rvmdk\main.o: ..\utils/uartstdio.h
-.\rvmdk\main.o: D:\Keil\ARM\ARMCC\bin\..\include\stdarg.h
-.\rvmdk\main.o: ..\utils/cmdline.h
-.\rvmdk\main.o: application_commands.h
-.\rvmdk\main.o: LED.h
-.\rvmdk\main.o: Nokia5110.h

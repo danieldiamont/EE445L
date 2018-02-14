@@ -725,6 +725,8 @@ Removing Unused input sections from the image.
     Removing ustdlib.o(.constdata), (76 bytes).
     Removing ustdlib.o(.conststring), (17 bytes).
     Removing ustdlib.o(.data), (4 bytes).
+    Removing adcswtrigger.o(i.ADC0_InSeq3), (28 bytes).
+    Removing adcswtrigger.o(i.ADC0_InitSWTriggerSeq3_Ch9), (208 bytes).
     Removing fpu.o(i.FPUDisable), (16 bytes).
     Removing fpu.o(i.FPUFlushToZeroModeSet), (20 bytes).
     Removing fpu.o(i.FPUHalfPrecisionModeSet), (20 bytes).
@@ -902,7 +904,7 @@ Removing Unused input sections from the image.
     Removing uart.o(i.UARTTxIntModeSet), (12 bytes).
     Removing uart.o(.constdata), (128 bytes).
 
-282 unused section(s) (total 14955 bytes) removed from the image.
+284 unused section(s) (total 15191 bytes) removed from the image.
 
 ==============================================================================
 
@@ -913,19 +915,19 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      648  startup_rvmdk.o(RESET)
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
@@ -946,6 +948,7 @@ Image Symbol Table
     ..\cc3100\simplelink\source\wlan.c       0x00000000   Number         0  wlan.o ABSOLUTE
     ..\utils\uartstdio.c                     0x00000000   Number         0  uartstdio.o ABSOLUTE
     ..\utils\ustdlib.c                       0x00000000   Number         0  ustdlib.o ABSOLUTE
+    ADCSWTrigger.c                           0x00000000   Number         0  adcswtrigger.o ABSOLUTE
     LED.c                                    0x00000000   Number         0  led.o ABSOLUTE
     Nokia5110.c                              0x00000000   Number         0  nokia5110.o ABSOLUTE
     cpu.c                                    0x00000000   Number         0  cpu.o ABSOLUTE
@@ -1397,24 +1400,24 @@ Memory Map of the image
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000288   Code   RO         1129  * RESET               startup_rvmdk.o
-    0x00000288   0x00000000   Code   RO         2798  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x00000288   0x00000004   Code   RO         2811    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x0000028c   0x00000004   Code   RO         2814    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x00000290   0x00000000   Code   RO         2816    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x00000290   0x00000000   Code   RO         2818    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x00000290   0x00000008   Code   RO         2819    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00000298   0x00000000   Code   RO         2821    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x00000298   0x00000000   Code   RO         2823    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x00000298   0x00000004   Code   RO         2812    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x0000029c   0x00000006   Code   RO         2157    .emb_text           driverlib.lib(sysctl.o)
+    0x00000288   0x00000000   Code   RO         2813  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000288   0x00000004   Code   RO         2826    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x0000028c   0x00000004   Code   RO         2829    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x00000290   0x00000000   Code   RO         2831    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x00000290   0x00000000   Code   RO         2833    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x00000290   0x00000008   Code   RO         2834    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000298   0x00000000   Code   RO         2836    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x00000298   0x00000000   Code   RO         2838    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x00000298   0x00000004   Code   RO         2827    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x0000029c   0x00000006   Code   RO         2172    .emb_text           driverlib.lib(sysctl.o)
     0x000002a2   0x00000002   PAD
-    0x000002a4   0x00000026   Code   RO         2788    .emb_text           driverlib.lib(cpu.o)
-    0x000002ca   0x00000024   Code   RO         2801    .text               mc_w.l(memcpya.o)
-    0x000002ee   0x00000024   Code   RO         2803    .text               mc_w.l(memseta.o)
-    0x00000312   0x0000000e   Code   RO         2805    .text               mc_w.l(strlen.o)
-    0x00000320   0x00000012   Code   RO         2807    .text               mc_w.l(strcpy.o)
+    0x000002a4   0x00000026   Code   RO         2803    .emb_text           driverlib.lib(cpu.o)
+    0x000002ca   0x00000024   Code   RO         2816    .text               mc_w.l(memcpya.o)
+    0x000002ee   0x00000024   Code   RO         2818    .text               mc_w.l(memseta.o)
+    0x00000312   0x0000000e   Code   RO         2820    .text               mc_w.l(strlen.o)
+    0x00000320   0x00000012   Code   RO         2822    .text               mc_w.l(strcpy.o)
     0x00000332   0x00000002   PAD
-    0x00000334   0x00000024   Code   RO         2825    .text               mc_w.l(init.o)
+    0x00000334   0x00000024   Code   RO         2840    .text               mc_w.l(init.o)
     0x00000358   0x00000014   Code   RO          347    i.Board_Input       led.o
     0x0000036c   0x0000000c   Code   RO          158    i.CC3100_InterruptDisable  board.o
     0x00000378   0x0000000c   Code   RO          159    i.CC3100_InterruptEnable  board.o
@@ -1422,43 +1425,43 @@ Memory Map of the image
     0x00000394   0x00000010   Code   RO          161    i.CC3100_enable     board.o
     0x000003a4   0x0000001a   Code   RO          752    i.CopyPingResultsToReport  netapp.o
     0x000003be   0x00000012   Code   RO            1    i.Crash             main.o
-    0x000003d0   0x00000010   Code   RO         1501    i.FPUEnable         driverlib.lib(fpu.o)
-    0x000003e0   0x00000010   Code   RO         1504    i.FPULazyStackingEnable  driverlib.lib(fpu.o)
+    0x000003d0   0x00000010   Code   RO         1522    i.FPUEnable         driverlib.lib(fpu.o)
+    0x000003e0   0x00000010   Code   RO         1525    i.FPULazyStackingEnable  driverlib.lib(fpu.o)
     0x000003f0   0x00000034   Code   RO          163    i.GPIOB_intHandler  board.o
-    0x00000424   0x00000028   Code   RO         1577    i.GPIODirModeSet    driverlib.lib(gpio.o)
-    0x0000044c   0x00000006   Code   RO         1578    i.GPIOIntClear      driverlib.lib(gpio.o)
-    0x00000452   0x0000000e   Code   RO         1579    i.GPIOIntDisable    driverlib.lib(gpio.o)
-    0x00000460   0x0000000e   Code   RO         1580    i.GPIOIntEnable     driverlib.lib(gpio.o)
-    0x0000046e   0x0000000e   Code   RO         1582    i.GPIOIntStatus     driverlib.lib(gpio.o)
-    0x0000047c   0x00000050   Code   RO         1584    i.GPIOIntTypeSet    driverlib.lib(gpio.o)
-    0x000004cc   0x0000013a   Code   RO         1587    i.GPIOPadConfigSet  driverlib.lib(gpio.o)
+    0x00000424   0x00000028   Code   RO         1595    i.GPIODirModeSet    driverlib.lib(gpio.o)
+    0x0000044c   0x00000006   Code   RO         1596    i.GPIOIntClear      driverlib.lib(gpio.o)
+    0x00000452   0x0000000e   Code   RO         1597    i.GPIOIntDisable    driverlib.lib(gpio.o)
+    0x00000460   0x0000000e   Code   RO         1598    i.GPIOIntEnable     driverlib.lib(gpio.o)
+    0x0000046e   0x0000000e   Code   RO         1600    i.GPIOIntStatus     driverlib.lib(gpio.o)
+    0x0000047c   0x00000050   Code   RO         1602    i.GPIOIntTypeSet    driverlib.lib(gpio.o)
+    0x000004cc   0x0000013a   Code   RO         1605    i.GPIOPadConfigSet  driverlib.lib(gpio.o)
     0x00000606   0x00000002   PAD
-    0x00000608   0x00000048   Code   RO         1588    i.GPIOPinConfigure  driverlib.lib(gpio.o)
-    0x00000650   0x0000001c   Code   RO         1597    i.GPIOPinTypeGPIOInput  driverlib.lib(gpio.o)
-    0x0000066c   0x0000001c   Code   RO         1598    i.GPIOPinTypeGPIOOutput  driverlib.lib(gpio.o)
-    0x00000688   0x0000001c   Code   RO         1611    i.GPIOPinTypeSSI    driverlib.lib(gpio.o)
-    0x000006a4   0x0000001c   Code   RO         1613    i.GPIOPinTypeUART   driverlib.lib(gpio.o)
-    0x000006c0   0x00000006   Code   RO         1619    i.GPIOPinWrite      driverlib.lib(gpio.o)
+    0x00000608   0x00000048   Code   RO         1606    i.GPIOPinConfigure  driverlib.lib(gpio.o)
+    0x00000650   0x0000001c   Code   RO         1615    i.GPIOPinTypeGPIOInput  driverlib.lib(gpio.o)
+    0x0000066c   0x0000001c   Code   RO         1616    i.GPIOPinTypeGPIOOutput  driverlib.lib(gpio.o)
+    0x00000688   0x0000001c   Code   RO         1629    i.GPIOPinTypeSSI    driverlib.lib(gpio.o)
+    0x000006a4   0x0000001c   Code   RO         1631    i.GPIOPinTypeUART   driverlib.lib(gpio.o)
+    0x000006c0   0x00000006   Code   RO         1637    i.GPIOPinWrite      driverlib.lib(gpio.o)
     0x000006c6   0x00000044   Code   RO          407    i.GetStartResponseConvert  device.o
     0x0000070a   0x00000002   PAD
-    0x0000070c   0x00000064   Code   RO         1893    i.IntEnable         driverlib.lib(interrupt.o)
-    0x00000770   0x0000000e   Code   RO         1896    i.IntMasterEnable   driverlib.lib(interrupt.o)
+    0x0000070c   0x00000064   Code   RO         1908    i.IntEnable         driverlib.lib(interrupt.o)
+    0x00000770   0x0000000e   Code   RO         1911    i.IntMasterEnable   driverlib.lib(interrupt.o)
     0x0000077e   0x00000010   Code   RO         1261    i.IsBufferEmpty     uartstdio.o
     0x0000078e   0x0000001a   Code   RO         1262    i.IsBufferFull      uartstdio.o
     0x000007a8   0x0000000c   Code   RO          349    i.LED_GreenOff      led.o
     0x000007b4   0x0000000c   Code   RO          350    i.LED_GreenOn       led.o
     0x000007c0   0x00000064   Code   RO          352    i.LED_Init          led.o
     0x00000824   0x00000010   Code   RO          355    i.LED_RedToggle     led.o
-    0x00000834   0x0000004a   Code   RO         2013    i.SSIConfigSetExpClk  driverlib.lib(ssi.o)
-    0x0000087e   0x00000014   Code   RO         2017    i.SSIDataGetNonBlocking  driverlib.lib(ssi.o)
-    0x00000892   0x00000010   Code   RO         2019    i.SSIDataPutNonBlocking  driverlib.lib(ssi.o)
-    0x000008a2   0x0000000a   Code   RO         2021    i.SSIEnable         driverlib.lib(ssi.o)
+    0x00000834   0x0000004a   Code   RO         2028    i.SSIConfigSetExpClk  driverlib.lib(ssi.o)
+    0x0000087e   0x00000014   Code   RO         2032    i.SSIDataGetNonBlocking  driverlib.lib(ssi.o)
+    0x00000892   0x00000010   Code   RO         2034    i.SSIDataPutNonBlocking  driverlib.lib(ssi.o)
+    0x000008a2   0x0000000a   Code   RO         2036    i.SSIEnable         driverlib.lib(ssi.o)
     0x000008ac   0x0000002c   Code   RO            3    i.SimpleLinkHttpServerCallback  main.o
     0x000008d8   0x00000040   Code   RO            4    i.SimpleLinkNetAppEventHandler  main.o
     0x00000918   0x000000d0   Code   RO            6    i.SimpleLinkWlanEventHandler  main.o
-    0x000009e8   0x00000164   Code   RO         2160    i.SysCtlClockGet    driverlib.lib(sysctl.o)
-    0x00000b4c   0x00000120   Code   RO         2162    i.SysCtlClockSet    driverlib.lib(sysctl.o)
-    0x00000c6c   0x00000028   Code   RO         2191    i.SysCtlPeripheralEnable  driverlib.lib(sysctl.o)
+    0x000009e8   0x00000164   Code   RO         2175    i.SysCtlClockGet    driverlib.lib(sysctl.o)
+    0x00000b4c   0x00000120   Code   RO         2177    i.SysCtlClockSet    driverlib.lib(sysctl.o)
+    0x00000c6c   0x00000028   Code   RO         2206    i.SysCtlPeripheralEnable  driverlib.lib(sysctl.o)
     0x00000c94   0x00000028   Code   RO         1264    i.UARTFlushRx       uartstdio.o
     0x00000cbc   0x00000038   Code   RO         1265    i.UARTFlushTx       uartstdio.o
     0x00000cf4   0x00000078   Code   RO         1268    i.UARTPrimeTransmit  uartstdio.o
@@ -1502,9 +1505,9 @@ Memory Map of the image
     0x00002466   0x00000006   Code   RO          892    i._SlNonOsSemSet    nonos.o
     0x0000246c   0x00000024   Code   RO          893    i._SlNonOsSpawn     nonos.o
     0x00002490   0x00000058   Code   RO          552    i._SlRemoveFromList  driver.o
-    0x000024e8   0x0000000e   Code   RO         2829    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x000024f6   0x00000002   Code   RO         2830    i.__scatterload_null  mc_w.l(handlers.o)
-    0x000024f8   0x0000000e   Code   RO         2831    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x000024e8   0x0000000e   Code   RO         2844    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x000024f6   0x00000002   Code   RO         2845    i.__scatterload_null  mc_w.l(handlers.o)
+    0x000024f8   0x0000000e   Code   RO         2846    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x00002506   0x00000026   Code   RO          927    i._sl_BuildAddress  socket.o
     0x0000252c   0x00000074   Code   RO          928    i._sl_HandleAsync_Accept  socket.o
     0x000025a0   0x0000007c   Code   RO          929    i._sl_HandleAsync_Connect  socket.o
@@ -1556,12 +1559,12 @@ Memory Map of the image
     0x000037dc   0x00000030   Data   RO          948    .constdata          socket.o
     0x0000380c   0x00000034   Data   RO         1156    .constdata          wlan.o
     0x00003840   0x00000028   Data   RO         1279    .constdata          uartstdio.o
-    0x00003868   0x00000210   Data   RO         1620    .constdata          driverlib.lib(gpio.o)
-    0x00003a78   0x0000010c   Data   RO         1909    .constdata          driverlib.lib(interrupt.o)
-    0x00003b84   0x000001c4   Data   RO         2212    .constdata          driverlib.lib(sysctl.o)
+    0x00003868   0x00000210   Data   RO         1638    .constdata          driverlib.lib(gpio.o)
+    0x00003a78   0x0000010c   Data   RO         1924    .constdata          driverlib.lib(interrupt.o)
+    0x00003b84   0x000001c4   Data   RO         2227    .constdata          driverlib.lib(sysctl.o)
     0x00003d48   0x00000011   Data   RO         1280    .conststring        uartstdio.o
     0x00003d59   0x00000003   PAD
-    0x00003d5c   0x00000020   Data   RO         2827    Region$$Table       anon$$obj.o
+    0x00003d5c   0x00000020   Data   RO         2842    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM (Base: 0x20000000, Size: 0x00004c70, Max: 0x00008000, ABSOLUTE)
@@ -1588,24 +1591,24 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       144         36          0          8          0       3931   board.o
-       818         48         20          0          0      74277   device.o
-      4450        156         72          8        356      22981   driver.o
-        92         10          0          0          0       1160   flowcont.o
-       160         38          0          0          0       2114   led.o
-      1086        402        241         12       1576      39629   main.o
-      1014         46         40          0          0      10010   netapp.o
-        64          6          8          0          0       1553   netcfg.o
+       144         36          0          8          0       4175   board.o
+       818         48         20          0          0      74853   device.o
+      4450        156         72          8        356      23729   driver.o
+        92         10          0          0          0       1220   flowcont.o
+       160         38          0          0          0       2258   led.o
+      1086        402        241         12       1576      40105   main.o
+      1014         46         40          0          0      10346   netapp.o
+        64          6          8          0          0       1645   netcfg.o
          0          0          0          0          0       2768   nokia5110.o
-       156         16          0          0         40       3364   nonos.o
-      1102         68         48          0          0      10305   socket.o
-       422         60          0          0          0       2554   spi.o
-       648        622          0          0      16384        256   startup_rvmdk.o
-      1272         72         57         28       1152       8839   uartstdio.o
-       612         26         52          0          0       6810   wlan.o
+       156         16          0          0         40       3540   nonos.o
+      1102         68         48          0          0      10725   socket.o
+       422         60          0          0          0       2678   spi.o
+       648        622          0          0      16384        288   startup_rvmdk.o
+      1272         72         57         28       1152       9211   uartstdio.o
+       612         26         52          0          0       7054   wlan.o
 
     ----------------------------------------------------------------------
-     12054       1606        576         56      19512     190551   Object Totals
+     12054       1606        576         56      19512     194595   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         14          0          6          0          4          0   (incl. Padding)
 
@@ -1614,7 +1617,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
 
         38          0          0          0          0        504   cpu.o
-        32          8          0          0          0       3548   fpu.o
+        32          8          0          0          0        780   fpu.o
        672          8        528          0          0       7285   gpio.o
        114          8        268          0          0       1774   interrupt.o
        120          0          0          0          0       2749   ssi.o
@@ -1635,18 +1638,18 @@ Image component sizes
         14          0          0          0          0         68   strlen.o
 
     ----------------------------------------------------------------------
-      1862        104       1248          0          0      20191   Library Totals
+      1862        104       1248          0          0      17423   Library Totals
          6          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-      1666         88       1248          0          0      19811   driverlib.lib
+      1666         88       1248          0          0      17043   driverlib.lib
        190         16          0          0          0        380   mc_w.l
 
     ----------------------------------------------------------------------
-      1862        104       1248          0          0      20191   Library Totals
+      1862        104       1248          0          0      17423   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1655,8 +1658,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     13916       1710       1824         56      19512     199338   Grand Totals
-     13916       1710       1824         56      19512     199338   ELF Image Totals
+     13916       1710       1824         56      19512     200614   Grand Totals
+     13916       1710       1824         56      19512     200614   ELF Image Totals
      13916       1710       1824         56          0          0   ROM Totals
 
 ==============================================================================

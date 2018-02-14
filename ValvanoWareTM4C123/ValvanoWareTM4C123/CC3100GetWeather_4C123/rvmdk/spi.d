@@ -1,7 +1,7 @@
 .\rvmdk\spi.o: ..\cc3100\platform\ek-tm4c123gxl\spi.c
 .\rvmdk\spi.o: ..\cc3100\simplelink\include\simplelink.h
 .\rvmdk\spi.o: ..\cc3100\platform\ek-tm4c123gxl\user.h
-.\rvmdk\spi.o: D:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\rvmdk\spi.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
 .\rvmdk\spi.o: ..\cc3100\platform\ek-tm4c123gxl\board.h
 .\rvmdk\spi.o: ..\cc3100\platform\ek-tm4c123gxl\spi.h
 .\rvmdk\spi.o: ..\cc3100\simplelink\include\../source/nonos.h
@@ -32,7 +32,3 @@
 .\rvmdk\spi.o: ..\driverlib/pin_map.h
 .\rvmdk\spi.o: ..\inc/hw_ints.h
 .\rvmdk\spi.o: ..\driverlib/ssi.h
-.\rvmdk\spi.o: ..\driverlib/rom.h
-.\rvmdk\spi.o: ..\driverlib/gpio.h
-.\rvmdk\spi.o: ..\driverlib/sysctl.h
-.\rvmdk\spi.o: ..\driverlib/interrupt.h

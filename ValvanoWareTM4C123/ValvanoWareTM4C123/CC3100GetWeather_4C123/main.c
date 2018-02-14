@@ -94,12 +94,34 @@ Port A, SSI0 (PA2, PA3, PA5, PA6, PA7) sends data to Nokia5110 LCD
 #include "LED.h"
 #include "Nokia5110.h"
 #include <string.h>
+#include <stdlib.h>
+#include "ADCSWTrigger.h"
+#include "ST7735.h"
+#include <stdio.h>
+
 //#define SSID_NAME  "valvanoAP" /* Access point name to connect to */
 #define SEC_TYPE   SL_SEC_TYPE_WPA
 //#define PASSKEY    "12345678"  /* Password in case of secure AP */ 
 #define SSID_NAME  "ValvanoJonathaniPhone"
 #define PASSKEY    "y2uvdjfi5puyd"
 #define BAUD_RATE   115200
+
+//figure out how to add data to this payload
+char TCP_PAYLOAD [] = "GET /query?city=<Austin>&id=<Daniel and Robert>&greet=<data>&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: embedded-systems-server.appspot.com\r\n\r\n";
+
+const uint32_t DATA_MULTIPLIER = 275;
+const uint32_t DATA_OFFSET = 50000;
+const uint32_t DATA_DIVISOR = 10000;
+
+int32_t ADC_Mail;
+
+char * getTemp(void);
+
+uint32_t Convert(uint32_t input){
+ uint32_t converted_data = (DATA_MULTIPLIER*input+DATA_OFFSET)/DATA_DIVISOR;
+  return converted_data;
+}
+
 void UART_Init(void){
   SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
   SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
@@ -228,6 +250,18 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
   }
   UARTprintf("Connected\n");
   while(1){
+		
+		ADC_Mail = ADC0_InSeq3();
+		int8_t position = Convert(ADC_Mail);
+		
+		char pos[20];
+		sprintf(pos,"Position: %i cm", position);
+		ST7735_OutString(pos);
+		
+		char temperature[20];
+		sprintf(temperature,"Temp: = %i C",*getTemp());
+		ST7735_OutString(temperature);
+		
    // strcpy(HostName,"openweathermap.org");  // used to work 10/2015
     strcpy(HostName,"api.openweathermap.org"); // works 9/2016
     retVal = sl_NetAppDnsGetHostByName(HostName,
@@ -545,4 +579,25 @@ void SimpleLinkSockEventHandler(SlSockEvent_t *pSock){
  * * ASYNCHRONOUS EVENT HANDLERS -- End
  */
 
+char* getTemp(void)
+{
+	char* temperature = "     ";
+	for(int i=0; i<MAX_RECV_BUFF_SIZE; i++)
+	{
+			temperature[0]=Recvbuff[i];
+			temperature[1]=Recvbuff[i+1];
+			temperature[2]=Recvbuff[i+2];
+			temperature[3]=Recvbuff[i+3];
+		if(temperature[0]=='t' && temperature[1]=='e' && temperature[2]=='m' && temperature[3]=='p')
+		{
+			temperature[0]=Recvbuff[i+6];
+			temperature[1]=Recvbuff[i+7];
+			temperature[2]=Recvbuff[i+8];
+			temperature[3]=Recvbuff[i+9];
+			temperature[4]=Recvbuff[i+10];
+			return temperature;
+		}
+	}
+	return temperature;
+}
 

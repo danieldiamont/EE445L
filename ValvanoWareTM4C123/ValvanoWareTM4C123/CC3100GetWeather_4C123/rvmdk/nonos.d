@@ -2,7 +2,7 @@
 .\rvmdk\nonos.o: ..\cc3100\simplelink\source\datatypes.h
 .\rvmdk\nonos.o: ..\cc3100\simplelink\include\simplelink.h
 .\rvmdk\nonos.o: ..\cc3100\platform\ek-tm4c123gxl\user.h
-.\rvmdk\nonos.o: D:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\rvmdk\nonos.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
 .\rvmdk\nonos.o: ..\cc3100\platform\ek-tm4c123gxl\board.h
 .\rvmdk\nonos.o: ..\cc3100\platform\ek-tm4c123gxl\spi.h
 .\rvmdk\nonos.o: ..\cc3100\simplelink\include\../source/nonos.h
@@ -25,4 +25,3 @@
 .\rvmdk\nonos.o: ..\cc3100\simplelink\include\wlan_rx_filters.h
 .\rvmdk\nonos.o: ..\cc3100\simplelink\include\simplelink.h
 .\rvmdk\nonos.o: ..\cc3100\simplelink\source\protocol.h
-.\rvmdk\nonos.o: ..\cc3100\simplelink\source\driver.h

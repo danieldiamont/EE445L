@@ -89,15 +89,15 @@ typedef unsigned char   BOOLEAN;
     typedef signed   int    INT32, *PINT32;
 #else
 
-#ifndef _INT32
-#define _INT32
-typedef signed   long   INT32;
-#endif
+// #ifndef _INT32
+// #define _INT32
+// typedef signed   long   INT32;
+// #endif
 
-#ifndef _UINT32
-#define _UINT32
-typedef unsigned long   UINT32;
-#endif
+// #ifndef _UINT32
+// #define _UINT32
+// typedef unsigned long   UINT32;
+// #endif
 
 #ifndef _UINT64
 #define _UINT64
