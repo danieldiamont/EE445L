@@ -1,29 +1,21 @@
 char* getTemp(void)
 {
-	char a= Recvbuff[0];
-	char b= Recvbuff[1];
-	char c= Recvbuff[2];
-	char d= Recvbuff[3];
 	char* temperature = "     ";
 	for(int i=0; i<MAX_RECV_BUFF_SIZE; i++)
 	{
-			a=Recvbuff[i];
-			b=Recvbuff[i];
-			c=Recvbuff[i];
-			d=Recvbuff[i];
-		if(a=='t' && b=='e' && c=='m' && d=='p')
+			temperature[0]=Recvbuff[i];
+			temperature[1]=Recvbuff[i+1];
+			temperature[2]=Recvbuff[i+2];
+			temperature[3]=Recvbuff[i+3];
+		if(temperature[0]=='t' && temperature[1]=='e' && temperature[2]=='m' && temperature[3]=='p')
 		{
-			a=Recvbuff[i+6];
-			b=Recvbuff[i+7];
-			c=Recvbuff[i+8];
-			d=Recvbuff[i+9];
-			temperature[0]=a;
-			temperature[1]=b;
-			temperature[2]=c;
-			temperature[3]=d;
+			temperature[0]=Recvbuff[i+6];
+			temperature[1]=Recvbuff[i+7];
+			temperature[2]=Recvbuff[i+8];
+			temperature[3]=Recvbuff[i+9];
 			temperature[4]=Recvbuff[i+10];
 			return temperature;
 		}
-		
 	}
+	return temperature;
 }
