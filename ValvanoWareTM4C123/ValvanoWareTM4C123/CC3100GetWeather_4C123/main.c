@@ -106,9 +106,6 @@ Port A, SSI0 (PA2, PA3, PA5, PA6, PA7) sends data to Nokia5110 LCD
 #define PASSKEY    "y2uvdjfi5puyd"
 #define BAUD_RATE   115200
 
-//figure out how to add data to this payload
-char TCP_PAYLOAD [] = "GET /query?city=<Austin>&id=<Daniel and Robert>&greet=<data>&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: embedded-systems-server.appspot.com\r\n\r\n";
-
 const uint32_t DATA_MULTIPLIER = 275;
 const uint32_t DATA_OFFSET = 50000;
 const uint32_t DATA_DIVISOR = 10000;
@@ -261,6 +258,9 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		char temperature[20];
 		sprintf(temperature,"Temp: = %i C",*getTemp());
 		ST7735_OutString(temperature);
+		
+		//figure out how to add data to this payload
+		char TCP_PAYLOAD [] = "GET /query?city=<Austin>&id=<Daniel and Robert>&greet=<data>&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: embedded-systems-server.appspot.com\r\n\r\n";
 		
    // strcpy(HostName,"openweathermap.org");  // used to work 10/2015
     strcpy(HostName,"api.openweathermap.org"); // works 9/2016
