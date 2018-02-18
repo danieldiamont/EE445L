@@ -225,6 +225,9 @@ void Crash(uint32_t time){
 // 1) change Austin Texas to your city
 // 2) you can change metric to imperial if you want temperature in F
 #define REQUEST "GET /data/2.5/weather?q=Austin%20Texas&APPID=1bc54f645c5f1c75e681c102ed4bbca4&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\nAccept: */*\r\n\r\n"
+#define PUSH_A "POST /query?city=<Austin%20Texas&id=Daniel%20and%20Robert&greet="
+#define PUSH_B "&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: embedded-systems-server.appspot.com\r\n\r\n"
+
 // 1) go to http://openweathermap.org/appid#use 
 // 2) Register on the Sign up page
 // 3) get an API key (APPID) replace the 1234567890abcdef1234567890abcdef with your APPID
@@ -246,22 +249,11 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
     _SlNonOsMainLoopTask();
   }
   UARTprintf("Connected\n");
-  while(1){
-		
-		ADC_Mail = ADC0_InSeq3();
-		int8_t position = Convert(ADC_Mail);
-		
-		char pos[20];
-		sprintf(pos,"Position: %i cm", position);
-		ST7735_OutString(pos);
-		
-		char temperature[20];
-		sprintf(temperature,"Temp: = %i C",*getTemp());
-		ST7735_OutString(temperature);
-		
-		//figure out how to add data to this payload
-		char TCP_PAYLOAD [] = "GET /query?city=<Austin>&id=<Daniel and Robert>&greet=<data>&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: embedded-systems-server.appspot.com\r\n\r\n";
-		
+  while(1){		
+		/*
+		*	PULL WEATHER DATA FROM SERVER
+		*
+		*/
    // strcpy(HostName,"openweathermap.org");  // used to work 10/2015
     strcpy(HostName,"api.openweathermap.org"); // works 9/2016
     retVal = sl_NetAppDnsGetHostByName(HostName,
@@ -286,6 +278,54 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       }
     }
     while(Board_Input()==0){}; // wait for touch
+    LED_GreenOff();
+			
+			
+		//collect data from ADC
+		ADC_Mail = ADC0_InSeq3();
+		int8_t position = Convert(ADC_Mail);
+		
+		//parse position data and display on LCD screen
+		char pos[20];
+		sprintf(pos,"Position: %i cm", position);
+		ST7735_OutString(pos);
+		
+		//parse temperature data and display on LCD screen
+		char temperature[20];
+		sprintf(temperature,"Temp: = %i C",*getTemp());
+		ST7735_OutString(temperature);
+		
+		//build tcp payload to send
+		char TCP_PAYLOAD [200] = PUSH_A;
+		strcat(TCP_PAYLOAD,pos);
+		strcat(TCP_PAYLOAD,PUSH_B);
+		
+		/*
+		* SEND DATA TO SERVER
+		*/
+		strcpy(HostName,"api.openweathermap.org"); // works 9/2016
+    retVal = sl_NetAppDnsGetHostByName(HostName,
+             strlen(HostName),&DestinationIP, SL_AF_INET);
+    if(retVal == 0){
+      Addr.sin_family = SL_AF_INET;
+      Addr.sin_port = sl_Htons(80);
+      Addr.sin_addr.s_addr = sl_Htonl(DestinationIP);// IP to big endian 
+      ASize = sizeof(SlSockAddrIn_t);
+      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
+      if( SockID >= 0 ){
+        retVal = sl_Connect(SockID, ( SlSockAddr_t *)&Addr, ASize);
+      }
+      if((SockID >= 0)&&(retVal >= 0)){
+        strcpy(SendBuff,TCP_PAYLOAD);
+        sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP POST 
+        sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
+        sl_Close(SockID);
+        LED_GreenOn();
+        UARTprintf("\r\n\r\n");
+        UARTprintf(Recvbuff);  UARTprintf("\r\n");
+      }
+    }
+		while(Board_Input()==0){}; // wait for touch
     LED_GreenOff();
   }
 }

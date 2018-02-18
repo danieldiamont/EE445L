@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\rvmdk\getWeather.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\getWeather.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed Feb 14 13:14:20 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sun Feb 18 14:58:52 2018
 <BR><P>
-<H3>Maximum Stack Usage =        776 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        976 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; configureSimpleLinkToDefaultState &rArr; sl_NetAppMDNSUnRegisterService &rArr; sl_NetAppMDNSRegisterUnregisterService &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 <P>
@@ -69,7 +69,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
 
-<P><STRONG><a name="[9d]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[9e]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[17]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -79,37 +79,37 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[9e]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[9f]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[9f]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[a0]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[a0]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[a1]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[a1]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[a2]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[a2]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[a3]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[19]"></a>SysCtlDelay</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, sysctl.o(.emb_text))
 <BR><BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockSet
 </UL>
 
-<P><STRONG><a name="[a3]"></a>CPUcpsid</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
+<P><STRONG><a name="[a4]"></a>CPUcpsid</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
 
-<P><STRONG><a name="[a4]"></a>CPUprimask</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
+<P><STRONG><a name="[a5]"></a>CPUprimask</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
 
 <P><STRONG><a name="[32]"></a>CPUcpsie</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, cpu.o(.emb_text))
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntMasterEnable
 </UL>
 
-<P><STRONG><a name="[a5]"></a>CPUwfi</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
+<P><STRONG><a name="[a6]"></a>CPUwfi</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
 
-<P><STRONG><a name="[a6]"></a>CPUbasepriSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
+<P><STRONG><a name="[a7]"></a>CPUbasepriSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
 
-<P><STRONG><a name="[a7]"></a>CPUbasepriGet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
+<P><STRONG><a name="[a8]"></a>CPUbasepriGet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, cpu.o(.emb_text), UNUSED)
 
 <P><STRONG><a name="[1a]"></a>writecommand</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
@@ -135,24 +135,25 @@ Global Symbols
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlAsyncEventGenericHandler
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_WlanConnect
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppSendTokenValue
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
 </UL>
 
 <P><STRONG><a name="[4c]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlAsyncEventGenericHandler
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a8]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+<P><STRONG><a name="[a9]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
 <P><STRONG><a name="[1d]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
 <LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 
-<P><STRONG><a name="[a9]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[aa]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[aa]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[ab]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[1c]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -166,24 +167,28 @@ Global Symbols
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvDriverCBInit
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_WlanConnect
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureSimpleLinkToDefaultState
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
 </UL>
 
-<P><STRONG><a name="[ab]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[ac]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[1e]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
-<P><STRONG><a name="[84]"></a>strlen</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, strlen.o(.text))
+<P><STRONG><a name="[90]"></a>strcat</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, strcat.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[83]"></a>strcpy</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, strcpy.o(.text))
+<P><STRONG><a name="[80]"></a>strlen</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, strlen.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ac]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<P><STRONG><a name="[7f]"></a>strcpy</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, strcpy.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[ad]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
 <P><STRONG><a name="[6c]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
@@ -195,26 +200,26 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[ad]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[ae]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[7f]"></a>ADC0_InSeq3</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, adcswtrigger.o(i.ADC0_InSeq3))
+<P><STRONG><a name="[8c]"></a>ADC0_InSeq3</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, adcswtrigger.o(i.ADC0_InSeq3))
 <BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8e]"></a>Board_Input</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, led.o(i.Board_Input))
+<P><STRONG><a name="[8a]"></a>Board_Input</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, led.o(i.Board_Input))
 <BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[20]"></a>CC3100_InterruptDisable</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, board.o(i.CC3100_InterruptDisable))
 <BR><BR>[Calls]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntDisable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Close
+<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Close
 </UL>
 
 <P><STRONG><a name="[22]"></a>CC3100_InterruptEnable</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, board.o(i.CC3100_InterruptEnable))
 <BR><BR>[Calls]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntEnable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[24]"></a>CC3100_disable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, board.o(i.CC3100_disable))
@@ -230,7 +235,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
 </UL>
 
-<P><STRONG><a name="[80]"></a>Convert</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, main.o(i.Convert))
+<P><STRONG><a name="[8d]"></a>Convert</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, main.o(i.Convert))
 <BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -268,12 +273,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2a]"></a>GPIOIntClear</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gpio.o(i.GPIOIntClear))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOB_intHandler
 </UL>
 
 <P><STRONG><a name="[21]"></a>GPIOIntDisable</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, gpio.o(i.GPIOIntDisable))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_InterruptDisable
 </UL>
 
@@ -285,14 +290,14 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOB_intHandler
 </UL>
 
-<P><STRONG><a name="[99]"></a>GPIOIntTypeSet</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, gpio.o(i.GPIOIntTypeSet))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<P><STRONG><a name="[9a]"></a>GPIOIntTypeSet</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, gpio.o(i.GPIOIntTypeSet))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[2d]"></a>GPIOPadConfigSet</STRONG> (Thumb, 314 bytes, Stack size 28 bytes, gpio.o(i.GPIOPadConfigSet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = GPIOPadConfigSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeUART
 <LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeSSI
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOOutput
@@ -300,7 +305,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[47]"></a>GPIOPinConfigure</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, gpio.o(i.GPIOPinConfigure))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
 </UL>
 
@@ -310,7 +315,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIODirModeSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[2e]"></a>GPIOPinTypeGPIOOutput</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeGPIOOutput))
@@ -319,7 +324,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIODirModeSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[2f]"></a>GPIOPinTypeSSI</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeSSI))
@@ -328,7 +333,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIODirModeSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[30]"></a>GPIOPinTypeUART</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeUART))
@@ -343,7 +348,7 @@ Global Symbols
 <P><STRONG><a name="[25]"></a>GPIOPinWrite</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gpio.o(i.GPIOPinWrite))
 <BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Write
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Read
-<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_enable
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_disable
 </UL>
@@ -353,8 +358,8 @@ Global Symbols
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
 </UL>
 
-<P><STRONG><a name="[9a]"></a>IntEnable</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, interrupt.o(i.IntEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<P><STRONG><a name="[9b]"></a>IntEnable</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, interrupt.o(i.IntEnable))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[31]"></a>IntMasterEnable</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, interrupt.o(i.IntMasterEnable))
@@ -362,14 +367,14 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CPUcpsie
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
-<P><STRONG><a name="[8f]"></a>LED_GreenOff</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, led.o(i.LED_GreenOff))
+<P><STRONG><a name="[8b]"></a>LED_GreenOff</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, led.o(i.LED_GreenOff))
 <BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8d]"></a>LED_GreenOn</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, led.o(i.LED_GreenOn))
+<P><STRONG><a name="[89]"></a>LED_GreenOn</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, led.o(i.LED_GreenOn))
 <BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -381,24 +386,24 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Crash
 </UL>
 
-<P><STRONG><a name="[97]"></a>SSIConfigSetExpClk</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, ssi.o(i.SSIConfigSetExpClk))
+<P><STRONG><a name="[98]"></a>SSIConfigSetExpClk</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, ssi.o(i.SSIConfigSetExpClk))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SSIConfigSetExpClk
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
-<P><STRONG><a name="[9c]"></a>SSIDataGetNonBlocking</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, ssi.o(i.SSIDataGetNonBlocking))
+<P><STRONG><a name="[9d]"></a>SSIDataGetNonBlocking</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, ssi.o(i.SSIDataGetNonBlocking))
 <BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Write
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Read
 </UL>
 
-<P><STRONG><a name="[9b]"></a>SSIDataPutNonBlocking</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, ssi.o(i.SSIDataPutNonBlocking))
+<P><STRONG><a name="[9c]"></a>SSIDataPutNonBlocking</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, ssi.o(i.SSIDataPutNonBlocking))
 <BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Write
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Read
 </UL>
 
-<P><STRONG><a name="[98]"></a>SSIEnable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ssi.o(i.SSIEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<P><STRONG><a name="[99]"></a>SSIEnable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, ssi.o(i.SSIEnable))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[33]"></a>ST7735_DrawCharS</STRONG> (Thumb, 178 bytes, Stack size 48 bytes, st7735.o(i.ST7735_DrawCharS))
@@ -482,10 +487,10 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> driver.o(i._SlDrvClassifyRxMsg)
 </UL>
-<P><STRONG><a name="[96]"></a>SysCtlClockGet</STRONG> (Thumb, 314 bytes, Stack size 12 bytes, sysctl.o(i.SysCtlClockGet))
+<P><STRONG><a name="[97]"></a>SysCtlClockGet</STRONG> (Thumb, 314 bytes, Stack size 12 bytes, sysctl.o(i.SysCtlClockGet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SysCtlClockGet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 </UL>
 
 <P><STRONG><a name="[3d]"></a>SysCtlClockSet</STRONG> (Thumb, 270 bytes, Stack size 8 bytes, sysctl.o(i.SysCtlClockSet))
@@ -497,7 +502,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[46]"></a>SysCtlPeripheralEnable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, sysctl.o(i.SysCtlPeripheralEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
 </UL>
 
@@ -614,13 +619,13 @@ Global Symbols
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_WlanPolicySet
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_WlanConnect
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Stop
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Socket
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Socket
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetCfgSet
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_DevGet
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Close
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Close
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
 </UL>
 
 <P><STRONG><a name="[53]"></a>_SlDrvCmdSend</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, driver.o(i._SlDrvCmdSend))
@@ -640,7 +645,7 @@ Global Symbols
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvWaitForPoolObj
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvReleasePoolObj
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Recv
+<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Recv
 </UL>
 
 <P><STRONG><a name="[57]"></a>_SlDrvDataWriteOp</STRONG> (Thumb, 272 bytes, Stack size 32 bytes, driver.o(i._SlDrvDataWriteOp))
@@ -650,7 +655,7 @@ Global Symbols
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemSet
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemGet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Send
+<BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Send
 </UL>
 
 <P><STRONG><a name="[8]"></a>_SlDrvDeviceEventHandler</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, device.o(i._SlDrvDeviceEventHandler))
@@ -782,8 +787,8 @@ Global Symbols
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sl_HandleAsync_InitComplete
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Stop
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
 </UL>
 
 <P><STRONG><a name="[60]"></a>_SlDrvRxHdrRead</STRONG> (Thumb, 282 bytes, Stack size 32 bytes, driver.o(i._SlDrvRxHdrRead))
@@ -817,8 +822,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvDataReadOp
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Stop
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
 </UL>
 
 <P><STRONG><a name="[63]"></a>_SlFindAndSetActiveObj</STRONG> (Thumb, 138 bytes, Stack size 20 bytes, driver.o(i._SlFindAndSetActiveObj))
@@ -857,8 +862,8 @@ Global Symbols
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sl_HandleAsync_InitComplete
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Stop
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
 </UL>
 
 <P><STRONG><a name="[51]"></a>_SlNonOsSemSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, nonos.o(i._SlNonOsSemSet))
@@ -885,8 +890,8 @@ Global Symbols
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sl_HandleAsync_InitComplete
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Stop
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
 </UL>
 
 <P><STRONG><a name="[64]"></a>_SlNonOsSpawn</STRONG> (Thumb, 30 bytes, Stack size 12 bytes, nonos.o(i._SlNonOsSpawn))
@@ -907,22 +912,22 @@ Global Symbols
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[ae]"></a>__1sprintf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)
+<P><STRONG><a name="[af]"></a>__1sprintf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)
 
-<P><STRONG><a name="[81]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1))
+<P><STRONG><a name="[8e]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[af]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[b0]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[b0]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[b1]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[b1]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[b2]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[90]"></a>_sl_BuildAddress</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, socket.o(i._sl_BuildAddress))
-<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
+<P><STRONG><a name="[91]"></a>_sl_BuildAddress</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, socket.o(i._sl_BuildAddress))
+<BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
 </UL>
 
 <P><STRONG><a name="[e]"></a>_sl_HandleAsync_Accept</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, socket.o(i._sl_HandleAsync_Accept))
@@ -1004,11 +1009,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> driver.o(.constdata)
 </UL>
-<P><STRONG><a name="[92]"></a>_sl_TruncatePayloadByProtocol</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, socket.o(i._sl_TruncatePayloadByProtocol))
-<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Send
+<P><STRONG><a name="[93]"></a>_sl_TruncatePayloadByProtocol</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, socket.o(i._sl_TruncatePayloadByProtocol))
+<BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Send
 </UL>
 
-<P><STRONG><a name="[82]"></a>getTemp</STRONG> (Thumb, 78 bytes, Stack size 20 bytes, main.o(i.getTemp))
+<P><STRONG><a name="[8f]"></a>getTemp</STRONG> (Thumb, 78 bytes, Stack size 20 bytes, main.o(i.getTemp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = getTemp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1024,46 +1029,48 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6]"></a>main</STRONG> (Thumb, 330 bytes, Stack size 72 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 776 + Unknown Stack Size
+<P><STRONG><a name="[6]"></a>main</STRONG> (Thumb, 530 bytes, Stack size 272 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 976 + Unknown Stack Size
 <LI>Call Chain = main &rArr; configureSimpleLinkToDefaultState &rArr; sl_NetAppMDNSUnRegisterService &rArr; sl_NetAppMDNSRegisterUnregisterService &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_WlanConnect
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Socket
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Send
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Recv
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Htons
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Htonl
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Close
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Socket
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Send
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Recv
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppDnsGetHostByName
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Htons
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Htonl
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Connect
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Close
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initClk
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsMainLoopTask
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTprintf
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_GreenOn
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_GreenOff
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Board_Input
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_InSeq3
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getTemp
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_GreenOn
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_GreenOff
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Board_Input
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_InSeq3
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getTemp
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Crash
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureSimpleLinkToDefaultState
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcat
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[94]"></a>registerInterruptHandler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, board.o(i.registerInterruptHandler))
+<P><STRONG><a name="[95]"></a>registerInterruptHandler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, board.o(i.registerInterruptHandler))
 <BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Stop
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
 </UL>
 
-<P><STRONG><a name="[8c]"></a>sl_Close</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, socket.o(i.sl_Close))
+<P><STRONG><a name="[88]"></a>sl_Close</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, socket.o(i.sl_Close))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = sl_Close &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvCmdOp
@@ -1071,7 +1078,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[89]"></a>sl_Connect</STRONG> (Thumb, 224 bytes, Stack size 48 bytes, socket.o(i.sl_Connect))
+<P><STRONG><a name="[85]"></a>sl_Connect</STRONG> (Thumb, 224 bytes, Stack size 48 bytes, socket.o(i.sl_Connect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = sl_Connect &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemSet
@@ -1079,7 +1086,7 @@ Global Symbols
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvWaitForPoolObj
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvReleasePoolObj
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvCmdOp
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sl_BuildAddress
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sl_BuildAddress
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1092,19 +1099,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureSimpleLinkToDefaultState
 </UL>
 
-<P><STRONG><a name="[87]"></a>sl_Htonl</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, socket.o(i.sl_Htonl))
+<P><STRONG><a name="[83]"></a>sl_Htonl</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, socket.o(i.sl_Htonl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = sl_Htonl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[86]"></a>sl_Htons</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, socket.o(i.sl_Htons))
+<P><STRONG><a name="[82]"></a>sl_Htons</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, socket.o(i.sl_Htons))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = sl_Htons
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[85]"></a>sl_NetAppDnsGetHostByName</STRONG> (Thumb, 202 bytes, Stack size 88 bytes, netapp.o(i.sl_NetAppDnsGetHostByName))
+<P><STRONG><a name="[81]"></a>sl_NetAppDnsGetHostByName</STRONG> (Thumb, 202 bytes, Stack size 88 bytes, netapp.o(i.sl_NetAppDnsGetHostByName))
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = sl_NetAppDnsGetHostByName &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemSet
@@ -1117,7 +1124,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[91]"></a>sl_NetAppMDNSRegisterUnregisterService</STRONG> (Thumb, 118 bytes, Stack size 312 bytes, netapp.o(i.sl_NetAppMDNSRegisterUnregisterService))
+<P><STRONG><a name="[92]"></a>sl_NetAppMDNSRegisterUnregisterService</STRONG> (Thumb, 118 bytes, Stack size 312 bytes, netapp.o(i.sl_NetAppMDNSRegisterUnregisterService))
 <BR><BR>[Stack]<UL><LI>Max Depth = 608<LI>Call Chain = sl_NetAppMDNSRegisterUnregisterService &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvCmdOp
@@ -1130,7 +1137,7 @@ Global Symbols
 <P><STRONG><a name="[79]"></a>sl_NetAppMDNSUnRegisterService</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, netapp.o(i.sl_NetAppMDNSUnRegisterService))
 <BR><BR>[Stack]<UL><LI>Max Depth = 624<LI>Call Chain = sl_NetAppMDNSUnRegisterService &rArr; sl_NetAppMDNSRegisterUnregisterService &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
-<BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
+<BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_NetAppMDNSRegisterUnregisterService
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureSimpleLinkToDefaultState
 </UL>
@@ -1152,7 +1159,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureSimpleLinkToDefaultState
 </UL>
 
-<P><STRONG><a name="[8b]"></a>sl_Recv</STRONG> (Thumb, 58 bytes, Stack size 32 bytes, socket.o(i.sl_Recv))
+<P><STRONG><a name="[87]"></a>sl_Recv</STRONG> (Thumb, 58 bytes, Stack size 32 bytes, socket.o(i.sl_Recv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = sl_Recv &rArr; _SlDrvDataReadOp &rArr; _SlDrvWaitForPoolObj &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvDataReadOp
@@ -1160,16 +1167,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8a]"></a>sl_Send</STRONG> (Thumb, 162 bytes, Stack size 56 bytes, socket.o(i.sl_Send))
+<P><STRONG><a name="[86]"></a>sl_Send</STRONG> (Thumb, 162 bytes, Stack size 56 bytes, socket.o(i.sl_Send))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = sl_Send &rArr; _SlDrvDataWriteOp &rArr; _SlDrvMsgWrite &rArr; spi_Write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvDataWriteOp
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sl_TruncatePayloadByProtocol
+<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sl_TruncatePayloadByProtocol
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[88]"></a>sl_Socket</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, socket.o(i.sl_Socket))
+<P><STRONG><a name="[84]"></a>sl_Socket</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, socket.o(i.sl_Socket))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = sl_Socket &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvCmdOp
@@ -1180,14 +1187,14 @@ Global Symbols
 <P><STRONG><a name="[70]"></a>sl_Start</STRONG> (Thumb, 170 bytes, Stack size 24 bytes, device.o(i.sl_Start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = sl_Start &rArr; _SlDrvWaitForPoolObj &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
-<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
+<BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Open
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemSet
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemGet
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvWaitForPoolObj
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvReleasePoolObj
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvDriverCBInit
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetStartResponseConvert
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;registerInterruptHandler
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;registerInterruptHandler
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_enable
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_disable
 </UL>
@@ -1198,14 +1205,14 @@ Global Symbols
 <P><STRONG><a name="[72]"></a>sl_Stop</STRONG> (Thumb, 186 bytes, Stack size 32 bytes, device.o(i.sl_Stop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = sl_Stop &rArr; _SlDrvCmdOp &rArr; _SlDrvMsgReadCmdCtx &rArr; _SlAsyncEventGenericHandler &rArr; _sl_HandleAsync_PingResponse &rArr; _SlNonOsSemGet &rArr; _SlNonOsMainLoopTask
 </UL>
-<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Close
+<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_Close
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemSet
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlNonOsSemGet
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvWaitForPoolObj
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvReleasePoolObj
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvDriverCBDeinit
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvCmdOp
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;registerInterruptHandler
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;registerInterruptHandler
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_disable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureSimpleLinkToDefaultState
@@ -1261,7 +1268,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureSimpleLinkToDefaultState
 </UL>
 
-<P><STRONG><a name="[95]"></a>spi_Close</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, spi.o(i.spi_Close))
+<P><STRONG><a name="[96]"></a>spi_Close</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, spi.o(i.spi_Close))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = spi_Close
 </UL>
 <BR>[Calls]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_InterruptDisable
@@ -1269,26 +1276,26 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Stop
 </UL>
 
-<P><STRONG><a name="[93]"></a>spi_Open</STRONG> (Thumb, 198 bytes, Stack size 24 bytes, spi.o(i.spi_Open))
+<P><STRONG><a name="[94]"></a>spi_Open</STRONG> (Thumb, 198 bytes, Stack size 24 bytes, spi.o(i.spi_Open))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = spi_Open &rArr; GPIOPinTypeSSI &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockGet
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockGet
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinWrite
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntDisable
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntClear
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC3100_InterruptEnable
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinConfigure
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIEnable
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIConfigSetExpClk
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIEnable
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIConfigSetExpClk
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntMasterEnable
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
 <LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeSSI
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOOutput
 <LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOInput
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntTypeSet
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOIntTypeSet
 </UL>
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sl_Start
 </UL>
@@ -1297,8 +1304,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = spi_Read
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinWrite
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataPutNonBlocking
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataGetNonBlocking
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataPutNonBlocking
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataGetNonBlocking
 </UL>
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvRxHdrRead
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvMsgRead
@@ -1308,8 +1315,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = spi_Write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinWrite
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataPutNonBlocking
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataGetNonBlocking
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataPutNonBlocking
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSIDataGetNonBlocking
 </UL>
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvRxHdrRead
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SlDrvMsgWrite
