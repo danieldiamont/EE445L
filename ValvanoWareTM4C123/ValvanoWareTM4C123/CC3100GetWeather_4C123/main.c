@@ -99,11 +99,11 @@ Port A, SSI0 (PA2, PA3, PA5, PA6, PA7) sends data to Nokia5110 LCD
 #include "ST7735.h"
 #include <stdio.h>
 
-//#define SSID_NAME  "valvanoAP" /* Access point name to connect to */
+#define SSID_NAME  "danielAP" /* Access point name to connect to */
 #define SEC_TYPE   SL_SEC_TYPE_WPA
-//#define PASSKEY    "12345678"  /* Password in case of secure AP */ 
-#define SSID_NAME  "ValvanoJonathaniPhone"
-#define PASSKEY    "y2uvdjfi5puyd"
+#define PASSKEY    "123456789"  /* Password in case of secure AP */ 
+//#define SSID_NAME  "ValvanoJonathaniPhone"
+//#define PASSKEY    "y2uvdjfi5puyd"
 #define BAUD_RATE   115200
 
 const uint32_t DATA_MULTIPLIER = 275;
@@ -224,9 +224,10 @@ void Crash(uint32_t time){
  */
 // 1) change Austin Texas to your city
 // 2) you can change metric to imperial if you want temperature in F
-#define REQUEST "GET /data/2.5/weather?q=Austin%20Texas&APPID=1bc54f645c5f1c75e681c102ed4bbca4&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\nAccept: */*\r\n\r\n"
+//#define REQUEST "GET /data/2.5/weather?q=Austin Texas&APPID=810ec18ab4d4c5771d168edb4b421378&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\nAccept: */*\r\n\r\n"
+#define REQUEST "GET /data/2.5/weather?q=Austin%2CTexas&APPID=810ec18ab4d4c5771d168edb4b421378&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\n Accept: */*\r\n\r\n"
 #define PUSH_A "POST /query?city=<Austin%20Texas&id=Daniel%20and%20Robert&greet="
-#define PUSH_B "&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: embedded-systems-server.appspot.com\r\n\r\n"
+#define PUSH_B "&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: ee445l-ourproject.appspot.com\r\n\r\n"
 
 // 1) go to http://openweathermap.org/appid#use 
 // 2) Register on the Sign up page
@@ -235,8 +236,11 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
   char *pConfig = NULL; INT32 ASize = 0; SlSockAddrIn_t  Addr;
   initClk();        // PLL 50 MHz
   UART_Init();      // Send data to PC, 115200 bps
-  LED_Init();       // initialize LaunchPad I/O 
+  LED_Init();       // initialize LaunchPad I/O
+	ST7735_InitR(INITR_REDTAB); //initialzie LCD screen
+	ST7735_FillScreen(ST7735_BLACK);
   UARTprintf("Weather App\n");
+	ST7735_OutString("Weather App\n");
   retVal = configureSimpleLinkToDefaultState(pConfig); // set policies
   if(retVal < 0)Crash(4000000);
   retVal = sl_Start(0, pConfig, 0);
@@ -249,6 +253,7 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
     _SlNonOsMainLoopTask();
   }
   UARTprintf("Connected\n");
+	ST7735_OutString("Connected\n");
   while(1){		
 		/*
 		*	PULL WEATHER DATA FROM SERVER
@@ -277,6 +282,11 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
         UARTprintf(Recvbuff);  UARTprintf("\r\n");
       }
     }
+		//parse temperature data and display on LCD screen
+		char temperature[20];
+		sprintf(temperature,"Temp: = %i C",*getTemp());
+		ST7735_OutString(temperature);
+		
     while(Board_Input()==0){}; // wait for touch
     LED_GreenOff();
 			
@@ -289,11 +299,6 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		char pos[20];
 		sprintf(pos,"Position: %i cm", position);
 		ST7735_OutString(pos);
-		
-		//parse temperature data and display on LCD screen
-		char temperature[20];
-		sprintf(temperature,"Temp: = %i C",*getTemp());
-		ST7735_OutString(temperature);
 		
 		//build tcp payload to send
 		char TCP_PAYLOAD [200] = PUSH_A;
