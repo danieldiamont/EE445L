@@ -91,7 +91,14 @@ void Switch_Init(void(*touchtask)(void), void(*releasetask)(void)){
   GPIO_PORTF_IS_R &= ~0x01;     // (d) PF0 is edge-sensitive
   GPIO_PORTF_IBE_R |= 0x01;     //     PF0 is both edges
 
-
+  GPIO_PORTD_DIR_R &= ~0x0C;    // (c) make PD2 PD3 in (built-in button)
+  GPIO_PORTD_AFSEL_R &= ~0x0C;  //     disable alt funct on PD23
+  GPIO_PORTD_DEN_R |= 0x0C;     //     enable digital I/O on PD23   
+  GPIO_PORTD_PCTL_R &= ~0x0000FF00; // configure PD23 as GPIO
+  GPIO_PORTD_AMSEL_R = 0;       //     disable analog functionality on PD
+  GPIO_PORTD_PUR_R |= 0x0C;     //     enable weak pull-up on PD23
+  GPIO_PORTD_IS_R &= ~0x0C;     // (d) PD23 is edge-sensitive
+  GPIO_PORTD_IBE_R |= 0x0C;     //     PD23 is both edges
   //PD2, and PD3
 
   GPIOArm();
