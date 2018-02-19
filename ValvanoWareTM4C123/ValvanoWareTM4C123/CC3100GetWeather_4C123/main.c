@@ -99,6 +99,7 @@ Port A, SSI0 (PA2, PA3, PA5, PA6, PA7) sends data to Nokia5110 LCD
 #include "ST7735.h"
 #include <stdio.h>
 #include "SysTickInts.h"
+#include <stdbool.h>
 
 #define SSID_NAME  "danielAP" /* Access point name to connect to */
 #define SEC_TYPE   SL_SEC_TYPE_WPA
@@ -116,6 +117,16 @@ const uint32_t DATA_OFFSET = 50000;
 const uint32_t DATA_DIVISOR = 10000;
 
 int32_t ADC_Mail;
+
+void Delayy(uint32_t n){uint32_t volatile time;
+  while(n){
+    time = 72724*2/91;  // 1msec, tuned at 80 MHz
+    while(time){
+	  	time--;
+    }
+    n--;
+  }
+}
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -267,21 +278,18 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 	ST7735_OutString("Connected\n");
 	
   //while(1){
-	int trials = 10;
+	int trials = 11;
 	uint32_t start;
 	uint32_t stop;
-	uint32_t timePull[10];
-	uint32_t timePush[10];
+	uint32_t timePull[11];
+	uint32_t timePush[11];
 	
 	while(trials > 0){
 		/*
 		*	PULL WEATHER DATA FROM SERVER
 		*
 		*/
-   // strcpy(HostName,"openweathermap.org");  // used to work 10/2015
-		NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
-		start = NVIC_ST_CURRENT_R;
-		
+   // strcpy(HostName,"openweathermap.org");  // used to work 10/2015		
     strcpy(HostName,"api.openweathermap.org"); // works 9/2016
     retVal = sl_NetAppDnsGetHostByName(HostName,
              strlen(HostName),&DestinationIP, SL_AF_INET);
@@ -296,6 +304,11 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       }
       if((SockID >= 0)&&(retVal >= 0)){
         strcpy(SendBuff,REQUEST); 
+				
+				NVIC_ST_CURRENT_R = 0;
+				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
+				start = NVIC_ST_CURRENT_R;
+				
         sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP GET 
         sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
         sl_Close(SockID);
@@ -308,10 +321,12 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
         UARTprintf(Recvbuff);  UARTprintf("\r\n");
       }
     }
+		Delayy(500);
 		//parse temperature data and display on LCD screen
 		char tempStr[20];
 		char temperature[5];
-		for(int i=0; i<MAX_RECV_BUFF_SIZE; i++)
+		bool foundStr = false;
+		for(int i=0; i<MAX_RECV_BUFF_SIZE && !foundStr; i++)
 		{
 			temperature[0]=Recvbuff[i];
 			temperature[1]=Recvbuff[i+1];
@@ -319,11 +334,12 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 			temperature[3]=Recvbuff[i+3];
 			if(temperature[0]=='t' && temperature[1]=='e' && temperature[2]=='m' && temperature[3]=='p')
 			{
-			temperature[0]=Recvbuff[i+6];
-			temperature[1]=Recvbuff[i+7];
-			temperature[2]=Recvbuff[i+8];
-			temperature[3]=Recvbuff[i+9];
-			temperature[4]=Recvbuff[i+10];
+				foundStr = true;
+				temperature[0]=Recvbuff[i+6];
+				temperature[1]=Recvbuff[i+7];
+				temperature[2]=Recvbuff[i+8];
+				temperature[3]=Recvbuff[i+9];
+				temperature[4]=Recvbuff[i+10];
 		}
 	}
 		
@@ -353,6 +369,7 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		/*
 		* SEND DATA TO SERVER
 		*/
+		NVIC_ST_CURRENT_R = 0;
 		NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
 		start = NVIC_ST_CURRENT_R;
 		
@@ -371,6 +388,11 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       }
       if((SockID >= 0)&&(retVal >= 0)){
         strcpy(SendBuff,TCP_PAYLOAD);
+				
+				NVIC_ST_CURRENT_R = 0;
+				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
+				start = NVIC_ST_CURRENT_R;
+				
         sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP POST 
         sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
         sl_Close(SockID);
@@ -390,17 +412,18 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		ST7735_FillScreen(0);
 		ST7735_SetCursor(0,0);
     LED_GreenOff();
+		Delayy(500);
 			
   }
 	
-	uint32_t minPull = timePull[0];
-	uint32_t maxPull = timePull[0];
-	double avgPull = timePull[0];
-	uint32_t minPush = timePush[0];
-	uint32_t maxPush = timePush[0];
-	double avgPush = timePush[0];
+	uint32_t minPull = timePull[1];
+	uint32_t maxPull = timePull[1];
+	double avgPull = timePull[1];
+	uint32_t minPush = timePush[1];
+	uint32_t maxPush = timePush[1];
+	double avgPush = timePush[1];
 	
-	for(int i = 1; i < 10; i++){
+	for(int i = 2; i < 11; i++){
 		if(timePull[i] > maxPull) maxPull = timePull[i];
 		if(timePull[i] < minPull) minPull = timePull[i];
 		if(timePush[i] > maxPush) maxPush = timePush[i];
@@ -410,8 +433,8 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		avgPush += timePush[i];
 	}
 	
-	avgPull = avgPull / 10.0;
-	avgPush = avgPush / 10.0;
+	avgPull = avgPull / 10;
+	avgPush = avgPush / 10;
 	
 	for(int i = 1; i < 1000; i++){
 	}

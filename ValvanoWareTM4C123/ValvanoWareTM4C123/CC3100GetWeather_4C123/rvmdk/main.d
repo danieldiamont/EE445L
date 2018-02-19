@@ -45,3 +45,4 @@
 .\rvmdk\main.o: ST7735.h
 .\rvmdk\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
 .\rvmdk\main.o: SysTickInts.h
+.\rvmdk\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
