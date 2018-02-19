@@ -5,7 +5,7 @@
 #include "tm4c123gh6pm.h"
 #include "Sound.h"
 #include "SysTickInts.h"
-#include "switches.h"
+#include "Switch.h"
 #include "TExaS.h"
 #include "MAX5353.h"
 

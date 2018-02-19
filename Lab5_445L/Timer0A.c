@@ -47,7 +47,7 @@ void Timer0A_Init(void(*task)(void), uint32_t period){long sr;
   PeriodicTask = task;          // user function
   TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
   TIMER0_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
-  TIMER0_TAMR_R = 0x00000002;   // 3) configure for periodic mode, default down-count settings
+  TIMER0_TAMR_R = 0x00000001;   // 3) configure timer for ONE-SHOT mode
   TIMER0_TAILR_R = period-1;    // 4) reload value
   TIMER0_TAPR_R = 0;            // 5) bus clock resolution
   TIMER0_ICR_R = 0x00000001;    // 6) clear TIMER0A timeout flag
