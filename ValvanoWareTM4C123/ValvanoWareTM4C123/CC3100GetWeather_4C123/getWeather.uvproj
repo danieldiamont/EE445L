@@ -530,6 +530,21 @@
               <FileType>2</FileType>
               <FilePath>.\LCD.s</FilePath>
             </File>
+            <File>
+              <FileName>SysTickInts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SysTickInts.c</FilePath>
+            </File>
+            <File>
+              <FileName>SysTickInts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SysTickInts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm4c123gh6pm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\tm4c123gh6pm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

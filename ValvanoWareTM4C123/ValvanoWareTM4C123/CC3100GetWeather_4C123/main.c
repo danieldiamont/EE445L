@@ -247,7 +247,7 @@ void Crash(uint32_t time){
 //#define REQUEST "GET /data/2.5/weather?q=Austin Texas&APPID=810ec18ab4d4c5771d168edb4b421378&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\nAccept: */*\r\n\r\n"
 #define REQUEST "GET /data/2.5/weather?q=Austin%2CTexas&APPID=810ec18ab4d4c5771d168edb4b421378&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\n Accept: */*\r\n\r\n"
 #define PUSH_A "GET /query?id=Daniel&greet=Position:"
-#define PUSH_B "cm HTTP/1.1\r\nUser-Agent: Keil\r\nHost: ee445l-ourproject.appspot.com\r\n\r\n"
+#define PUSH_B "um HTTP/1.1\r\nUser-Agent: Keil\r\nHost: ee445l-ourproject.appspot.com\r\n\r\n"
 
 // 1) go to http://openweathermap.org/appid#use 
 // 2) Register on the Sign up page
@@ -277,14 +277,14 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
   UARTprintf("Connected\n");
 	ST7735_OutString("Connected\n");
 	
-  //while(1){
-	int trials = 11;
-	uint32_t start;
-	uint32_t stop;
-	uint32_t timePull[11];
-	uint32_t timePush[11];
+  while(1){
+//	int trials = 11;
+//	uint32_t start;
+//	uint32_t stop;
+//	uint32_t timePull[11];
+//	uint32_t timePush[11];
 	
-	while(trials > 0){
+	//while(trials > 0){
 		/*
 		*	PULL WEATHER DATA FROM SERVER
 		*
@@ -305,23 +305,23 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       if((SockID >= 0)&&(retVal >= 0)){
         strcpy(SendBuff,REQUEST); 
 				
-				NVIC_ST_CURRENT_R = 0;
-				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
-				start = NVIC_ST_CURRENT_R;
+//				NVIC_ST_CURRENT_R = 0;
+//				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
+//				start = NVIC_ST_CURRENT_R;
 				
         sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP GET 
         sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
         sl_Close(SockID);
 				
-				stop = NVIC_ST_CURRENT_R;
-				timePull[trials] = start-stop;
+//				stop = NVIC_ST_CURRENT_R;
+//				timePull[trials] = start-stop;
 				
         LED_GreenOn();
         UARTprintf("\r\n\r\n");
         UARTprintf(Recvbuff);  UARTprintf("\r\n");
       }
     }
-		Delayy(500);
+		//Delayy(500);
 		//parse temperature data and display on LCD screen
 		char tempStr[20];
 		char temperature[5];
@@ -346,7 +346,7 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		sprintf(tempStr,"Temp = %s C",temperature);
 		ST7735_OutString(tempStr);
 		
-    //while(Board_Input()==0){}; // wait for touch
+    while(Board_Input()==0){}; // wait for touch
     LED_GreenOff();
 			
 			
@@ -356,7 +356,7 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		
 		//parse position data and display on LCD screen
 		char pos[30];
-		sprintf(pos,"\nPosition: %i cm", position);
+		sprintf(pos,"\nPosition: %i um", position);
 		ST7735_OutString(pos);
 		
 		//build tcp payload to send
@@ -369,9 +369,9 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		/*
 		* SEND DATA TO SERVER
 		*/
-		NVIC_ST_CURRENT_R = 0;
-		NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
-		start = NVIC_ST_CURRENT_R;
+//		NVIC_ST_CURRENT_R = 0;
+//		NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
+//		start = NVIC_ST_CURRENT_R;
 		
 		ST7735_OutString("\nSend data to server");
 		strcpy(HostName,"ee445l-ourproject.appspot.com"); // works 9/2016
@@ -389,16 +389,16 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       if((SockID >= 0)&&(retVal >= 0)){
         strcpy(SendBuff,TCP_PAYLOAD);
 				
-				NVIC_ST_CURRENT_R = 0;
-				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
-				start = NVIC_ST_CURRENT_R;
+//				NVIC_ST_CURRENT_R = 0;
+//				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
+//				start = NVIC_ST_CURRENT_R;
 				
         sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP POST 
         sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
         sl_Close(SockID);
 				
-				stop = NVIC_ST_CURRENT_R;
-				timePush[trials] = start-stop;
+//				stop = NVIC_ST_CURRENT_R;
+//				timePush[trials] = start-stop;
 				
         LED_GreenOn();
         UARTprintf("\r\n\r\n");
@@ -407,39 +407,39 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       }
     }
 		ST7735_OutString("\nData sent");
-		trials--;
-//		while(Board_Input()==0){}; // wait for touch
+		//trials--;
+		while(Board_Input()==0){}; // wait for touch
 		ST7735_FillScreen(0);
 		ST7735_SetCursor(0,0);
     LED_GreenOff();
-		Delayy(500);
+		//Delayy(500);
 			
   }
 	
-	uint32_t minPull = timePull[1];
-	uint32_t maxPull = timePull[1];
-	double avgPull = timePull[1];
-	uint32_t minPush = timePush[1];
-	uint32_t maxPush = timePush[1];
-	double avgPush = timePush[1];
-	
-	for(int i = 2; i < 11; i++){
-		if(timePull[i] > maxPull) maxPull = timePull[i];
-		if(timePull[i] < minPull) minPull = timePull[i];
-		if(timePush[i] > maxPush) maxPush = timePush[i];
-		if(timePush[i] < minPush) minPush = timePush[i];
-		
-		avgPull += timePull[i];
-		avgPush += timePush[i];
-	}
-	
-	avgPull = avgPull / 10;
-	avgPush = avgPush / 10;
-	
-	for(int i = 1; i < 1000; i++){
-	}
-	
-	int timeWaste = 100;	
+//	uint32_t minPull = timePull[1];
+//	uint32_t maxPull = timePull[1];
+//	double avgPull = timePull[1];
+//	uint32_t minPush = timePush[1];
+//	uint32_t maxPush = timePush[1];
+//	double avgPush = timePush[1];
+//	
+//	for(int i = 2; i < 11; i++){
+//		if(timePull[i] > maxPull) maxPull = timePull[i];
+//		if(timePull[i] < minPull) minPull = timePull[i];
+//		if(timePush[i] > maxPush) maxPush = timePush[i];
+//		if(timePush[i] < minPush) minPush = timePush[i];
+//		
+//		avgPull += timePull[i];
+//		avgPush += timePush[i];
+//	}
+//	
+//	avgPull = avgPull / 10;
+//	avgPush = avgPush / 10;
+//	
+//	for(int i = 1; i < 1000; i++){
+//	}
+//	
+//	int timeWaste = 100;	
 }
 
 /*!
