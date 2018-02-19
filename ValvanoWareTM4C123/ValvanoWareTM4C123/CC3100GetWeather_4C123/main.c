@@ -226,8 +226,8 @@ void Crash(uint32_t time){
 // 2) you can change metric to imperial if you want temperature in F
 //#define REQUEST "GET /data/2.5/weather?q=Austin Texas&APPID=810ec18ab4d4c5771d168edb4b421378&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\nAccept: */*\r\n\r\n"
 #define REQUEST "GET /data/2.5/weather?q=Austin%2CTexas&APPID=810ec18ab4d4c5771d168edb4b421378&units=metric HTTP/1.1\r\nUser-Agent: Keil\r\nHost:api.openweathermap.org\r\n Accept: */*\r\n\r\n"
-#define PUSH_A "POST /query?city=<Austin%20Texas&id=Daniel%20and%20Robert&greet="
-#define PUSH_B "&edxcode=8086 HTTP/1.1\r\nUser-Agent: Keil\r\nHost: ee445l-ourproject.appspot.com\r\n\r\n"
+#define PUSH_A "GET /query?id=Daniel&greet=Position:"
+#define PUSH_B "cm HTTP/1.1\r\nUser-Agent: Keil\r\nHost: ee445l-ourproject.appspot.com\r\n\r\n"
 
 // 1) go to http://openweathermap.org/appid#use 
 // 2) Register on the Sign up page
@@ -239,6 +239,7 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
   LED_Init();       // initialize LaunchPad I/O
 	ST7735_InitR(INITR_REDTAB); //initialzie LCD screen
 	ST7735_FillScreen(ST7735_BLACK);
+	ADC0_InitSWTriggerSeq3_Ch9();
   UARTprintf("Weather App\n");
 	ST7735_OutString("Weather App\n");
   retVal = configureSimpleLinkToDefaultState(pConfig); // set policies
@@ -260,35 +261,41 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		*
 		*/
    // strcpy(HostName,"openweathermap.org");  // used to work 10/2015
-    strcpy(HostName,"api.openweathermap.org"); // works 9/2016
-    retVal = sl_NetAppDnsGetHostByName(HostName,
-             strlen(HostName),&DestinationIP, SL_AF_INET);
-    if(retVal == 0){
-      Addr.sin_family = SL_AF_INET;
-      Addr.sin_port = sl_Htons(80);
-      Addr.sin_addr.s_addr = sl_Htonl(DestinationIP);// IP to big endian 
-      ASize = sizeof(SlSockAddrIn_t);
-      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
-      if( SockID >= 0 ){
-        retVal = sl_Connect(SockID, ( SlSockAddr_t *)&Addr, ASize);
-      }
-      if((SockID >= 0)&&(retVal >= 0)){
-        strcpy(SendBuff,REQUEST); 
-        sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP GET 
-        sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
-        sl_Close(SockID);
-        LED_GreenOn();
-        UARTprintf("\r\n\r\n");
-        UARTprintf(Recvbuff);  UARTprintf("\r\n");
-      }
-    }
-		//parse temperature data and display on LCD screen
-		char temperature[20];
-		sprintf(temperature,"Temp: = %i C",*getTemp());
-		ST7735_OutString(temperature);
-		
-    while(Board_Input()==0){}; // wait for touch
-    LED_GreenOff();
+//    strcpy(HostName,"api.openweathermap.org"); // works 9/2016
+//    retVal = sl_NetAppDnsGetHostByName(HostName,
+//             strlen(HostName),&DestinationIP, SL_AF_INET);
+//    if(retVal == 0){
+//      Addr.sin_family = SL_AF_INET;
+//      Addr.sin_port = sl_Htons(80);
+//      Addr.sin_addr.s_addr = sl_Htonl(DestinationIP);// IP to big endian 
+//      ASize = sizeof(SlSockAddrIn_t);
+//      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
+//      if( SockID >= 0 ){
+//        retVal = sl_Connect(SockID, ( SlSockAddr_t *)&Addr, ASize);
+//      }
+//      if((SockID >= 0)&&(retVal >= 0)){
+//        strcpy(SendBuff,REQUEST); 
+//        sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP GET 
+//        sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
+//        sl_Close(SockID);
+//        LED_GreenOn();
+//        UARTprintf("\r\n\r\n");
+//        UARTprintf(Recvbuff);  UARTprintf("\r\n");
+//      }
+//    }
+//		//parse temperature data and display on LCD screen
+//		char tempStr[20];
+//		char temperature[5];
+//		temperature[0]=Recvbuff[534];
+//		temperature[1]=Recvbuff[535];
+//		temperature[2]=Recvbuff[536];
+//		temperature[3]=Recvbuff[537];
+//		temperature[4]=Recvbuff[538];
+//		sprintf(tempStr,"Temp = %s C",temperature);
+//		ST7735_OutString(tempStr);
+//		
+//    while(Board_Input()==0){}; // wait for touch
+//    LED_GreenOff();
 			
 			
 		//collect data from ADC
@@ -296,19 +303,22 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		int8_t position = Convert(ADC_Mail);
 		
 		//parse position data and display on LCD screen
-		char pos[20];
-		sprintf(pos,"Position: %i cm", position);
+		char pos[30];
+		sprintf(pos,"\nPosition: %i cm", position);
 		ST7735_OutString(pos);
 		
 		//build tcp payload to send
-		char TCP_PAYLOAD [200] = PUSH_A;
-		strcat(TCP_PAYLOAD,pos);
+		char TCP_PAYLOAD [500] = PUSH_A;
+		char posStr[3];
+		sprintf(posStr,"%i", position);
+		strcat(TCP_PAYLOAD,posStr);
 		strcat(TCP_PAYLOAD,PUSH_B);
 		
 		/*
 		* SEND DATA TO SERVER
 		*/
-		strcpy(HostName,"api.openweathermap.org"); // works 9/2016
+		ST7735_OutString("\nSend data to server");
+		strcpy(HostName,"ee445l-ourproject.appspot.com"); // works 9/2016
     retVal = sl_NetAppDnsGetHostByName(HostName,
              strlen(HostName),&DestinationIP, SL_AF_INET);
     if(retVal == 0){
@@ -327,10 +337,14 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
         sl_Close(SockID);
         LED_GreenOn();
         UARTprintf("\r\n\r\n");
-        UARTprintf(Recvbuff);  UARTprintf("\r\n");
+        UARTprintf(SendBuff);  UARTprintf("\r\n");
+				UARTprintf(Recvbuff);  UARTprintf("\r\n");
       }
     }
+		ST7735_OutString("\nData sent");
 		while(Board_Input()==0){}; // wait for touch
+		ST7735_FillScreen(0);
+		ST7735_SetCursor(0,0);
     LED_GreenOff();
   }
 }
@@ -623,26 +637,4 @@ void SimpleLinkSockEventHandler(SlSockEvent_t *pSock){
 /*
  * * ASYNCHRONOUS EVENT HANDLERS -- End
  */
-
-char* getTemp(void)
-{
-	char* temperature = "     ";
-	for(int i=0; i<MAX_RECV_BUFF_SIZE; i++)
-	{
-			temperature[0]=Recvbuff[i];
-			temperature[1]=Recvbuff[i+1];
-			temperature[2]=Recvbuff[i+2];
-			temperature[3]=Recvbuff[i+3];
-		if(temperature[0]=='t' && temperature[1]=='e' && temperature[2]=='m' && temperature[3]=='p')
-		{
-			temperature[0]=Recvbuff[i+6];
-			temperature[1]=Recvbuff[i+7];
-			temperature[2]=Recvbuff[i+8];
-			temperature[3]=Recvbuff[i+9];
-			temperature[4]=Recvbuff[i+10];
-			return temperature;
-		}
-	}
-	return temperature;
-}
 
