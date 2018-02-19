@@ -98,6 +98,7 @@ Port A, SSI0 (PA2, PA3, PA5, PA6, PA7) sends data to Nokia5110 LCD
 #include "ADCSWTrigger.h"
 #include "ST7735.h"
 #include <stdio.h>
+#include "SysTickInts.h"
 
 #define SSID_NAME  "danielAP" /* Access point name to connect to */
 #define SEC_TYPE   SL_SEC_TYPE_WPA
@@ -106,13 +107,21 @@ Port A, SSI0 (PA2, PA3, PA5, PA6, PA7) sends data to Nokia5110 LCD
 //#define PASSKEY    "y2uvdjfi5puyd"
 #define BAUD_RATE   115200
 
+#define RELOAD_TIME 0x00FFFFFF
+#define NVIC_ST_RELOAD_R        (*((volatile uint32_t *)0xE000E014))
+#define NVIC_ST_CURRENT_R       (*((volatile uint32_t *)0xE000E018))
+
 const uint32_t DATA_MULTIPLIER = 275;
 const uint32_t DATA_OFFSET = 50000;
 const uint32_t DATA_DIVISOR = 10000;
 
 int32_t ADC_Mail;
 
-char * getTemp(void);
+void DisableInterrupts(void); // Disable interrupts
+void EnableInterrupts(void);  // Enable interrupts
+long StartCritical (void);    // previous I bit, disable interrupts
+void EndCritical(long sr);    // restore I bit to previous value
+void WaitForInterrupt(void);  // low power mode
 
 uint32_t Convert(uint32_t input){
  uint32_t converted_data = (DATA_MULTIPLIER*input+DATA_OFFSET)/DATA_DIVISOR;
@@ -235,6 +244,7 @@ void Crash(uint32_t time){
 int main(void){int32_t retVal;  SlSecParams_t secParams;
   char *pConfig = NULL; INT32 ASize = 0; SlSockAddrIn_t  Addr;
   initClk();        // PLL 50 MHz
+	SysTick_Init(RELOAD_TIME);
   UART_Init();      // Send data to PC, 115200 bps
   LED_Init();       // initialize LaunchPad I/O
 	ST7735_InitR(INITR_REDTAB); //initialzie LCD screen
@@ -255,47 +265,73 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
   }
   UARTprintf("Connected\n");
 	ST7735_OutString("Connected\n");
-  while(1){		
+	
+  //while(1){
+	int trials = 10;
+	uint32_t start;
+	uint32_t stop;
+	uint32_t timePull[10];
+	uint32_t timePush[10];
+	
+	while(trials > 0){
 		/*
 		*	PULL WEATHER DATA FROM SERVER
 		*
 		*/
    // strcpy(HostName,"openweathermap.org");  // used to work 10/2015
-//    strcpy(HostName,"api.openweathermap.org"); // works 9/2016
-//    retVal = sl_NetAppDnsGetHostByName(HostName,
-//             strlen(HostName),&DestinationIP, SL_AF_INET);
-//    if(retVal == 0){
-//      Addr.sin_family = SL_AF_INET;
-//      Addr.sin_port = sl_Htons(80);
-//      Addr.sin_addr.s_addr = sl_Htonl(DestinationIP);// IP to big endian 
-//      ASize = sizeof(SlSockAddrIn_t);
-//      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
-//      if( SockID >= 0 ){
-//        retVal = sl_Connect(SockID, ( SlSockAddr_t *)&Addr, ASize);
-//      }
-//      if((SockID >= 0)&&(retVal >= 0)){
-//        strcpy(SendBuff,REQUEST); 
-//        sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP GET 
-//        sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
-//        sl_Close(SockID);
-//        LED_GreenOn();
-//        UARTprintf("\r\n\r\n");
-//        UARTprintf(Recvbuff);  UARTprintf("\r\n");
-//      }
-//    }
-//		//parse temperature data and display on LCD screen
-//		char tempStr[20];
-//		char temperature[5];
-//		temperature[0]=Recvbuff[534];
-//		temperature[1]=Recvbuff[535];
-//		temperature[2]=Recvbuff[536];
-//		temperature[3]=Recvbuff[537];
-//		temperature[4]=Recvbuff[538];
-//		sprintf(tempStr,"Temp = %s C",temperature);
-//		ST7735_OutString(tempStr);
-//		
-//    while(Board_Input()==0){}; // wait for touch
-//    LED_GreenOff();
+		NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
+		start = NVIC_ST_CURRENT_R;
+		
+    strcpy(HostName,"api.openweathermap.org"); // works 9/2016
+    retVal = sl_NetAppDnsGetHostByName(HostName,
+             strlen(HostName),&DestinationIP, SL_AF_INET);
+    if(retVal == 0){
+      Addr.sin_family = SL_AF_INET;
+      Addr.sin_port = sl_Htons(80);
+      Addr.sin_addr.s_addr = sl_Htonl(DestinationIP);// IP to big endian 
+      ASize = sizeof(SlSockAddrIn_t);
+      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
+      if( SockID >= 0 ){
+        retVal = sl_Connect(SockID, ( SlSockAddr_t *)&Addr, ASize);
+      }
+      if((SockID >= 0)&&(retVal >= 0)){
+        strcpy(SendBuff,REQUEST); 
+        sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP GET 
+        sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
+        sl_Close(SockID);
+				
+				stop = NVIC_ST_CURRENT_R;
+				timePull[trials] = start-stop;
+				
+        LED_GreenOn();
+        UARTprintf("\r\n\r\n");
+        UARTprintf(Recvbuff);  UARTprintf("\r\n");
+      }
+    }
+		//parse temperature data and display on LCD screen
+		char tempStr[20];
+		char temperature[5];
+		for(int i=0; i<MAX_RECV_BUFF_SIZE; i++)
+		{
+			temperature[0]=Recvbuff[i];
+			temperature[1]=Recvbuff[i+1];
+			temperature[2]=Recvbuff[i+2];
+			temperature[3]=Recvbuff[i+3];
+			if(temperature[0]=='t' && temperature[1]=='e' && temperature[2]=='m' && temperature[3]=='p')
+			{
+			temperature[0]=Recvbuff[i+6];
+			temperature[1]=Recvbuff[i+7];
+			temperature[2]=Recvbuff[i+8];
+			temperature[3]=Recvbuff[i+9];
+			temperature[4]=Recvbuff[i+10];
+		}
+	}
+		
+		sprintf(tempStr,"Temp = %s C",temperature);
+		ST7735_OutString(tempStr);
+		
+    //while(Board_Input()==0){}; // wait for touch
+    LED_GreenOff();
 			
 			
 		//collect data from ADC
@@ -317,6 +353,9 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		/*
 		* SEND DATA TO SERVER
 		*/
+		NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
+		start = NVIC_ST_CURRENT_R;
+		
 		ST7735_OutString("\nSend data to server");
 		strcpy(HostName,"ee445l-ourproject.appspot.com"); // works 9/2016
     retVal = sl_NetAppDnsGetHostByName(HostName,
@@ -335,6 +374,10 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
         sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP POST 
         sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
         sl_Close(SockID);
+				
+				stop = NVIC_ST_CURRENT_R;
+				timePush[trials] = start-stop;
+				
         LED_GreenOn();
         UARTprintf("\r\n\r\n");
         UARTprintf(SendBuff);  UARTprintf("\r\n");
@@ -342,11 +385,38 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       }
     }
 		ST7735_OutString("\nData sent");
-		while(Board_Input()==0){}; // wait for touch
+		trials--;
+//		while(Board_Input()==0){}; // wait for touch
 		ST7735_FillScreen(0);
 		ST7735_SetCursor(0,0);
     LED_GreenOff();
+			
   }
+	
+	uint32_t minPull = timePull[0];
+	uint32_t maxPull = timePull[0];
+	double avgPull = timePull[0];
+	uint32_t minPush = timePush[0];
+	uint32_t maxPush = timePush[0];
+	double avgPush = timePush[0];
+	
+	for(int i = 1; i < 10; i++){
+		if(timePull[i] > maxPull) maxPull = timePull[i];
+		if(timePull[i] < minPull) minPull = timePull[i];
+		if(timePush[i] > maxPush) maxPush = timePush[i];
+		if(timePush[i] < minPush) minPush = timePush[i];
+		
+		avgPull += timePull[i];
+		avgPush += timePush[i];
+	}
+	
+	avgPull = avgPull / 10.0;
+	avgPush = avgPush / 10.0;
+	
+	for(int i = 1; i < 1000; i++){
+	}
+	
+	int timeWaste = 100;	
 }
 
 /*!
@@ -637,4 +707,3 @@ void SimpleLinkSockEventHandler(SlSockEvent_t *pSock){
 /*
  * * ASYNCHRONOUS EVENT HANDLERS -- End
  */
-

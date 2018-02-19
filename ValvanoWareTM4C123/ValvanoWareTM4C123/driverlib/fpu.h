@@ -50,7 +50,7 @@
 extern "C"
 {
 #endif
-
+#include <stdint.h>
 //*****************************************************************************
 //
 // Values that can be passed to FPUHalfPrecisionSet as the ui32Mode parameter.
