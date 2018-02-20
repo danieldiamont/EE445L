@@ -48,3 +48,7 @@ void Switch_WaitRelease(void);
 // Inputs:  none
 // Outputs: false if switch currently pressed, true if released 
 unsigned long Switch_Input(void);
+
+
+void GPIOPortF_Handler(void);
+void GPIOPortD_Handler(void);

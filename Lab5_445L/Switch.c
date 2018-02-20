@@ -25,7 +25,9 @@
 
 // PF4 connected to a negative logic switch using internal pull-up (trigger on both edges)
 #include <stdint.h>
-#include "../inc/tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
+
+
 #define PF4                     (*((volatile uint32_t *)0x40025040))
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -36,13 +38,25 @@ void WaitForInterrupt(void);  // low power mode
 #define PF0             (*((volatile uint32_t *)0x40025004))
 #define LOCK_REG				(*((volatile uint32_t *)(GPIO_O_LOCK + GPIO_PORTF_BASE)))
 #define CR_REG					(*((volatile uint32_t *)(GPIO_O_CR + GPIO_PORTF_BASE)))
+//define PD3 and PD2
 
 
-volatile static unsigned long Touch;     // true on touch
-volatile static unsigned long Release;   // true on release
-volatile static unsigned long Last;      // previous
+volatile static unsigned long TouchPF4;     // true on touch
+volatile static unsigned long TouchPF0;
+volatile static unsigned long TouchPD3;
+volatile static unsigned long TouchPD2;
+volatile static unsigned long ReleasePF4;
+volatile static unsigned long ReleasePF0;
+volatile static unsigned long ReleasePD3;
+volatile static unsigned long ReleasePD2;
+volatile static unsigned long LastPF4;      // previous
+volatile static unsigned long LastPF0;
+volatile static unsigned long LastPD3;
+volatile static unsigned long LastPD2;
+
 void (*TouchTask)(void);    // user function to be executed on touch
 void (*ReleaseTask)(void);  // user function to be executed on release
+
 static void Timer0Arm(void){
   TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
   TIMER0_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
@@ -108,13 +122,30 @@ void Switch_Init(void(*touchtask)(void), void(*releasetask)(void)){
   ReleaseTask = releasetask;       // user function 
   Touch = 0;                       // allow time to finish activating
   Release = 0;
-  Last = PF4;                      // initial switch state
+  LastPF4 = PF4;                      // initial switch state
+  LastPF0 = PF0;
+  LastPD3 = PD3;
+  LastPD2 = PD2;
  }
 // Interrupt on rising or falling edge of PF4 (CCP0)
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;     // disarm interrupt on all of port f 
   if(Last){    // 0x11 means either PF4 or PF0 was previously released
+    Touch = 1;       // touch occurred
+    (*TouchTask)();  // execute user task
+  }
+  else{
+    Release = 1;       // release occurred
+    (*ReleaseTask)();  // execute user task
+  }
+  Timer0Arm(); // start one shot
+}
+
+void GPIOPortD_Handler(void){
+  
+  GPIO_PORTD_IM_R &= ~0x0C;     // disarm interrupt on all of port D
+  if(LastP){    // 0x11 means either PF4 or PF0 was previously released
     Touch = 1;       // touch occurred
     (*TouchTask)();  // execute user task
   }
