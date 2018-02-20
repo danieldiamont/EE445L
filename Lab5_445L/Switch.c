@@ -127,12 +127,43 @@ void Switch_Init(void(*touchtask)(void), void(*releasetask)(void)){
   LastPD3 = PD3;
   LastPD2 = PD2;
  }
+
+int deBounce(void)
+{
+   int debounceWait=0;
+   int isPushed=0;
+   int is released=0;
+   while(1)
+   {
+      if(PF4==1)
+      {
+         isPushed++;
+         isReleased=0;
+         debounceWait++;
+      }
+      else
+      {
+         isReleased++;
+         isPushed=0;
+         debounceWait++;
+      }
+      if(isPushed>=500)
+      {
+         return 1;
+      }
+      if(isReleased>=500 || debounceWait>=1000)
+      {
+         return 0;
+      }
+   }
+}
 // Interrupt on rising or falling edge of PF4 (CCP0)
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;     // disarm interrupt on all of port f 
   if(Last){    // 0x11 means either PF4 or PF0 was previously released
     Touch = 1;       // touch occurred
+     if(deBounce()==0){return;}
     (*TouchTask)();  // execute user task
   }
   else{
