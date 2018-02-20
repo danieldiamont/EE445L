@@ -6,9 +6,12 @@
 #define NVIC_ST_CTRL_INTEN      0x00000002  // Interrupt enable
 #define NVIC_ST_CTRL_ENABLE     0x00000001  // Counter mode
 
-extern uint8_t playFlag;
-extern uint32_t DAC_Index;
-extern uint8_t *data_struct_ptr;
+extern bool playSong;
+extern uint8_t * instrument_ptr;
+extern uint8_t instrument_len;
+
+
+uint8_t DAC_Index;
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -31,25 +34,20 @@ void SysTick_Init(uint32_t period){long sr;
   NVIC_SYS_PRI3_R = (NVIC_SYS_PRI3_R&0x00FFFFFF)|0x40000000; // priority 2
                               // enable SysTick with core clock and interrupts
   NVIC_ST_CTRL_R = NVIC_ST_CTRL_ENABLE+NVIC_ST_CTRL_CLK_SRC+NVIC_ST_CTRL_INTEN;
+  DAC_Index = 0;
   EndCritical(sr);
 }
 
 void SysTick_Handler(void)
 {
-	GPIO_PORTA_DATA_R ^= 0x04;
-	if (playFlag == 0)
+	if (!playSong)
 	{
 		return;
 	}
 	else {
 		//play the data from the correct data structure
-		if (DAC_Index < 32)
-		{
-			DAC_Out(data_struct_ptr[DAC_Index]);
-			DAC_Index++;
-		}
-		else
-			DAC_Index = 0;
+		DAC_Out(instrument_ptr[DAC_Index]);
+		DAC_Index = (DAC_Index + 1) % instrument_len;
 	}
 	
 }

@@ -28,14 +28,6 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
-//data structure for music
-#define NUM_NOTES 3
-	
-typedef const struct {
-	uint32_t note[NUM_NOTES];
-	uint32_t time[NUM_NOTES];
-} Song;
-
 Song songs[1] = {{D,E,F,G},{10000,10000,10000}}; //start out with only one song
 
 //basic waveform for one note
@@ -73,9 +65,15 @@ void Sound_Play_Note(uint32_t period){ //basically sets the note by adjusting sy
 }
 
 //set the song
-void Sound_Play_Song(uint8_t index){
-	songIndex = index; //set index of song
+void Sound_Play_Song(uint8_t song, uint8_t instrument){
+	songIndex = song; //set index of song
+	song_ptr = &(songs[songIndex]);
+
 	noteIndex = 0;		//set initial noteIndex
+
+	//set instrument	
+	instrumentIndex = instrument;
+
 	Timer1A_Init(Sound_Update_Note, songs[songIndex].time[noteIndex]); //init note change timer
 	Sound_Play_Note(songs[songIndex].note[noteIndex]); //init waveform timer
 	playSong = true;	//set playSong flag to true
@@ -106,6 +104,8 @@ void Sound_Rewind_Song(){
 void Sound_Change_Instrument(uint8_t instrument){
 	//change instrument
 	instrumentIndex = instrument;
+	//instrument_ptr
+	//instrument_len
 }
 
 

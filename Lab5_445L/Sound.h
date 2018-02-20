@@ -10,6 +10,18 @@
 // Header files contain the prototypes for public functions
 // this file explains what the module does
 
+//data structure for music
+#define NUM_NOTES 3
+	
+typedef const struct {
+	uint32_t note[NUM_NOTES];
+	uint32_t time[NUM_NOTES];
+} Song;
+
+Song * song_ptr;
+uint8_t * instrument_ptr;
+uint8_t instrument_len;
+
 // **************Sound_Init*********************
 // Initialize Systick periodic interrupts
 // Called once, with sound initially off
@@ -44,7 +56,7 @@ void Sound_Play_Note(uint32_t period);
 #define DF  4510   // 554.4 Hz
 
 //pass the sound controller the index of the song to play (assuming we have multiple songs)
-void Sound_Play_Song(uint8_t index);
+void Sound_Play_Song(uint8_t song, uint8_t instrument);
 void Sound_Pause_Song(void);
 void Sound_Rewind_Song(void);
 void Sound_Change_Instrument(uint8_t index);
