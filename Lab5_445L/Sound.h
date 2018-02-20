@@ -18,7 +18,7 @@
 //           Maximum to be determined by YOU
 //           Minimum to be determined by YOU
 // Output: none
-void Sound_Init(uint32_t period);
+void Sound_Init(void);
 
 
 // **************Sound_Play*********************
@@ -29,7 +29,7 @@ void Sound_Init(uint32_t period);
 //           Minimum to be determined by YOU
 //         input of zero disable sound output
 // Output: none
-void Sound_Play(uint32_t period);
+void Sound_Play_Note(uint32_t period);
 #define C    2389   // 1046.5 Hz
 #define B    2531   // 987.8 Hz
 #define BF   2681   // 932.3 Hz
@@ -42,3 +42,11 @@ void Sound_Play(uint32_t period);
 #define EF  4018   // 622.3 Hz
 #define D   4257   // 587.3 Hz
 #define DF  4510   // 554.4 Hz
+
+//pass the sound controller the index of the song to play (assuming we have multiple songs)
+void Sound_Play_Song(uint8_t index);
+void Sound_Pause_Song(void);
+void Sound_Rewind_Song(void);
+void Sound_Change_Instrument(uint8_t index);
+void Sound_Update_Note(void);
+void Sound_Resume_Song(void);
