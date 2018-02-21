@@ -446,16 +446,6 @@
               <FilePath>.\tm4c123gh6pm.h</FilePath>
             </File>
             <File>
-              <FileName>switches.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\switches.c</FilePath>
-            </File>
-            <File>
-              <FileName>switches.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\switches.h</FilePath>
-            </File>
-            <File>
               <FileName>MAX5353.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\MAX5353.h</FilePath>
@@ -474,6 +464,26 @@
               <FileName>Timer0A.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Timer0A.h</FilePath>
+            </File>
+            <File>
+              <FileName>Switch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Switch.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer1A.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timer1A.c</FilePath>
+            </File>
+            <File>
+              <FileName>Switch.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Switch.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer1A.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Timer1A.h</FilePath>
             </File>
           </Files>
         </Group>
