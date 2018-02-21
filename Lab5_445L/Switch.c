@@ -35,11 +35,18 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
+#define GPIO_PORTF_BASE (*((volatile uint32_t *)0x40025000))  // GPIO Port F
+#define GPIO_O_LOCK     (*((volatile uint32_t *)0x00000520))  // GPIO Lock
+#define GPIO_O_CR       (*((volatile uint32_t *)0x00000524))  // GPIO Commit
 #define PF0             (*((volatile uint32_t *)0x40025004))
 #define LOCK_REG				(*((volatile uint32_t *)(GPIO_O_LOCK + GPIO_PORTF_BASE)))
 #define CR_REG					(*((volatile uint32_t *)(GPIO_O_CR + GPIO_PORTF_BASE)))
 //define PD3 and PD2
-
+#define GPIO_PIN_2              (*((volatile uint32_t *)0x00000004))  // GPIO pin 2
+#define GPIO_PIN_3              (*((volatile uint32_t *)0x00000008))  // GPIO pin 3
+#define GPIO_PORTD_BASE         (*((volatile uint32_t *)0x40007000))  // GPIO Port D
+#define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 + GPIO_PORTD_BASE)))
+#define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 + GPIO_PORTD_BASE)))
 
 volatile static unsigned long TouchPF4;     // true on touch
 volatile static unsigned long TouchPF0;

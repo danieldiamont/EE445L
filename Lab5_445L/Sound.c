@@ -15,11 +15,9 @@
 #include "tm4c123gh6pm.h"
 #include "SysTickInts.h"
 #include "Sound.h"
-#include "timer.h"
 #include <stdbool.h>
 #include "Timer1A.h"
 #include "Timer0A.h"
-
 
 // basic functions defined at end of startup.s
 void DisableInterrupts(void); // Disable interrupts
@@ -28,7 +26,7 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
-Song songs[1] = {{D,E,F,G},{10000,10000,10000}}; //start out with only one song
+Song songs[3] = {{{D},{100}},{{E},{100}},{{F},{100}}}; //start out with only one song
 
 //basic waveform for one note
 volatile uint8_t wave[32] = {8,9,11,12,13,14,14,15,15,15,14,14,13,12,11,9,8,7,5,4,3,2,2,1,1,1,2,2,3,4,5,7};
@@ -84,7 +82,7 @@ void Sound_Update_Note(){
 	//check flags???
 	noteIndex = (noteIndex + 1) % NUM_NOTES; //change to the next note
 	Sound_Play_Note(songs[songIndex].note[noteIndex]);
-	TIMER1_TAILR_R = songs[songIndex].time[noteIndex]);
+	TIMER1_TAILR_R = songs[songIndex].time[noteIndex];
 }
 
 void Sound_Pause_Song(){

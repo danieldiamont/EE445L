@@ -1,4 +1,4 @@
-#include "timer.h"
+#include "Timer1A.h"
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
