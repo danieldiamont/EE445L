@@ -33,9 +33,12 @@ void Heartbeat_Init(void) {
 				GPIO_PORTA_DEN_R |= 0x04;    
 }
 
+void task1(void);
+void task2(void);
+
 int main(void){      
   TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
-  switches_Init();
+  Switch_Init(task1,task2);
   Sound_Init();
   Heartbeat_Init();
   // other initialization

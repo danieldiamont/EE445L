@@ -48,7 +48,7 @@ void WaitForInterrupt(void);  // low power mode
 #define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 + GPIO_PORTD_BASE)))
 #define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 + GPIO_PORTD_BASE)))
 
-volatile static unsigned long TouchPF4;     // true on touch
+volatile static unsigned long TouchPF4;     // true on //Touch
 volatile static unsigned long TouchPF0;
 volatile static unsigned long TouchPD3;
 volatile static unsigned long TouchPD2;
@@ -61,7 +61,7 @@ volatile static unsigned long LastPF0;
 volatile static unsigned long LastPD3;
 volatile static unsigned long LastPD2;
 
-void (*TouchTask)(void);    // user function to be executed on touch
+void (*TouchTask)(void);    // user function to be executed on //Touch
 void (*ReleaseTask)(void);  // user function to be executed on release
 
 static void Timer0Arm(void){
@@ -85,10 +85,10 @@ static void GPIOArm(void){
   NVIC_EN0_R = 0x40000000;      // (h) enable interrupt 30 in NVIC  
 }
 // Initialize switch interface on PF4 
-// Inputs:  pointer to a function to call on touch (falling edge),
+// Inputs:  pointer to a function to call on //Touch (falling edge),
 //          pointer to a function to call on release (rising edge)
 // Outputs: none 
-void Switch_Init(void(*touchtask)(void), void(*releasetask)(void)){
+void Switch_Init(void(*Touchtask)(void), void(*releasetask)(void)){
   // **** general initialization ****
   SYSCTL_RCGCGPIO_R |= 0x00000020; // (a) activate clock for port F
   while((SYSCTL_PRGPIO_R & 0x00000020) == 0){};
@@ -125,10 +125,10 @@ void Switch_Init(void(*touchtask)(void), void(*releasetask)(void)){
   GPIOArm();
 
   SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
-  TouchTask = touchtask;           // user function 
+  //TouchTask = //Touchtask;           // user function 
   ReleaseTask = releasetask;       // user function 
-  Touch = 0;                       // allow time to finish activating
-  Release = 0;
+  //Touch = 0;                       // allow time to finish activating
+//  Release = 0;
   LastPF4 = PF4;                      // initial switch state
   LastPF0 = PF0;
   LastPD3 = PD3;
@@ -139,18 +139,18 @@ int deBounce(void)
 {
    int debounceWait=0;
    int isPushed=0;
-   int is released=0;
+//   int isReleased=0;
    while(1)
    {
       if(PF4==1)
       {
          isPushed++;
-         isReleased=0;
+ //        isReleased=0;
          debounceWait++;
       }
       else
       {
-         isReleased++;
+//         isReleased++;
          isPushed=0;
          debounceWait++;
       }
@@ -158,7 +158,7 @@ int deBounce(void)
       {
          return 1;
       }
-      if(isReleased>=500 || debounceWait>=1000)
+ //     if(isReleased>=500 || debounceWait>=1000)
       {
          return 0;
       }
@@ -168,45 +168,45 @@ int deBounce(void)
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;     // disarm interrupt on all of port f 
-  if(Last){    // 0x11 means either PF4 or PF0 was previously released
-    Touch = 1;       // touch occurred
+ // if(Last){    // 0x11 means either PF4 or PF0 was previously released
+    //Touch = 1;       // //Touch occurred
      if(deBounce()==0){return;}
     (*TouchTask)();  // execute user task
-  }
-  else{
-    Release = 1;       // release occurred
-    (*ReleaseTask)();  // execute user task
-  }
+  //}
+  //else{
+//    Release = 1;       // release occurred
+    //(*ReleaseTask)();  // execute user task
+  //}
   Timer0Arm(); // start one shot
 }
 
 void GPIOPortD_Handler(void){
   
   GPIO_PORTD_IM_R &= ~0x0C;     // disarm interrupt on all of port D
-  if(LastP){    // 0x11 means either PF4 or PF0 was previously released
-    Touch = 1;       // touch occurred
+  //if(LastP){    // 0x11 means either PF4 or PF0 was previously released
+    //Touch = 1;       // //Touch occurred
     (*TouchTask)();  // execute user task
   }
-  else{
-    Release = 1;       // release occurred
-    (*ReleaseTask)();  // execute user task
-  }
-  Timer0Arm(); // start one shot
-}
+  //else{
+//    Release = 1;       // release occurred
+   // (*ReleaseTask)();  // execute user task
+  //}
+//  Timer0Arm(); // start one shot
+//}
 // Interrupt 10 ms after rising edge of PF4
 void Timer0A_Handler(void){
   TIMER0_IMR_R = 0x00000000;    // disarm timeout interrupt
-  Last = PF4;  // switch state
+  //Last = PF4;  // switch state
   GPIOArm();   // start GPIO
 }
 
 // Wait for switch to be pressed 
-// There will be minimum time delay from touch to when this function returns
+// There will be minimum time delay from //Touch to when this function returns
 // Inputs:  none
 // Outputs: none 
 void Switch_WaitPress(void){
-  while(Touch==0){}; // wait for press
-  Touch = 0;  // set up for next time
+  //while(//Touch==0){}; // wait for press
+  //Touch = 0;  // set up for next time
 }
 
 // Wait for switch to be released 
@@ -214,12 +214,12 @@ void Switch_WaitPress(void){
 // Inputs:  none
 // Outputs: none 
 void Switch_WaitRelease(void){
-  while(Release==0){}; // wait
-  Release = 0; // set up for next time
+//  while(Release==0){}; // wait
+//  Release = 0; // set up for next time
 }
 
 // Return current value of the switch 
-// Repeated calls to this function may bounce during touch and release events
+// Repeated calls to this function may bounce during //Touch and release events
 // If you need to wait for the switch, use WaitPress or WaitRelease
 // Inputs:  none
 // Outputs: false if switch currently pressed, true if released 
