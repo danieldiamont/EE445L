@@ -106,19 +106,21 @@ Port A, SSI0 (PA2, PA3, PA5, PA6, PA7) sends data to Nokia5110 LCD
 #define PASSKEY    "123456789"  /* Password in case of secure AP */ 
 //#define SSID_NAME  "ValvanoJonathaniPhone"
 //#define PASSKEY    "y2uvdjfi5puyd"
-#define BAUD_RATE   115200
+#define BAUD_RATE   115200			//baud rate for serial communication
 
-#define RELOAD_TIME 0x00FFFFFF
+#define RELOAD_TIME 0x00FFFFFF	//reload time for timer running periodic software dump
 #define NVIC_ST_RELOAD_R        (*((volatile uint32_t *)0xE000E014))
 #define NVIC_ST_CURRENT_R       (*((volatile uint32_t *)0xE000E018))
 
+//constants for determining the potentiometer's position
 const uint32_t DATA_MULTIPLIER = 275;
 const uint32_t DATA_OFFSET = 50000;
 const uint32_t DATA_DIVISOR = 10000;
 
-int32_t ADC_Mail;
+int32_t ADC_Mail; //global valiable updated with every systick handler thread
 
-void Delayy(uint32_t n){uint32_t volatile time;
+
+void Delay_Func(uint32_t n){uint32_t volatile time;
   while(n){
     time = 72724*2/91;  // 1msec, tuned at 80 MHz
     while(time){
@@ -262,7 +264,7 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 	ST7735_FillScreen(ST7735_BLACK);
 	ADC0_InitSWTriggerSeq3_Ch9();
   UARTprintf("Weather App\n");
-	ST7735_OutString("Weather App\n");
+	ST7735_OutString("Weather App\n"); //use LCD screen for debugging
   retVal = configureSimpleLinkToDefaultState(pConfig); // set policies
   if(retVal < 0)Crash(4000000);
   retVal = sl_Start(0, pConfig, 0);
@@ -270,14 +272,21 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
   secParams.Key = PASSKEY;
   secParams.KeyLen = strlen(PASSKEY);
   secParams.Type = SEC_TYPE; // OPEN, WPA, or WEP
+	
+	//attempt to connect to network
   sl_WlanConnect(SSID_NAME, strlen(SSID_NAME), 0, &secParams, 0);
   while((0 == (g_Status&CONNECTED)) || (0 == (g_Status&IP_AQUIRED))){
     _SlNonOsMainLoopTask();
   }
   UARTprintf("Connected\n");
+	//LCD screen for debugging
 	ST7735_OutString("Connected\n");
 	
+	//main program loop
   while(1){
+		/*
+		* Commented out code below is for software dump debugging purposes
+		*/
 //	int trials = 11;
 //	uint32_t start;
 //	uint32_t stop;
@@ -298,42 +307,53 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       Addr.sin_port = sl_Htons(80);
       Addr.sin_addr.s_addr = sl_Htonl(DestinationIP);// IP to big endian 
       ASize = sizeof(SlSockAddrIn_t);
-      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
+      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0); //open socket
       if( SockID >= 0 ){
         retVal = sl_Connect(SockID, ( SlSockAddr_t *)&Addr, ASize);
       }
       if((SockID >= 0)&&(retVal >= 0)){
-        strcpy(SendBuff,REQUEST); 
+        strcpy(SendBuff,REQUEST); //copy HTTP request into the send buffer
 				
+				//timer code for software dump
 //				NVIC_ST_CURRENT_R = 0;
 //				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
 //				start = NVIC_ST_CURRENT_R;
 				
+				//send the request, wait for Ack, send data, close the socket
         sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP GET 
         sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
         sl_Close(SockID);
 				
+				//timer code for software dump
 //				stop = NVIC_ST_CURRENT_R;
 //				timePull[trials] = start-stop;
 				
+				//toggle LED for debbuging
         LED_GreenOn();
         UARTprintf("\r\n\r\n");
         UARTprintf(Recvbuff);  UARTprintf("\r\n");
       }
     }
-		//Delayy(500);
+		//Delay_Func(500);
+		
+		
 		//parse temperature data and display on LCD screen
 		char tempStr[20];
 		char temperature[5];
 		bool foundStr = false;
+		
+		
 		for(int i=0; i<MAX_RECV_BUFF_SIZE && !foundStr; i++)
 		{
 			temperature[0]=Recvbuff[i];
 			temperature[1]=Recvbuff[i+1];
 			temperature[2]=Recvbuff[i+2];
 			temperature[3]=Recvbuff[i+3];
+			
+			//if we found "temp" in the receivebuffer...
 			if(temperature[0]=='t' && temperature[1]=='e' && temperature[2]=='m' && temperature[3]=='p')
 			{
+				//parse the following characters to obtain the temperature data
 				foundStr = true;
 				temperature[0]=Recvbuff[i+6];
 				temperature[1]=Recvbuff[i+7];
@@ -343,16 +363,17 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 		}
 	}
 		
+		//add the temperature data to a string
 		sprintf(tempStr,"Temp = %s C",temperature);
 		ST7735_OutString(tempStr);
 		
     while(Board_Input()==0){}; // wait for touch
-    LED_GreenOff();
+    LED_GreenOff(); //toggle LED
 			
 			
 		//collect data from ADC
 		ADC_Mail = ADC0_InSeq3();
-		int8_t position = Convert(ADC_Mail);
+		int8_t position = Convert(ADC_Mail); //convert ADC to position data (micrometers)
 		
 		//parse position data and display on LCD screen
 		char pos[30];
@@ -374,7 +395,9 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 //		start = NVIC_ST_CURRENT_R;
 		
 		ST7735_OutString("\nSend data to server");
-		strcpy(HostName,"ee445l-ourproject.appspot.com"); // works 9/2016
+		strcpy(HostName,"ee445l-ourproject.appspot.com"); // our host name is the URL of our personal server
+		
+		//resolve the host name using the Domain Name Service
     retVal = sl_NetAppDnsGetHostByName(HostName,
              strlen(HostName),&DestinationIP, SL_AF_INET);
     if(retVal == 0){
@@ -382,21 +405,24 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
       Addr.sin_port = sl_Htons(80);
       Addr.sin_addr.s_addr = sl_Htonl(DestinationIP);// IP to big endian 
       ASize = sizeof(SlSockAddrIn_t);
-      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0);
+      SockID = sl_Socket(SL_AF_INET,SL_SOCK_STREAM, 0); //open socket
       if( SockID >= 0 ){
         retVal = sl_Connect(SockID, ( SlSockAddr_t *)&Addr, ASize);
       }
       if((SockID >= 0)&&(retVal >= 0)){
         strcpy(SendBuff,TCP_PAYLOAD);
 				
+				//timer code for software dump
 //				NVIC_ST_CURRENT_R = 0;
 //				NVIC_ST_RELOAD_R = RELOAD_TIME - 1;
 //				start = NVIC_ST_CURRENT_R;
 				
+				//send request, wait for ack, send data, close socket.
         sl_Send(SockID, SendBuff, strlen(SendBuff), 0);// Send the HTTP POST 
         sl_Recv(SockID, Recvbuff, MAX_RECV_BUFF_SIZE, 0);// Receive response 
         sl_Close(SockID);
 				
+				//timer code for software dump
 //				stop = NVIC_ST_CURRENT_R;
 //				timePush[trials] = start-stop;
 				
@@ -406,16 +432,20 @@ int main(void){int32_t retVal;  SlSecParams_t secParams;
 				UARTprintf(Recvbuff);  UARTprintf("\r\n");
       }
     }
-		ST7735_OutString("\nData sent");
+		
+		ST7735_OutString("\nData sent"); //acknowledge completion of send/receive routine in LCD
 		//trials--;
 		while(Board_Input()==0){}; // wait for touch
 		ST7735_FillScreen(0);
 		ST7735_SetCursor(0,0);
     LED_GreenOff();
-		//Delayy(500);
+		//Delay_Func(500);
 			
   }
-	
+	/*
+	*	below is debugging code used for calculating the amount of time spent
+	* communicating with openweather.org and with our own server
+	*/
 //	uint32_t minPull = timePull[1];
 //	uint32_t maxPull = timePull[1];
 //	double avgPull = timePull[1];
