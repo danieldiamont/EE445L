@@ -45,7 +45,8 @@ void WaitForInterrupt(void);  // low power mode
 #define NVIC_ST_CTRL_INTEN      0x00000002  // Interrupt enable
 #define NVIC_ST_CTRL_ENABLE     0x00000001  // Counter mode
 #define NVIC_ST_RELOAD_M        0x00FFFFFF  // Counter load value
-
+//Systick is used to measure the time it takes to send and receive data packets.
+//NVIC_ST_RELOAD_R is set before either the send or recieve procss and recorded again after, to calculate the time difference between the two points
 void SysTick_Init(uint32_t period){
   NVIC_ST_CTRL_R = 0;                   // disable SysTick during setup
   NVIC_ST_RELOAD_R = NVIC_ST_RELOAD_M;  // maximum reload value

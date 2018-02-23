@@ -59,7 +59,7 @@ extern int32_t ADC_Mail;
 // SS3 triggering event: software trigger
 // SS3 1st sample source: Ain1 (PE2)
 // SS3 interrupts: enabled but not promoted to controller
-
+// This initialization sets up the ADC to sample the output voltage of the potentiometer
 void ADC0_InitSWTriggerSeq3_Ch9(void){ 
   SYSCTL_RCGCADC_R |= 0x0001;   // 7) activate ADC0 
                                   // 1) activate clock for Port E
@@ -91,6 +91,7 @@ void ADC0_InitSWTriggerSeq3_Ch9(void){
 // Busy-wait Analog to digital conversion
 // Input: none
 // Output: 12-bit result of ADC conversion
+// Output is the uint32 value that represents how far the potentiometer has been pushed
 uint32_t ADC0_InSeq3(void){  uint32_t result;
   ADC0_PSSI_R = 0x0008;            // 1) initiate SS3
   while((ADC0_RIS_R&0x08)==0){};   // 2) wait for conversion done

@@ -32,7 +32,8 @@
 //        Maximum is 2^24-1
 //        Minimum is determined by lenght of ISR
 // Output: none
-
+//Systick is used to measure the time it takes to send and receive data packets.
+//NVIC_ST_RELOAD_R is set before either the send or recieve procss and recorded again after, to calculate the time difference between the two points
 void SysTick_Init(uint32_t period);
 
 // Interrupt service routine
