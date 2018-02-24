@@ -4,12 +4,10 @@
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
 #include "Sound.h"
-#include "SysTickInts.h"
 #include "Switch.h"
 #include "TExaS.h"
 #include "MAX5353.h"
 #include "Timer1A.h"
-#include "Timer0A.h"
 
 void EnableInterrupts(void);
 void DisableInterrupts(void);
@@ -33,17 +31,19 @@ void Heartbeat_Init(void) {
 				GPIO_PORTA_DEN_R |= 0x04;    
 }
 
-void task1(void);
-void task2(void);
+//void task1(void);
+//void task2(void);
 
 int main(void){      
   TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
-  Switch_Init(task1,task2);
+  //Switch_Init(task1,task2);
+	Heartbeat_Init();
   Sound_Init();
-  Heartbeat_Init();
   // other initialization
   EnableInterrupts();
-		
+	Sound_Play_Song(0,0);
+	
   while(1){
+		//do nothing... just test the sound
 	}
 }

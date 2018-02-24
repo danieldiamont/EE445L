@@ -45,8 +45,9 @@
 
 #define SYSCTL_RCGCWTIMER_R     (*((volatile uint32_t *)0x400FE65C))
 
-#define NVIC_EN2_R              (*((volatile uint32_t *)0xE000E108))
-#define NVIC_PRI23_R            (*((volatile uint32_t *)0xE000E45C))
+#define NVIC_PRI5_R             (*((volatile uint32_t *)0xE000E414))
+#define NVIC_EN0_R              (*((volatile uint32_t *)0xE000E100))
+#define NVIC_EN0_INT21          0x00200000  // Interrupt 21 enable
 
 void WideTimer0A_Init(void(*task)(void), uint64_t period);
 

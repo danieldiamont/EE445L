@@ -456,16 +456,6 @@
               <FilePath>.\MAX5353.c</FilePath>
             </File>
             <File>
-              <FileName>Timer0A.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Timer0A.c</FilePath>
-            </File>
-            <File>
-              <FileName>Timer0A.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Timer0A.h</FilePath>
-            </File>
-            <File>
               <FileName>Switch.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Switch.c</FilePath>
