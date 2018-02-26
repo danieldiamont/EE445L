@@ -11,16 +11,13 @@
 // this file explains what the module does
 
 //data structure for music
-#define NUM_NOTES 3
+#define NUM_NOTES 127
+#define MAX_RELOAD_VAL        0x00FFFFFF  // Counter load value
 	
 typedef const struct {
 	uint32_t note[NUM_NOTES];
 	uint32_t time[NUM_NOTES];
 } Song;
-
-Song * song_ptr;
-uint8_t * instrument_ptr;
-uint8_t instrument_len;
 
 // **************Sound_Init*********************
 // Initialize Systick periodic interrupts
@@ -42,7 +39,7 @@ void Sound_Init(void);
 //         input of zero disable sound output
 // Output: none
 void Sound_Play_Note(uint32_t period);
-#define C    2389   // 1046.5 Hz
+#define C    2389*2   // 1046.5 Hz
 #define B    2531   // 987.8 Hz
 #define BF   2681   // 932.3 Hz
 #define A    2841   // 880 Hz
