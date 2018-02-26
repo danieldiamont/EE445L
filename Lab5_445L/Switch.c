@@ -26,7 +26,10 @@
 // PF4 connected to a negative logic switch using internal pull-up (trigger on both edges)
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
+#include "sound.h"
+#include <stdbool.h>
 
+extern bool playSong;
 
 #define PF4                     (*((volatile uint32_t *)0x40025040))
 void DisableInterrupts(void); // Disable interrupts
@@ -40,6 +43,8 @@ void WaitForInterrupt(void);  // low power mode
 #define PF0            				 (*((volatile uint32_t *)0x40025004))
 #define GPIO_LOCK_KEY           0x4C4F434B  // Unlocks the GPIO_CR register
 
+#define GPIO_PORTF_ICR_R        (*((volatile uint32_t *)0x4002541C))
+
 //define PD3 and PD2
 #define GPIO_PIN_2              (*((volatile uint32_t *)0x00000004))  // GPIO pin 2
 #define GPIO_PIN_3              (*((volatile uint32_t *)0x00000008))  // GPIO pin 3
@@ -47,47 +52,13 @@ void WaitForInterrupt(void);  // low power mode
 #define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 | GPIO_PORTD_BASE)))
 #define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 | GPIO_PORTD_BASE)))
 
-volatile static unsigned long TouchPF4;     // true on //Touch
-volatile static unsigned long TouchPF0;
-volatile static unsigned long TouchPD3;
-volatile static unsigned long TouchPD2;
-volatile static unsigned long ReleasePF4;
-volatile static unsigned long ReleasePF0;
-volatile static unsigned long ReleasePD3;
-volatile static unsigned long ReleasePD2;
-volatile static unsigned long LastPF4;      // previous
-volatile static unsigned long LastPF0;
-volatile static unsigned long LastPD3;
-volatile static unsigned long LastPD2;
-
-//void (*TouchTask)(void);    // user function to be executed on //Touch
-//void (*ReleaseTask)(void);  // user function to be executed on release
-void Sound_Play_Song(uint8_t song, uint8_t instrument);
-
-//static void Timer0Arm(void){
-//  TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
-//  TIMER0_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
-//  TIMER0_TAMR_R = 0x0000001;    // 3) 1-SHOT mode
-//  TIMER0_TAILR_R = 160000;      // 4) 10ms reload value
-//  TIMER0_TAPR_R = 0;            // 5) bus clock resolution
-//  TIMER0_ICR_R = 0x00000001;    // 6) clear TIMER0A timeout flag
-//  TIMER0_IMR_R = 0x00000001;    // 7) arm timeout interrupt
-//  NVIC_PRI4_R = (NVIC_PRI4_R&0x00FFFFFF)|0x80000000; // 8) priority 4
-//// interrupts enabled in the main program after all devices initialized
-//// vector number 35, interrupt number 19
-//  NVIC_EN0_R = 1<<19;           // 9) enable IRQ 19 in NVIC
-//  TIMER0_CTL_R = 0x00000001;    // 10) enable TIMER0A
-//}
 static void GPIOArm(void){
-  GPIO_PORTF_ICR_R = 0x10;      // (e) clear flag4
-  GPIO_PORTF_IM_R |= 0x10;      // (f) arm interrupt on PF4 *** No IME bit as mentioned in Book ***
+  GPIO_PORTF_ICR_R = 0x11;      // (e) clear flag4 and flag0
+  GPIO_PORTF_IM_R |= 0x11;      // (f) arm interrupt on PF4 and PF0 *** No IME bit as mentioned in Book ***
   NVIC_PRI7_R = (NVIC_PRI7_R&0xFF00FFFF)|0x00A00000; // (g) priority 5
   NVIC_EN0_R = 0x40000000;      // (h) enable interrupt 30 in NVIC  
 }
-// Initialize switch interface on PF4 
-// Inputs:  pointer to a function to call on //Touch (falling edge),
-//          pointer to a function to call on release (rising edge)
-// Outputs: none 
+// Initialize switch interface on PF4 and PF0
 void Switch_Init(){
   // **** general initialization ****
   SYSCTL_RCGCGPIO_R |= 0x00000020; // (a) activate clock for port F
@@ -126,14 +97,6 @@ void Switch_Init(){
   GPIOArm();
 
   SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
-  //TouchTask = //Touchtask;           // user function 
-  //ReleaseTask = releasetask;       // user function 
-  //Touch = 0;                       // allow time to finish activating
-//  Release = 0;
-  LastPF4 = PF4;                      // initial switch state
-  LastPF0 = PF0;
-  LastPD3 = PD3;
-  LastPD2 = PD2;
  }
 
 int deBounce(void)
@@ -181,29 +144,34 @@ void DelayWait10ms(uint32_t n){
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;
-	if((GPIO_PORTF_DATA_R>>4)%0x01==0)
+	if(PF4 == 0)
 	{
-		int start =NVIC_ST_CURRENT_R;
-		//while(NVIC_ST_CURRENT_R-start<30000){}
 		DelayWait10ms(3);
 		Sound_Play_Song(0,0);
+		GPIO_PORTF_ICR_R = 0x10;
+		GPIO_PORTF_IM_R |= 0x11;
+	}
+	else if(PF0 == 0)
+	{
+		DelayWait10ms(3);
+		if(playSong == true){
+			Sound_Pause_Song();
+			GPIO_PORTF_ICR_R = 0x01;
+			GPIO_PORTF_IM_R |= 0x11;
+		}
+		else {
+			Sound_Resume_Song();
+			GPIO_PORTF_ICR_R = 0x01;
+			GPIO_PORTF_IM_R |= 0x11;
+		}
 	}
 	else
 	{
 		DelayWait10ms(3);
+		GPIO_PORTF_ICR_R = 0xFF;
+		GPIO_PORTF_IM_R |= 0x11;
+		
 	}
-
-	// disarm interrupt on all of port f 
- // if(Last){    // 0x11 means either PF4 or PF0 was previously released
-    //Touch = 1;       // //Touch occurred
-     //if(deBounce()==0){return;}
-    //(*TouchTask)();  // execute user task
-  //}
-  //else{
-//    Release = 1;       // release occurred
-    //(*ReleaseTask)();  // execute user task
-  //}
-   // start one shot
 }
 
 void GPIOPortD_Handler(void){

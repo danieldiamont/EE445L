@@ -134,11 +134,13 @@ void Sound_Update_Note(){
 void Sound_Pause_Song(){
 	//set flag to false
 	playSong = false;
+	TIMER1_CTL_R = 0x00000000;
 }
 
 void Sound_Resume_Song(){
 	//set flag to true
 	playSong = true;
+	TIMER1_CTL_R = 0x00000001;
 }
 
 void Sound_Rewind_Song(){
