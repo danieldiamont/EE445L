@@ -125,7 +125,6 @@ void Sound_Play_Song(uint8_t song, uint8_t instrument){
 }
 
 void Sound_Update_Note(){
-	//check flags???
 	noteIndex = (noteIndex + 1) % NUM_NOTES; //change to the next note
 	Sound_Play_Note(songs[songIndex].note[noteIndex]);
 	TIMER1_TAILR_R = songs[songIndex].time[noteIndex]-1;
@@ -144,7 +143,9 @@ void Sound_Resume_Song(){
 }
 
 void Sound_Rewind_Song(){
+	
 	noteIndex = 0;
+	
 }
 
 void Sound_Change_Instrument(uint8_t instrument){
