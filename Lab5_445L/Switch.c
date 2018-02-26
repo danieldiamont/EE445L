@@ -65,6 +65,53 @@ void (*TouchTask)(void);    // user function to be executed on //Touch
 void (*ReleaseTask)(void);  // user function to be executed on release
 void Sound_Play_Song(uint8_t song, uint8_t instrument);
 
+
+
+#define GPIO_LOCK_KEY           0x4C4F434B  // Unlocks the GPIO_CR register
+#define PF0                     (*((volatile uint32_t *)0x40025004))
+#define PF4                     (*((volatile uint32_t *)0x40025040))
+#define SWITCHES                (*((volatile uint32_t *)0x40025044))
+#define SW1       0x10                      // on the left side of the Launchpad board
+#define SW2       0x01                      // on the right side of the Launchpad board
+#define PF1                     (*((volatile uint32_t *)0x40025008))
+#define PF2                     (*((volatile uint32_t *)0x40025010))
+#define PF3                     (*((volatile uint32_t *)0x40025020))
+
+//------------LED_Init------------
+// Initialize GPIO Port F for negative logic switches on PF0 and
+// PF4 as the Launchpad is wired.  Weak internal pull-up
+// resistors are enabled, and the NMI functionality on PF0 is disabled.
+// LEDs on PF3,2,1 are enabled
+// Input: none
+// Output: none
+void LED_Init(void){       
+  SYSCTL_RCGCGPIO_R |= 0x20;     // 1) activate Port F
+  while((SYSCTL_PRGPIO_R & 0x20)!=0x20){}; // wait to finish activating     
+  GPIO_PORTF_LOCK_R = GPIO_LOCK_KEY;// 2a) unlock GPIO Port F Commit Register
+  GPIO_PORTF_CR_R = 0x1F;        // 2b) enable commit for PF4-PF0     
+  GPIO_PORTF_AMSEL_R &= ~0x1F;   // 3) disable analog functionality on PF4-PF0     
+  GPIO_PORTF_PCTL_R = 0x00000000;// 4) configure PF0-PF4 as GPIO
+  GPIO_PORTF_DIR_R = 0x0E;       // 5) make PF0 and PF4 in PF3-1 output                        
+  GPIO_PORTF_AFSEL_R = 0;        // 6) disable alt funct on PF0 and PF4
+  GPIO_PORTF_PUR_R = 0x11;       // enable weak pull-up on PF0 and PF4
+  GPIO_PORTF_DEN_R = 0x1F;       // 7) enable digital I/O on PF0-PF4
+}
+
+//------------LED_BlueToggle------------
+// Toggle blue LED
+// Input: none
+// Output: none
+void LED_BlueToggle(void){
+  PF2 ^= 0x04;
+}
+//------------LED_GreenToggle------------
+// Toggle green LED
+// Input: none
+// Output: none
+void LED_GreenToggle(void){
+  PF3 ^= 0x08;
+}
+
 static void Timer0Arm(void){
   TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
   TIMER0_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
@@ -89,7 +136,7 @@ static void GPIOArm(void){
 // Inputs:  pointer to a function to call on //Touch (falling edge),
 //          pointer to a function to call on release (rising edge)
 // Outputs: none 
-void Switch_Init(void(*Touchtask)(void), void(*releasetask)(void)){
+void Switch_Init(void){
   // **** general initialization ****
   SYSCTL_RCGCGPIO_R |= 0x00000020; // (a) activate clock for port F
   while((SYSCTL_PRGPIO_R & 0x00000020) == 0){};
@@ -127,7 +174,7 @@ void Switch_Init(void(*Touchtask)(void), void(*releasetask)(void)){
 
   SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
   //TouchTask = //Touchtask;           // user function 
-  ReleaseTask = releasetask;       // user function 
+  //ReleaseTask = releasetask;       // user function 
   //Touch = 0;                       // allow time to finish activating
 //  Release = 0;
   LastPF4 = PF4;                      // initial switch state
@@ -181,6 +228,8 @@ void DelayWait10ms(uint32_t n){
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;
+	LED_GreenToggle();
+	LED_BlueToggle();
 	if((GPIO_PORTF_DATA_R>>4)%0x01==0)
 	{
 		int start =NVIC_ST_CURRENT_R;

@@ -28,7 +28,7 @@
 // Inputs:  pointer to a function to call on touch (falling edge),
 //          pointer to a function to call on release (rising edge)
 // Outputs: none 
-void Switch_Init(void(*touchtask)(void), void(*releasetask)(void));
+void Switch_Init(void);
 
 // Wait for switch to be pressed 
 // There will be minimum time delay from touch to when this function returns
@@ -48,7 +48,7 @@ void Switch_WaitRelease(void);
 // Inputs:  none
 // Outputs: false if switch currently pressed, true if released 
 unsigned long Switch_Input(void);
-
+void LED_Init(void);
 
 void GPIOPortF_Handler(void);
 void GPIOPortD_Handler(void);

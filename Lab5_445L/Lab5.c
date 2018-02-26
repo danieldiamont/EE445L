@@ -5,7 +5,7 @@
 #include "tm4c123gh6pm.h"
 #include "Sound.h"
 #include "Switch.h"
-#include "TExaS.h"
+//#include "TExaS.h"
 #include "MAX5353.h"
 #include "Timer1A.h"
 
@@ -35,9 +35,10 @@ void Heartbeat_Init(void) {
 //void task2(void);
 
 int main(void){      
-  TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
-  //Switch_Init(task1,task2);
+  //TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
+  Switch_Init();
 	Heartbeat_Init();
+	LED_Init();
   Sound_Init();
   // other initialization
   EnableInterrupts();
