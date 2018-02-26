@@ -36,12 +36,12 @@ void Heartbeat_Init(void) {
 
 int main(void){      
   TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
-  //Switch_Init();
+  Switch_Init();
 	Heartbeat_Init();
   Sound_Init();
   // other initialization
   EnableInterrupts();
-	Sound_Play_Song(0,0);
+	//Sound_Play_Song(0,0);
 	
   while(1){
 		//do nothing... just test the sound

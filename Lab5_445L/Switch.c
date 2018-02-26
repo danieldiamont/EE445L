@@ -35,18 +35,17 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
-#define GPIO_PORTF_BASE (*((volatile uint32_t *)0x40025000))  // GPIO Port F
-#define GPIO_O_LOCK     (*((volatile uint32_t *)0x00000520))  // GPIO Lock
-#define GPIO_O_CR       (*((volatile uint32_t *)0x00000524))  // GPIO Commit
-#define PF0             (*((volatile uint32_t *)0x40025004))
-#define LOCK_REG				(*((volatile uint32_t *)(GPIO_O_LOCK + GPIO_PORTF_BASE)))
-#define CR_REG					(*((volatile uint32_t *)(GPIO_O_CR + GPIO_PORTF_BASE)))
+#define GPIO_PORTF_LOCK_R       (*((volatile uint32_t *)0x40025520))
+#define GPIO_PORTF_CR_R         (*((volatile uint32_t *)0x40025524))
+#define PF0            				 (*((volatile uint32_t *)0x40025004))
+#define GPIO_LOCK_KEY           0x4C4F434B  // Unlocks the GPIO_CR register
+
 //define PD3 and PD2
 #define GPIO_PIN_2              (*((volatile uint32_t *)0x00000004))  // GPIO pin 2
 #define GPIO_PIN_3              (*((volatile uint32_t *)0x00000008))  // GPIO pin 3
 #define GPIO_PORTD_BASE         (*((volatile uint32_t *)0x40007000))  // GPIO Port D
-#define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 + GPIO_PORTD_BASE)))
-#define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 + GPIO_PORTD_BASE)))
+#define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 | GPIO_PORTD_BASE)))
+#define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 | GPIO_PORTD_BASE)))
 
 volatile static unsigned long TouchPF4;     // true on //Touch
 volatile static unsigned long TouchPF0;
@@ -65,20 +64,20 @@ volatile static unsigned long LastPD2;
 //void (*ReleaseTask)(void);  // user function to be executed on release
 void Sound_Play_Song(uint8_t song, uint8_t instrument);
 
-static void Timer0Arm(void){
-  TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
-  TIMER0_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
-  TIMER0_TAMR_R = 0x0000001;    // 3) 1-SHOT mode
-  TIMER0_TAILR_R = 160000;      // 4) 10ms reload value
-  TIMER0_TAPR_R = 0;            // 5) bus clock resolution
-  TIMER0_ICR_R = 0x00000001;    // 6) clear TIMER0A timeout flag
-  TIMER0_IMR_R = 0x00000001;    // 7) arm timeout interrupt
-  NVIC_PRI4_R = (NVIC_PRI4_R&0x00FFFFFF)|0x80000000; // 8) priority 4
-// interrupts enabled in the main program after all devices initialized
-// vector number 35, interrupt number 19
-  NVIC_EN0_R = 1<<19;           // 9) enable IRQ 19 in NVIC
-  TIMER0_CTL_R = 0x00000001;    // 10) enable TIMER0A
-}
+//static void Timer0Arm(void){
+//  TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
+//  TIMER0_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
+//  TIMER0_TAMR_R = 0x0000001;    // 3) 1-SHOT mode
+//  TIMER0_TAILR_R = 160000;      // 4) 10ms reload value
+//  TIMER0_TAPR_R = 0;            // 5) bus clock resolution
+//  TIMER0_ICR_R = 0x00000001;    // 6) clear TIMER0A timeout flag
+//  TIMER0_IMR_R = 0x00000001;    // 7) arm timeout interrupt
+//  NVIC_PRI4_R = (NVIC_PRI4_R&0x00FFFFFF)|0x80000000; // 8) priority 4
+//// interrupts enabled in the main program after all devices initialized
+//// vector number 35, interrupt number 19
+//  NVIC_EN0_R = 1<<19;           // 9) enable IRQ 19 in NVIC
+//  TIMER0_CTL_R = 0x00000001;    // 10) enable TIMER0A
+//}
 static void GPIOArm(void){
   GPIO_PORTF_ICR_R = 0x10;      // (e) clear flag4
   GPIO_PORTF_IM_R |= 0x10;      // (f) arm interrupt on PF4 *** No IME bit as mentioned in Book ***
@@ -93,6 +92,9 @@ void Switch_Init(){
   // **** general initialization ****
   SYSCTL_RCGCGPIO_R |= 0x00000020; // (a) activate clock for port F
   while((SYSCTL_PRGPIO_R & 0x00000020) == 0){};
+	
+	GPIO_PORTF_LOCK_R = GPIO_LOCK_KEY;
+	GPIO_PORTF_CR_R = 0xFF;
   GPIO_PORTF_DIR_R &= ~0x10;    // (c) make PF4 in (built-in button)
   GPIO_PORTF_AFSEL_R &= ~0x10;  //     disable alt funct on PF4
   GPIO_PORTF_DEN_R |= 0x10;     //     enable digital I/O on PF4   
@@ -102,8 +104,6 @@ void Switch_Init(){
   GPIO_PORTF_IS_R &= ~0x10;     // (d) PF4 is edge-sensitive
   GPIO_PORTF_IBE_R |= 0x10;     //     PF4 is both edges
 
-  LOCK_REG = GPIO_LOCK_KEY;	//unlock pf0
-  CR_REG = 0x000000FF;		//commit the unlock
   GPIO_PORTF_DIR_R &= ~0x01;    // (c) make PF0 in (built-in button)
   GPIO_PORTF_AFSEL_R &= ~0x01;  //     disable alt funct on PF0
   GPIO_PORTF_DEN_R |= 0x01;     //     enable digital I/O on PF0   
