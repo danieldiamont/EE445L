@@ -460,6 +460,16 @@
               <FileType>5</FileType>
               <FilePath>.\SysTickInts.h</FilePath>
             </File>
+            <File>
+              <FileName>fixed.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\fixed.c</FilePath>
+            </File>
+            <File>
+              <FileName>fixed.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fixed.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

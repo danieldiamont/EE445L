@@ -63,6 +63,7 @@ volatile static unsigned long LastPD2;
 
 void (*TouchTask)(void);    // user function to be executed on //Touch
 void (*ReleaseTask)(void);  // user function to be executed on release
+void Sound_Play_Song(uint8_t song, uint8_t instrument);
 
 static void Timer0Arm(void){
   TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
@@ -165,19 +166,40 @@ int deBounce(void)
    }
 }
 // Interrupt on rising or falling edge of PF4 (CCP0)
+void DelayWait10ms(uint32_t n){
+	
+	uint32_t volatile timer;
+	
+  while(n){
+    timer = 727240*2/91;  // 10msec
+    while(timer){
+	  	timer--;
+    }
+    n--;
+  }
+}
 void GPIOPortF_Handler(void){
 
-  GPIO_PORTF_IM_R &= ~0x11;     // disarm interrupt on all of port f 
+  GPIO_PORTF_IM_R &= ~0x11;
+	if((GPIO_PORTF_DATA_R>>4)%0x01)
+	{
+		int start =NVIC_ST_CURRENT_R;
+		//while(NVIC_ST_CURRENT_R-start<30000){}
+		DelayWait10ms(3);
+			
+		Sound_Play_Song(0,0);
+	}		
+	// disarm interrupt on all of port f 
  // if(Last){    // 0x11 means either PF4 or PF0 was previously released
     //Touch = 1;       // //Touch occurred
-     if(deBounce()==0){return;}
-    (*TouchTask)();  // execute user task
+     //if(deBounce()==0){return;}
+    //(*TouchTask)();  // execute user task
   //}
   //else{
 //    Release = 1;       // release occurred
     //(*ReleaseTask)();  // execute user task
   //}
-  Timer0Arm(); // start one shot
+   // start one shot
 }
 
 void GPIOPortD_Handler(void){
