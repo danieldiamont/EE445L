@@ -99,7 +99,7 @@ uint8_t songIndex;
 uint8_t instrumentIndex;
 Song * song_ptr;
 const uint16_t * instrument_ptr;
-uint8_t instrument_len;
+uint32_t instrument_len;
 
 bool playSong;
 
@@ -140,7 +140,7 @@ void Sound_Play_Song(uint8_t song, uint8_t instrument){
 	//set instrument	
 	instrumentIndex = instrument;
 	instrument_ptr = wave;
-	instrument_len = 32;
+	instrument_len = 256;
 
 	Timer1A_Init(Sound_Update_Note, songs[songIndex].time[noteIndex]); //init note change timer
 	Sound_Play_Note(songs[songIndex].note[noteIndex]); //init waveform timer

@@ -10,7 +10,7 @@
 
 extern bool playSong;
 extern uint8_t * instrument_ptr;
-extern uint8_t instrument_len;
+extern uint32_t instrument_len;
 
 
 uint8_t DAC_Index;
