@@ -181,14 +181,18 @@ void DelayWait10ms(uint32_t n){
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;
-	if((GPIO_PORTF_DATA_R>>4)%0x01)
+	if((GPIO_PORTF_DATA_R>>4)%0x01==0)
 	{
 		int start =NVIC_ST_CURRENT_R;
 		//while(NVIC_ST_CURRENT_R-start<30000){}
 		DelayWait10ms(3);
-			
 		Sound_Play_Song(0,0);
-	}		
+	}
+	else
+	{
+		DelayWait10ms(3);
+	}
+
 	// disarm interrupt on all of port f 
  // if(Last){    // 0x11 means either PF4 or PF0 was previously released
     //Touch = 1;       // //Touch occurred
