@@ -36,7 +36,7 @@ void Heartbeat_Init(void) {
 
 int main(void){      
   TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
-  //Switch_Init(task1,task2);
+  //Switch_Init();
 	Heartbeat_Init();
   Sound_Init();
   // other initialization

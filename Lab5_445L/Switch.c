@@ -61,8 +61,8 @@ volatile static unsigned long LastPF0;
 volatile static unsigned long LastPD3;
 volatile static unsigned long LastPD2;
 
-void (*TouchTask)(void);    // user function to be executed on //Touch
-void (*ReleaseTask)(void);  // user function to be executed on release
+//void (*TouchTask)(void);    // user function to be executed on //Touch
+//void (*ReleaseTask)(void);  // user function to be executed on release
 void Sound_Play_Song(uint8_t song, uint8_t instrument);
 
 static void Timer0Arm(void){
@@ -89,7 +89,7 @@ static void GPIOArm(void){
 // Inputs:  pointer to a function to call on //Touch (falling edge),
 //          pointer to a function to call on release (rising edge)
 // Outputs: none 
-void Switch_Init(void(*Touchtask)(void), void(*releasetask)(void)){
+void Switch_Init(){
   // **** general initialization ****
   SYSCTL_RCGCGPIO_R |= 0x00000020; // (a) activate clock for port F
   while((SYSCTL_PRGPIO_R & 0x00000020) == 0){};
@@ -127,7 +127,7 @@ void Switch_Init(void(*Touchtask)(void), void(*releasetask)(void)){
 
   SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
   //TouchTask = //Touchtask;           // user function 
-  ReleaseTask = releasetask;       // user function 
+  //ReleaseTask = releasetask;       // user function 
   //Touch = 0;                       // allow time to finish activating
 //  Release = 0;
   LastPF4 = PF4;                      // initial switch state
@@ -207,7 +207,7 @@ void GPIOPortD_Handler(void){
   GPIO_PORTD_IM_R &= ~0x0C;     // disarm interrupt on all of port D
   //if(LastP){    // 0x11 means either PF4 or PF0 was previously released
     //Touch = 1;       // //Touch occurred
-    (*TouchTask)();  // execute user task
+//    (*TouchTask)();  // execute user task
   }
   //else{
 //    Release = 1;       // release occurred
