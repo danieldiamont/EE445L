@@ -39,18 +39,18 @@ void Sound_Init(void);
 //         input of zero disable sound output
 // Output: none
 void Sound_Play_Note(uint32_t period);
-#define C    2389*2   // 1046.5 Hz
-#define B    2531   // 987.8 Hz
-#define BF   2681   // 932.3 Hz
-#define A    2841   // 880 Hz
-#define AF   3010   // 830.6 Hz
-#define G    3189   // 784 Hz
-#define GF  3378   // 740 Hz
-#define F   3579   // 698.5 Hz
-#define E   3792   // 659.3 Hz
-#define EF  4018   // 622.3 Hz
-#define D   4257   // 587.3 Hz
-#define DF  4510   // 554.4 Hz
+#define C    2389/8 // 1046.5 Hz
+#define B    2531/16   // 987.8 Hz
+#define BF   2681/16   // 932.3 Hz
+#define A    2841/16   // 880 Hz
+#define AF   3010/16  // 830.6 Hz
+#define G    3189/16   // 784 Hz
+#define GF  3378/16  // 740 Hz
+#define F   3579/16  // 698.5 Hz
+#define E   3792/16  // 659.3 Hz
+#define EF  4018/16   // 622.3 Hz
+#define D   4257/16  // 587.3 Hz
+#define DF  4510/16   // 554.4 Hz
 
 //pass the sound controller the index of the song to play (assuming we have multiple songs)
 void Sound_Play_Song(uint8_t song, uint8_t instrument);
