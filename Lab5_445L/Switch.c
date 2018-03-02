@@ -47,9 +47,8 @@ void WaitForInterrupt(void);  // low power mode
 
 //define PD3 and PD2
 #define GPIO_PORTD_BASE         (*((volatile uint32_t *)0x40007000))  // GPIO Port D
-<<<<<<< HEAD
-#define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 + GPIO_PORTD_BASE)))
-#define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 + GPIO_PORTD_BASE)))
+//#define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 + GPIO_PORTD_BASE)))
+//#define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 + GPIO_PORTD_BASE)))
 
 volatile static unsigned long TouchPF4;     // true on //Touch
 volatile static unsigned long TouchPF0;
@@ -115,25 +114,9 @@ void LED_GreenToggle(void){
   PF3 ^= 0x08;
 }
 
-static void Timer0Arm(void){
-  TIMER0_CTL_R = 0x00000000;    // 1) disable TIMER0A during setup
-  TIMER0_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
-  TIMER0_TAMR_R = 0x0000001;    // 3) 1-SHOT mode
-  TIMER0_TAILR_R = 160000;      // 4) 10ms reload value
-  TIMER0_TAPR_R = 0;            // 5) bus clock resolution
-  TIMER0_ICR_R = 0x00000001;    // 6) clear TIMER0A timeout flag
-  TIMER0_IMR_R = 0x00000001;    // 7) arm timeout interrupt
-  NVIC_PRI4_R = (NVIC_PRI4_R&0x00FFFFFF)|0x80000000; // 8) priority 4
-// interrupts enabled in the main program after all devices initialized
-// vector number 35, interrupt number 19
-  NVIC_EN0_R = 1<<19;           // 9) enable IRQ 19 in NVIC
-  TIMER0_CTL_R = 0x00000001;    // 10) enable TIMER0A
-}
-=======
 #define PD2 										(*((volatile uint32_t *)0x40007010))
 #define PD3											(*((volatile uint32_t *)0x40007020))
 
->>>>>>> f296160979a4d3b1b9507ab4ef4dc9f8bc57d080
 static void GPIOArm(void){
   GPIO_PORTF_ICR_R = 0x11;      // (e) clear flag4 and flag0
   GPIO_PORTF_IM_R |= 0x11;      // (f) arm interrupt on PF4 and PF0 *** No IME bit as mentioned in Book ***
@@ -145,16 +128,12 @@ static void GPIOArm(void){
 	NVIC_PRI0_R = (NVIC_PRI0_R&0x0FFFFFFF)|0xA0000000; //priority 5
 	NVIC_EN0_R = 0x00000008; //enable interrupt 3 in NVIC
 }
-<<<<<<< HEAD
 // Initialize switch interface on PF4 
 // Inputs:  pointer to a function to call on //Touch (falling edge),
 //          pointer to a function to call on release (rising edge)
 // Outputs: none 
-void Switch_Init(void){
-=======
 // Initialize switch interface on PF4 and PF0
 void Switch_Init(){
->>>>>>> f296160979a4d3b1b9507ab4ef4dc9f8bc57d080
   // **** general initialization ****
   SYSCTL_RCGCGPIO_R |= 0x00000028; // (a) activate clock for port F and port d
   while((SYSCTL_PRGPIO_R & 0x00000020) == 0 || (SYSCTL_PRGPIO_R & 0x00000008) == 0){};
@@ -200,19 +179,9 @@ void Switch_Init(){
 
   GPIOArm();
 
-<<<<<<< HEAD
   SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
-  //TouchTask = //Touchtask;           // user function 
-  //ReleaseTask = releasetask;       // user function 
-  //Touch = 0;                       // allow time to finish activating
-//  Release = 0;
-  LastPF4 = PF4;                      // initial switch state
-  LastPF0 = PF0;
-  LastPD3 = PD3;
-  LastPD2 = PD2;
-=======
+
   //SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
->>>>>>> f296160979a4d3b1b9507ab4ef4dc9f8bc57d080
  }
 
 int deBounce(void)
@@ -260,13 +229,10 @@ void DelayWait10ms(uint32_t n){
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;
-<<<<<<< HEAD
 	LED_GreenToggle();
 	LED_BlueToggle();
 	if((GPIO_PORTF_DATA_R>>4)%0x01==0)
-=======
 	if(PF4 == 0)
->>>>>>> f296160979a4d3b1b9507ab4ef4dc9f8bc57d080
 	{
 		DelayWait10ms(3);
 		Sound_Play_Song(0,0);

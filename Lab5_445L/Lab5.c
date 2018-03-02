@@ -5,12 +5,13 @@
 #include "tm4c123gh6pm.h"
 #include "Sound.h"
 #include "Switch.h"
-//#include "TExaS.h"
+#include "TExaS.h"
 #include "MAX5353.h"
 #include "Timer1A.h"
 
 void EnableInterrupts(void);
 void DisableInterrupts(void);
+extern void DelayWait10ms(uint32_t n);
 
 void Heartbeat_Init(void) {
 				volatile uint8_t delay;
@@ -35,20 +36,20 @@ void Heartbeat_Init(void) {
 //void task2(void);
 
 int main(void){      
-<<<<<<< HEAD
   //TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
-=======
   TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
->>>>>>> f296160979a4d3b1b9507ab4ef4dc9f8bc57d080
   Switch_Init();
 	Heartbeat_Init();
 	LED_Init();
   Sound_Init();
   // other initialization
   EnableInterrupts();
-	//Sound_Play_Song(0,0);
+	//Sound_Play_Song(1,0);
 	
   while(1){
 		//do nothing... just test the sound
+		//Sound_Play_Song(1,0);
+		//DelayWait10ms(5000);
+		
 	}
 }

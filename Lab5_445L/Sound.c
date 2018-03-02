@@ -26,7 +26,7 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
-Song songs[1] = {
+Song songs[2] = {
 	{{E,E,F,F,G,G,G,G,F,F,E,E,D,D,C,C,C,C,D,D,E,E,E,E,E,D,D,D,D,E,E,
 		E,E,F,F,G,G,G,G,F,F,E,E,D,D,C,C,C,C,D,D,E,E,D,D,D,D,C,C,C,C,D,D,D,D,
 		E,E,C,C,D,D,E,F,E,E,C,C,D,D,E,F,E,E,D,D,C,C,D,D,G*2,G*2,E,E,E,E,E,E,F,F,G,G,
@@ -62,7 +62,10 @@ Song songs[1] = {
 		MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,
 		MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,
 		MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,
-		MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,}}}; //start out with only one song
+		MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,}},
+
+		{{A,B,C,D,E,G},{MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL,
+		MAX_RELOAD_VAL,MAX_RELOAD_VAL,MAX_RELOAD_VAL}}}; //start out with only one song
 
 //basic waveform for one note
 //const uint16_t wave[32] = {
@@ -92,6 +95,7 @@ const uint16_t wave[256]={4096, 1501, 1484, 1456, 1417, 1369, 1311, 1245, 1171, 
 	1408, 1358, 1299, 1231, 1156, 1075, 989, 900, 808, 716, 624, 534, 448, 366, 289, 220, 159, 107, 64, 32,
 	11, 0, 2, 14, 38, 72, 116, 171, 233, 304, 382, 465, 552, 642, 734, 827, 918, 1007, 1092, 1171, 1245, 
 	1311, 1369, 1417, 1456, 1484};
+
 
 
 uint8_t noteIndex;
