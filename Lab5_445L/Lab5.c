@@ -48,8 +48,8 @@ int main(void){
 	
   while(1){
 		//do nothing... just test the sound
-		//Sound_Play_Song(1,0);
-		//DelayWait10ms(5000);
+//		Sound_Play_Song(1,0);
+//		DelayWait10ms(100);
 		
 	}
 }

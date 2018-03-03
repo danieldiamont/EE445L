@@ -9,11 +9,11 @@
 #define NVIC_ST_CTRL_ENABLE     0x00000001  // Counter mode
 
 extern bool playSong;
-extern uint8_t * instrument_ptr;
+extern const uint16_t * instrument_ptr;
 extern uint32_t instrument_len;
 
 
-uint8_t DAC_Index;
+uint16_t DAC_Index;
 
 //	const uint16_t wave[32] = {
 //  2048,2448,2832,3186,3496,3751,3940,4057,4095,4057,3940,
@@ -54,7 +54,7 @@ void SysTick_Handler(void)
 	else {
 		//play the data from the correct data structure
 		DAC_Out(instrument_ptr[DAC_Index]);
-		DAC_Index = (DAC_Index + 1) % instrument_len;
+		DAC_Index = (DAC_Index + 1) % 4096;
 		//sound test
 //		DAC_Out(wave[DAC_Index&0x1F]);
 //		DAC_Index++;

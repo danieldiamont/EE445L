@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import matplotlib.pyplot as plt
 
 wave = [
   2048*2,2448*2,2832*2,3186*2,3496*2,3751*2,3940*2,4057*2,4095*2,4057*2,3940*2,
@@ -11,14 +12,19 @@ new_wave = []
 for i in range(0,31):
     new_wave.append((int)(wave[i]*math.exp(-i/8)))
 
-Fs = 256
+Fs = 1024*2.5
 f = 5
-sample = 256
+sample = 4096
 x = np.arange(sample)
-y = 2048*np.cos(2*np.pi*f*x/Fs)+2048
+y = 1024*np.sin(2*np.pi*f*x/Fs)+1024
 wav = []
+#t = np.linspace(0,1,4096)
+
 for i in range(0,y.size-1):
-    wav.append(int(y[i]*math.exp(-i/256)))
+    wav.append(int(y[i]))
 
 print(wav)
 print('size: ' + str(y.size))
+
+plt.plot(wav);
+plt.show();
