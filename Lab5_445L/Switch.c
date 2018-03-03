@@ -30,6 +30,7 @@
 #include <stdbool.h>
 
 extern bool playSong;
+extern uint8_t shouldRead;
 
 #define PF4                     (*((volatile uint32_t *)0x40025040))
 void DisableInterrupts(void); // Disable interrupts
@@ -236,6 +237,7 @@ void GPIOPortF_Handler(void){
 	{
 		DelayWait10ms(3);
 		Sound_Play_Song(0,0);
+		shouldRead = 1;
 		GPIO_PORTF_ICR_R = 0x10;
 		GPIO_PORTF_IM_R |= 0x11;
 	}
@@ -248,6 +250,7 @@ void GPIOPortF_Handler(void){
 			GPIO_PORTF_IM_R |= 0x11;
 		}
 		else {
+			DelayWait10ms(3);
 			Sound_Resume_Song();
 			GPIO_PORTF_ICR_R = 0x01;
 			GPIO_PORTF_IM_R |= 0x11;

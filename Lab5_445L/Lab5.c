@@ -8,6 +8,7 @@
 #include "TExaS.h"
 #include "MAX5353.h"
 #include "Timer1A.h"
+#include <stdbool.h>
 
 void EnableInterrupts(void);
 void DisableInterrupts(void);
@@ -32,8 +33,46 @@ void Heartbeat_Init(void) {
 				GPIO_PORTA_DEN_R |= 0x04;    
 }
 
-//void task1(void);
-//void task2(void);
+//DEBUGGING BUFFER CODE FOR MEASURING TIME SPENT IN ISR
+#define BUFFER_SIZE 512
+uint32_t Debug_Buffer[BUFFER_SIZE];
+uint16_t Debug_Cnt = 0;
+
+bool Data_Collection_Complete = false;
+uint8_t shouldRead = 0;
+
+//global for passing information between threads
+uint32_t Time_Difference[BUFFER_SIZE-1];
+
+void Get_Time_Differences(void){
+	//calculate time differences
+			for(int i = 0; i < BUFFER_SIZE - 1; i++){ //total of 999 computations
+				Time_Difference[i] = Debug_Buffer[i] - Debug_Buffer[i+1]; //compute the difference between time dump items
+			}
+			
+			while(1)
+			{
+				//freeze the program
+			}
+}
+
+void Debug_Dump(){
+//	if(shouldRead){
+//		if(Debug_Cnt < BUFFER_SIZE){
+//					Debug_Buffer[Debug_Cnt] = NVIC_ST_CURRENT_R;
+//					Debug_Cnt++;
+//		}
+//		else
+//		{
+//			Data_Collection_Complete = true;
+//			shouldRead = false;
+//			Get_Time_Differences();
+//		}
+//	}
+	Debug_Buffer[Debug_Cnt] = NVIC_ST_CURRENT_R;
+	shouldRead -= (Debug_Cnt>>9)&shouldRead;
+	Debug_Cnt += shouldRead;	
+}
 
 int main(void){      
   //TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
@@ -50,6 +89,9 @@ int main(void){
 		//do nothing... just test the sound
 //		Sound_Play_Song(1,0);
 //		DelayWait10ms(100);
+		//if(Debug_Cnt == 512){
+			//Get_Time_Differences();
+		//}
 		
 	}
 }

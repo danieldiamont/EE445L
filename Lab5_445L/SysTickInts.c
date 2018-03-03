@@ -8,17 +8,15 @@
 #define NVIC_ST_CTRL_INTEN      0x00000002  // Interrupt enable
 #define NVIC_ST_CTRL_ENABLE     0x00000001  // Counter mode
 
+#define PF2                     (*((volatile uint32_t *)0x40025010))
+
 extern bool playSong;
 extern const uint16_t * instrument_ptr;
 extern uint32_t instrument_len;
 
+extern void Debug_Dump(void);
 
 uint16_t DAC_Index;
-
-//	const uint16_t wave[32] = {
-//  2048,2448,2832,3186,3496,3751,3940,4057,4095,4057,3940,
-//  3751,3496,3186,2832,2448,2048,1648,1264,910,600,345,
-//  156,39,0,39,156,345,600,910,1264,1648};
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -47,17 +45,25 @@ void SysTick_Init(uint32_t period){long sr;
 
 void SysTick_Handler(void)
 {
+	//toggle PF2 for debugging on scope
+	//PF2 ^= 0x04;
+	//PF2 ^= 0x04;
+	
 	if (!playSong)
 	{
 		return;
 	}
 	else {
+		//Debug_Dump();
 		//play the data from the correct data structure
 		DAC_Out(instrument_ptr[DAC_Index]);
 		DAC_Index = (DAC_Index + 1) % 4096;
 		//sound test
 //		DAC_Out(wave[DAC_Index&0x1F]);
 //		DAC_Index++;
+		//Debug_Dump(); //minimally instrusive debugging software dump
 	}
+	
+	//PF2 ^= 0x04; //toggle LED for debugging
 	
 }
