@@ -50,5 +50,6 @@ void Switch_WaitRelease(void);
 unsigned long Switch_Input(void);
 void LED_Init(void);
 
+//interrupt handlers
 void GPIOPortF_Handler(void);
 void GPIOPortD_Handler(void);

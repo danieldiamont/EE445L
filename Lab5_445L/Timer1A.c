@@ -34,5 +34,4 @@ void Timer1A_Handler(void)
 	TIMER1_ICR_R = TIMER_ICR_TATOCINT;
 	(*PeriodicTask)();
 	
-	//do whatever you need to do
 }

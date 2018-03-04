@@ -1,4 +1,5 @@
 //Daniel Diamont
+//Robert Noe
 //TA: Saadallah Kassir
 
 #include <stdint.h>
@@ -35,7 +36,7 @@ void Heartbeat_Init(void) {
 
 //DEBUGGING BUFFER CODE FOR MEASURING TIME SPENT IN ISR
 #define BUFFER_SIZE 512
-uint32_t Debug_Buffer[BUFFER_SIZE];
+uint32_t Debug_Buffer[BUFFER_SIZE]; //take 512 samples
 uint16_t Debug_Cnt = 0;
 
 bool Data_Collection_Complete = false;
@@ -71,13 +72,13 @@ void Debug_Dump(){
 //	}
 	Debug_Buffer[Debug_Cnt] = NVIC_ST_CURRENT_R;
 	shouldRead -= (Debug_Cnt>>9)&shouldRead;
-	Debug_Cnt += shouldRead;	
+	Debug_Cnt += shouldRead;	//will only go up to 512 and stop there
 }
 
 int main(void){      
   //TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
   TExaS_Init(SW_PIN_PE3210,DAC_PIN_PB3210,ScopeOn);    // bus clock at 80 MHz
-  Switch_Init();
+  Switch_Init(); //initialize switches
 	Heartbeat_Init();
 	LED_Init();
   Sound_Init();

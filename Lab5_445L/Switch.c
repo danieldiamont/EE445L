@@ -29,47 +29,12 @@
 #include "sound.h"
 #include <stdbool.h>
 
-extern bool playSong;
-extern uint8_t shouldRead;
-
 #define PF4                     (*((volatile uint32_t *)0x40025040))
-void DisableInterrupts(void); // Disable interrupts
-void EnableInterrupts(void);  // Enable interrupts
-long StartCritical (void);    // previous I bit, disable interrupts
-void EndCritical(long sr);    // restore I bit to previous value
-void WaitForInterrupt(void);  // low power mode
-
 #define GPIO_PORTF_LOCK_R       (*((volatile uint32_t *)0x40025520))
 #define GPIO_PORTF_CR_R         (*((volatile uint32_t *)0x40025524))
 #define PF0            				 (*((volatile uint32_t *)0x40025004))
-#define GPIO_LOCK_KEY           0x4C4F434B  // Unlocks the GPIO_CR register
-
 #define GPIO_PORTF_ICR_R        (*((volatile uint32_t *)0x4002541C))
-
-//define PD3 and PD2
 #define GPIO_PORTD_BASE         (*((volatile uint32_t *)0x40007000))  // GPIO Port D
-//#define PD2 										(*((volatile uint32_t *)(GPIO_PIN_2 + GPIO_PORTD_BASE)))
-//#define PD3											(*((volatile uint32_t *)(GPIO_PIN_3 + GPIO_PORTD_BASE)))
-
-volatile static unsigned long TouchPF4;     // true on //Touch
-volatile static unsigned long TouchPF0;
-volatile static unsigned long TouchPD3;
-volatile static unsigned long TouchPD2;
-volatile static unsigned long ReleasePF4;
-volatile static unsigned long ReleasePF0;
-volatile static unsigned long ReleasePD3;
-volatile static unsigned long ReleasePD2;
-volatile static unsigned long LastPF4;      // previous
-volatile static unsigned long LastPF0;
-volatile static unsigned long LastPD3;
-volatile static unsigned long LastPD2;
-
-void (*TouchTask)(void);    // user function to be executed on //Touch
-void (*ReleaseTask)(void);  // user function to be executed on release
-void Sound_Play_Song(uint8_t song, uint8_t instrument);
-
-
-
 #define GPIO_LOCK_KEY           0x4C4F434B  // Unlocks the GPIO_CR register
 #define PF0                     (*((volatile uint32_t *)0x40025004))
 #define PF4                     (*((volatile uint32_t *)0x40025040))
@@ -79,6 +44,21 @@ void Sound_Play_Song(uint8_t song, uint8_t instrument);
 #define PF1                     (*((volatile uint32_t *)0x40025008))
 #define PF2                     (*((volatile uint32_t *)0x40025010))
 #define PF3                     (*((volatile uint32_t *)0x40025020))
+
+
+//globals used for playing the song and for data acquisition
+extern bool playSong;
+extern uint8_t shouldRead;
+
+//function declarations
+void DisableInterrupts(void); // Disable interrupts
+void EnableInterrupts(void);  // Enable interrupts
+long StartCritical (void);    // previous I bit, disable interrupts
+void EndCritical(long sr);    // restore I bit to previous value
+void WaitForInterrupt(void);  // low power mode
+void (*TouchTask)(void);    // user function to be executed on //Touch
+void (*ReleaseTask)(void);  // user function to be executed on release
+void Sound_Play_Song(uint8_t song, uint8_t instrument);
 
 //------------LED_Init------------
 // Initialize GPIO Port F for negative logic switches on PF0 and
@@ -115,8 +95,8 @@ void LED_GreenToggle(void){
   PF3 ^= 0x08;
 }
 
-#define PD2 										(*((volatile uint32_t *)0x40007010))
-#define PD3											(*((volatile uint32_t *)0x40007020))
+#define PD2 (*((volatile uint32_t *)0x40007010))
+#define PD3	(*((volatile uint32_t *)0x40007020))
 
 static void GPIOArm(void){
   GPIO_PORTF_ICR_R = 0x11;      // (e) clear flag4 and flag0

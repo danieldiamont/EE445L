@@ -7,15 +7,13 @@
 #define NVIC_ST_CTRL_CLK_SRC    0x00000004  // Clock Source
 #define NVIC_ST_CTRL_INTEN      0x00000002  // Interrupt enable
 #define NVIC_ST_CTRL_ENABLE     0x00000001  // Counter mode
-
 #define PF2                     (*((volatile uint32_t *)0x40025010))
 
+//globals used for sound generation
 extern bool playSong;
 extern const uint16_t * instrument_ptr;
 extern uint32_t instrument_len;
-
 extern void Debug_Dump(void);
-
 uint16_t DAC_Index;
 
 void DisableInterrupts(void); // Disable interrupts
