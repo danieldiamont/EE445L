@@ -6,8 +6,8 @@ Report Written:     Tuesday, March 06, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
 Design Title:       
 Created:            3/5/2018 1:25:41 PM
-Last Saved:         3/6/2018 11:27:34 AM
-Editing Time:       977 min
+Last Saved:         3/6/2018 2:44:12 PM
+Editing Time:       1173 min
 Units:              mil (precision 0)
 
 

@@ -6,16 +6,11 @@ Report Written:     Tuesday, March 06, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
 Design Title:       
 Created:            3/5/2018 1:25:41 PM
-Last Saved:         3/6/2018 11:13:28 AM
-Editing Time:       975 min
+Last Saved:         3/6/2018 2:41:25 PM
+Editing Time:       1170 min
 Units:              mil (precision 0)
 
-Added component reference "Y1" of component "XTAL", package "DSC".
-Added value "X=16 MHz" to component reference "Y1".
-
-
-Connected pin "Y1-1" to net "OSC1".
-Connected pin "Y1-2" to net "OSC0".
+The designs are the same, so no design changes to forward.
 
 
 End Of Report.

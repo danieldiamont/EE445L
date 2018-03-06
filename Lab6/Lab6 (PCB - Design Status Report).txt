@@ -6,8 +6,8 @@ Report Written:     Tuesday, March 06, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
 Design Title:       
 Created:            3/5/2018 1:25:41 PM
-Last Saved:         3/6/2018 11:27:34 AM
-Editing Time:       977 min
+Last Saved:         3/6/2018 2:44:12 PM
+Editing Time:       1173 min
 Units:              mil (precision 0)
 
 
@@ -30,6 +30,7 @@ Top Silkscreen     Silk Screen   Top
 Top Copper         Electrical    Top
 Top Solder Mask    Solder Mask   Top
 Documentation1     Documentation Top
+Top Paste Mask     Paste Mask    Top
 Bottom Silkscreen  Silk Screen   Bottom
 Bottom Copper      Electrical    Bottom
 Bottom Solder Mask Solder Mask   Bottom
@@ -75,11 +76,11 @@ Net List
 
 Net Class Nets  Track Length Vias Connections Connection Length
 -------------------------------------------------------------------------
-Signal    141          33109    7           0                 0
-Power     11           13864    7           0                 0
-Ground    1            16352    4           0                 0
+Signal    141          34289   11           1              1092
+Power     10           13796    7           1               144
+Ground    1            16349    4           0                 0
 -------------------------------------------------------------------------
-Total:    153          63326   18           0                 0
+Total:    152          64434   22           2              1236
 -------------------------------------------------------------------------
 
 Drill List
@@ -87,7 +88,7 @@ Drill List
 
 Drill Diameter  Number of holes
 ---------------------------------
-24                           18
+24                           22
 29                           58
 30                            2
 32                            5
@@ -99,7 +100,7 @@ Drill Diameter  Number of holes
 59                            2
 60                           15
 ---------------------------------
-Total:                      138
+Total:                      142
 ---------------------------------
 
 
