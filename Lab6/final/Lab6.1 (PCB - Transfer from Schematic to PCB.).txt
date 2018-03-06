@@ -1,0 +1,88 @@
+Transfer from Schematic to PCB.
+-------------------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\final\Lab6.1 (PCB - Transfer from Schematic to PCB.).txt
+Report Written:     Monday, March 05, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\final\Lab6.1.pcb
+Design Title:       
+Created:            3/5/2018 1:04:47 PM
+Last Saved:         3/5/2018 1:05:35 PM
+Editing Time:       0 min
+Units:              mil (precision 0)
+
+Could not load component "XTAL" package "NX5032" into target design.
+Could not add "Y1" component "XTAL" package "NX5032" to target design.
+Could not load component "0.125Wresistor" package "DIL" into target design.
+Could not add "R2" component "0.125Wresistor" package "DIL" to target design.
+Could not load component "Ceramic" package "C" into target design.
+Could not add "C13" component "Ceramic" package "C" to target design.
+Could not add "C14" component "Ceramic" package "C" to target design.
+Could not add "R3" component "0.125Wresistor" package "DIL" to target design.
+Could not add "C7" component "Ceramic" package "C" to target design.
+Could not add "C8" component "Ceramic" package "C" to target design.
+Could not add "C4" component "Ceramic" package "C" to target design.
+Could not add "C6" component "Ceramic" package "C" to target design.
+Could not add "C9" component "Ceramic" package "C" to target design.
+Could not load component "tantalum" package "C" into target design.
+Could not add "C12" component "tantalum" package "C" to target design.
+Could not add "C2" component "tantalum" package "C" to target design.
+Could not load component "LEDT1.75" package "SIP" into target design.
+Could not add "D1" component "LEDT1.75" package "SIP" to target design.
+Could not add "C1" component "tantalum" package "C" to target design.
+Could not load component "LogicAnalyzer" package "DIP" into target design.
+Could not add "J3" component "LogicAnalyzer" package "DIP" to target design.
+Could not add "R1" component "0.125Wresistor" package "DIL" to target design.
+Could not add "C3" component "Ceramic" package "C" to target design.
+Could not add "C5" component "Ceramic" package "C" to target design.
+Could not add "C10" component "Ceramic" package "C" to target design.
+Could not add "C11" component "Ceramic" package "C" to target design.
+Could not load component "Header5" package "SIP" into target design.
+Could not add "J1" component "Header5" package "SIP" to target design.
+Could not load component "TM4C123GH6PM" package "LQFP" into target design.
+Could not add "U1" component "TM4C123GH6PM" package "LQFP" to target design.
+Could not load component "LP2950CZ-3.3" package "TO220" into target design.
+Could not add "U2" component "LP2950CZ-3.3" package "TO220" to target design.
+Could not load component "KSC353JLFG" package "SM" into target design.
+Could not add "SW1" component "KSC353JLFG" package "SM" to target design.
+Could not load component "USB_Micro-B_SM" package "SM" into target design.
+Could not add "J5" component "USB_Micro-B_SM" package "SM" to target design.
+Could not load component "OffBoardPowerSwitch" package "DIP" into target design.
+Could not add "SW2" component "OffBoardPowerSwitch" package "DIP" to target design.
+Could not load component "Testpoint_TwoHole" package "DIL" into target design.
+Could not add "Gnd" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "Gnd3" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP2" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP1" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not load component "BoosterPack" package "QIP" into target design.
+Could not add "TLV5656" component "BoosterPack" package "QIP" to target design.
+Could not load component "0.25Wresistor" package "DIP" into target design.
+Could not add "R5" component "0.25Wresistor" package "DIP" to target design.
+Could not add "R6" component "0.25Wresistor" package "DIP" to target design.
+Could not load component "B3F-1050" package "DIP" into target design.
+Could not add "SW4" component "B3F-1050" package "DIP" to target design.
+Could not load component "Speaker" package "DIP" into target design.
+Could not add "J4" component "Speaker" package "DIP" to target design.
+Could not add "U4" component "TM4C123GH6PM" package "LQFP" to target design.
+Could not add "U5" component "TM4C123GH6PM" package "LQFP" to target design.
+Could not add "TP3" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP4" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP5" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP6" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP7" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP8" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not load component "DAC" package "DIL" into target design.
+Could not add "U7" component "DAC" package "DIL" to target design.
+Could not load component "TPA731" package "DIL" into target design.
+Could not add "U8" component "TPA731" package "DIL" to target design.
+Could not load component "LM4041" package "DIL" into target design.
+Could not add "U9" component "LM4041" package "DIL" to target design.
+Could not add "TP9" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP10" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP11" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP13" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not load component "0.47uC" package "DIL" into target design.
+Could not add "U10" component "0.47uC" package "DIL" to target design.
+Could not load component "2.2uC" package "DIL" into target design.
+Could not add "U11" component "2.2uC" package "DIL" to target design.
+
+End Of Report.

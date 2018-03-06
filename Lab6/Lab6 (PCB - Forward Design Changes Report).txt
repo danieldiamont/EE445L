@@ -1,0 +1,20 @@
+Forward Design Changes Report
+-----------------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (PCB - Forward Design Changes Report).txt
+Report Written:     Monday, March 05, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
+Design Title:       
+Created:            3/5/2018 1:25:41 PM
+Last Saved:         3/5/2018 7:04:02 PM
+Editing Time:       1 min
+Units:              mil (precision 0)
+
+Error: Unable to add component reference "Y1" of component "XTAL", package "NX5032" because Cannot find package "NX5032" in component "XTAL" in library "C:\Users\Public\Documents\PCB Artist\Library\discrete.cml"..
+Error: Unable to add component reference "Gnd" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
+Error: Unable to add component reference "Gnd3" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
+Error: Unable to add component reference "TP2" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
+Error: Unable to add component reference "TP1" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
+
+
+End Of Report.

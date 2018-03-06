@@ -1,0 +1,41 @@
+Transfer from Schematic to PCB.
+-------------------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (PCB - Transfer from Schematic to PCB.).txt
+Report Written:     Monday, March 05, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
+Design Title:       
+Created:            3/5/2018 1:25:41 PM
+Last Saved:         3/5/2018 1:26:00 PM
+Editing Time:       0 min
+Units:              mil (precision 0)
+
+Could not load component "XTAL" package "NX5032" into target design.
+Could not add "Y1" component "XTAL" package "NX5032" to target design.
+Could not load component "Testpoint_TwoHole" package "DIL" into target design.
+Could not add "Gnd" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "Gnd3" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP2" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP1" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP3" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP4" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP5" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP6" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP7" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP8" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not load component "DAC" package "DIL" into target design.
+Could not add "U7" component "DAC" package "DIL" to target design.
+Could not load component "TPA731" package "DIL" into target design.
+Could not add "U8" component "TPA731" package "DIL" to target design.
+Could not load component "LM4041" package "DIL" into target design.
+Could not add "U9" component "LM4041" package "DIL" to target design.
+Could not add "TP9" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP10" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP11" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not add "TP13" component "Testpoint_TwoHole" package "DIL" to target design.
+Could not load component "0.47uC" package "DIL" into target design.
+Could not add "U10" component "0.47uC" package "DIL" to target design.
+Could not load component "2.2uC" package "DIL" into target design.
+Could not add "U11" component "2.2uC" package "DIL" to target design.
+
+End Of Report.
