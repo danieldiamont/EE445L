@@ -6,8 +6,8 @@ Report Written:     Tuesday, March 06, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
 Design Title:       
 Created:            3/5/2018 1:25:41 PM
-Last Saved:         3/6/2018 2:44:12 PM
-Editing Time:       1173 min
+Last Saved:         3/6/2018 3:07:12 PM
+Editing Time:       1196 min
 Units:              mil (precision 0)
 
 
@@ -76,11 +76,11 @@ Net List
 
 Net Class Nets  Track Length Vias Connections Connection Length
 -------------------------------------------------------------------------
-Signal    141          34289   11           1              1092
+Signal    141          34319   11           1              1092
 Power     10           13796    7           1               144
 Ground    1            16349    4           0                 0
 -------------------------------------------------------------------------
-Total:    152          64434   22           2              1236
+Total:    152          64464   22           2              1236
 -------------------------------------------------------------------------
 
 Drill List
