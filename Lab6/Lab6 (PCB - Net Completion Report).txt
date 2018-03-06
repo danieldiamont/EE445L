@@ -1,0 +1,134 @@
+Net Completion Report
+---------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (PCB - Net Completion Report).txt
+Report Written:     Monday, March 05, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
+Design Title:       
+Created:            3/5/2018 1:25:41 PM
+Last Saved:         3/5/2018 8:47:43 PM
+Editing Time:       104 min
+Units:              mil (precision 0)
+
+
+The following breaks in the circuit have been found:
+
+
+======================================================
+
+    Between C2.2 and C5.2 on net 'GND'
+
+    Between C6.2 and U4.34 on net 'GND'
+
+    Between U4.34 and U4.35 on net 'GND'
+
+    Between U4.35 and U4.39 on net 'GND'
+
+    Between U4.39 and C13.2 on net 'GND'
+
+    Between U4.34 and U4.27 on net 'GND'
+
+    Between U4.27 and U4.12 on net 'GND'
+
+    Between U4.12 and U4.3 on net 'GND'
+
+    Between U4.3 and U4.55 on net 'GND'
+
+    Between U4.12 and C19.2 on net 'GND'
+
+    Between U3.5 and U6.7 on net 'GND'
+
+    Between U6.7 and C22.2 on net 'GND'
+
+    Between SW3.2 and TP6.1 on net 'GND'
+
+    Between TP6.1 and TP7.1 on net 'GND'
+
+    Between TP7.1 and TP16.1 on net 'GND'
+
+    Between U4.54 and U4.42 on net '+3.3'
+
+    Between U4.42 and U4.37 on net '+3.3'
+
+    Between U4.37 and C6.1 on net '+3.3'
+
+    Between U4.37 and U4.26 on net '+3.3'
+
+    Between U4.54 and U4.2 on net '+3.3'
+
+    Between U4.2 and U4.11 on net '+3.3'
+
+    Between U4.11 and C19.1 on net '+3.3'
+
+    Between C6.1 and C3.1 on net '+3.3'
+
+    Between C3.1 and C5.1 on net '+3.3'
+
+    Between C3.1 and C7.1 on net '+3.3'
+
+    Between U8.1 and U3.8 on net '+3.3'
+
+    Between U3.8 and U6.6 on net '+3.3'
+
+    Between R2.2 and TP10.1 on net '+3.3'
+
+    Between C14.1 and U4.41 on net 'OSC1'
+
+    Between R2.1 and U4.38 on net 'RST'
+
+    Between C13.1 and U4.40 on net 'OSC0'
+
+    Between C9.1 and U4.25 on net 'LDO'
+
+    Between U4.25 and U4.56 on net 'LDO'
+
+    Between C9.1 and C10.1 on net 'LDO'
+
+    Between SW2.2 and U8.3 on net '+5V'
+
+    Between R1.1 and U4.32 on net 'Wake'
+
+    Between U3.2 and J3.12 on net 'SCLK'
+
+    Between U3.1 and J3.11 on net 'DIN'
+
+    Between U3.7 and C18.1 on net 'Audio_In'
+
+    Between U3.7 and TP17.1 on net 'Audio_In'
+
+    Between U6.2 and TP15.1 on net '+terminal'
+
+    Between U6.4 and TP14.1 on net '-terminal'
+
+    Between J2.1 and U6.5 on net 'output'
+
+    Between J2.1 and TP13.1 on net 'output'
+
+    Between J2.2 and TP12.1 on net 'phased_output'
+
+    Between R9.2 and TP4.1 on net 'TP4'
+
+    Between R8.2 and TP5.1 on net 'TP5'
+
+    Between U7.2 and TP3.1 on net 'TP3'
+
+    Between U3.3 and J3.13 on net '!CS'
+
+    Between U4.6 and U4.5 on net 'TP9'
+
+    Between SW3.4 and TP9.1 on net 'TP9'
+
+    Between SW4.3 and SW4.4 on net 'TP8'
+
+    Between SW4.3 and R11.1 on net 'TP8'
+
+    Between R11.1 and U4.28 on net 'TP8'
+
+    Between R11.1 and TP8.1 on net 'TP8'
+
+    Between U7.1 and TP11.1 on net 'TP11'
+
+
+Total breaks found : 56
+
+End Of Report.
