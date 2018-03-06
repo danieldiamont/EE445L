@@ -6,8 +6,8 @@ Report Written:     Monday, March 05, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.sch
 Design Title:       
 Created:            
-Last Saved:         3/5/2018 7:07:18 PM
-Editing Time:       6424 min
+Last Saved:         3/5/2018 10:22:50 PM
+Editing Time:       6637 min
 Units:              mil (precision 0)
 
 Component U3 Pin U3-4 (OUTA)

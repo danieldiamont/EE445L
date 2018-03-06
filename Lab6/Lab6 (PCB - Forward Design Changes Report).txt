@@ -2,78 +2,20 @@ Forward Design Changes Report
 -----------------------------
 
 Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (PCB - Forward Design Changes Report).txt
-Report Written:     Monday, March 05, 2018
+Report Written:     Tuesday, March 06, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
 Design Title:       
 Created:            3/5/2018 1:25:41 PM
-Last Saved:         3/5/2018 7:04:02 PM
-Editing Time:       21 min
+Last Saved:         3/6/2018 11:13:28 AM
+Editing Time:       975 min
 Units:              mil (precision 0)
 
-Disconnected pin "R6-2" from net "N1004".
-Disconnected pin "SW4-1" from net "N1053".
-Disconnected pin "SW4-2" from net "N1053".
-Disconnected pin "U3-5" from net "N0998".
-Disconnected pin "U3-6" from net "N0997".
-Disconnected pin "U6-6" from net "N1015".
-Disconnected pin "R7-1" from net "N1004".
-Disconnected pin "C22-2" from net "N1019".
-Disconnected pin "C19-1" from net "N1015".
-Disconnected pin "C19-2" from net "N1016".
-Disconnected pin "U7-1" from net "N1004".
-Disconnected pin "U7-3" from net "N1008".
-Disconnected pin "R8-1" from net "N1008".
-Disconnected pin "SW3-1" from net "N1051".
-Disconnected pin "SW3-2" from net "N1051".
-Disconnected pin "TP6-1" from net "N1008".
-Disconnected pin "TP11-1" from net "N1004".
+Added component reference "Y1" of component "XTAL", package "DSC".
+Added value "X=16 MHz" to component reference "Y1".
 
-Deleted net "N0997".
-Deleted net "N0998".
-Deleted net "N1004".
-Deleted net "N1008".
-Deleted net "N1015".
-Deleted net "N1016".
-Deleted net "N1019".
-Deleted net "N1051".
-Deleted net "N1053".
 
-Added net "Vref_trace".
-Added net "TP11".
-
-Error: Unable to add component reference "Y1" of component "XTAL", package "NX5032" because Cannot find package "NX5032" in component "XTAL" in library "C:\Users\Public\Documents\PCB Artist\Library\discrete.cml"..
-Error: Unable to add component reference "Gnd" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
-Error: Unable to add component reference "Gnd3" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
-Error: Unable to add component reference "TP2" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
-Error: Unable to add component reference "TP1" of component "Testpoint_TwoHole", package "DIL" because Cannot find component "Testpoint_TwoHole"..
-
-Connected pin "U3-5" to net "GND".
-Connected pin "U3-6" to net "Vref_trace".
-Connected pin "U6-6" to net "+3.3".
-Connected pin "R6-2" to net "TP11".
-Connected pin "R7-1" to net "TP11".
-Connected pin "C22-2" to net "GND".
-Connected pin "C19-1" to net "+3.3".
-Connected pin "C19-2" to net "GND".
-Connected pin "U7-1" to net "TP11".
-Connected pin "U7-3" to net "GND".
-Connected pin "R8-1" to net "GND".
-Connected pin "SW3-1" to net "GND".
-Connected pin "SW3-2" to net "GND".
-Connected pin "SW4-1" to net "GND".
-Connected pin "SW4-2" to net "GND".
-Connected pin "TP6-1" to net "GND".
-Connected pin "TP11-1" to net "TP11".
-
-Net N0984 renamed to -terminal
-Net N0986 renamed to output
-Net N0987 renamed to phased_output
-Net N0995 renamed to filter_trace
-Net N1000 renamed to TP4
-Net N1007 renamed to TP5
-Net N1012 renamed to TP3
-Net N1050 renamed to TP9
-Net N1052 renamed to TP8
+Connected pin "Y1-1" to net "OSC1".
+Connected pin "Y1-2" to net "OSC0".
 
 
 End Of Report.

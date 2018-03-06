@@ -1,0 +1,24 @@
+Dangling Connections Report
+---------------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (PCB - Dangling Connections Report).txt
+Report Written:     Tuesday, March 06, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
+Design Title:       
+Created:            3/5/2018 1:25:41 PM
+Last Saved:         3/6/2018 11:27:34 AM
+Editing Time:       977 min
+Units:              mil (precision 0)
+
+The following dangling tracks have been found.
+These are likely to indicate tracks/nets that are
+not fully routed.
+
+Net Name Node Position
+----------------------------
++3.3     C4.1 4600,3950
+----------------------------
+Total:   1
+----------------------------
+
+End Of Report.

@@ -2,17 +2,19 @@ Design Consistency Status Report
 --------------------------------
 
 Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (PCB - Design Consistency Status Report).txt
-Report Written:     Monday, March 05, 2018
+Report Written:     Tuesday, March 06, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
 Design Title:       
 Created:            3/5/2018 1:25:41 PM
-Last Saved:         3/5/2018 7:04:02 PM
-Editing Time:       21 min
+Last Saved:         3/6/2018 11:27:34 AM
+Editing Time:       976 min
 Units:              mil (precision 0)
 
 
 Checking integrity of Schematic "C:\Users\daniel\Documents\EE445L\Lab6\Lab6.sch" with PCB "C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb"
 ==========================================================================================================================================
+
+The designs are the same.
 
 
 End Of Report.
