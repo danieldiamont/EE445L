@@ -1,13 +1,13 @@
 Forward Design Changes Report
 -----------------------------
 
-Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (PCB - Forward Design Changes Report).txt
-Report Written:     Tuesday, March 06, 2018
-Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.pcb
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6 (PCB - Forward Design Changes Report).txt
+Report Written:     Wednesday, March 07, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6.pcb
 Design Title:       
 Created:            3/5/2018 1:25:41 PM
-Last Saved:         3/6/2018 2:41:25 PM
-Editing Time:       1170 min
+Last Saved:         3/7/2018 12:12:48 AM
+Editing Time:       1678 min
 Units:              mil (precision 0)
 
 The designs are the same, so no design changes to forward.
