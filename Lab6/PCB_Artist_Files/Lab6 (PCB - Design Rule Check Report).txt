@@ -1,0 +1,61 @@
+Design Rule Check Report
+------------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6 (PCB - Design Rule Check Report).txt
+Report Written:     Friday, March 09, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6.pcb
+Design Title:       
+Created:            3/5/2018 1:25:41 PM
+Last Saved:         3/9/2018 7:14:30 PM
+Editing Time:       1216 min
+Units:              mil (precision 0)
+
+
+Results
+=======
+
+
+No errors found
+
+
+Settings
+========
+
+
+Spacings
+
+=========
+
+Tracks        Yes
+Pads and Vias Yes
+Shapes        Yes
+Text          Yes
+Board         Yes
+Drills        Yes
+Components    No
+
+
+Manufacturing
+
+==============
+
+Min Drill Hole Size  Yes
+Min Track Width      Yes
+Min Annular Ring     Yes
+Copper Text In Board Yes
+Mirrored Text        Yes
+Routing Areas        Yes
+Drill Breakout       Yes
+
+
+Nets
+
+=====
+
+Net Completion               Yes
+Dangling Tracks              Yes
+Net Track Length Differences No
+
+
+
+End Of Report.

@@ -1,0 +1,56 @@
+Unconnected Pins Report
+-----------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6 (SCH - Unconnected Pins Report).txt
+Report Written:     Monday, March 05, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\Lab6.sch
+Design Title:       
+Created:            
+Last Saved:         3/5/2018 10:22:50 PM
+Editing Time:       6637 min
+Units:              mil (precision 0)
+
+Component U3 Pin U3-4 (OUTA)
+Component U6 Pin U6-1 (SD)
+Component J5 Pin J5-4 (Id)
+Component J5 Pin J5-3 (D+)
+Component J5 Pin J5-2 (D-)
+Component J5 Pin J5-6 (m1)
+Component J5 Pin J5-7 (m2)
+Component J5 Pin J5-8 (m3)
+Component J5 Pin J5-9 (m4)
+Component U4 Pin U4-24 (PA7)
+Component U4 Pin U4-23 (PA6)
+Component U4 Pin U4-21 (PA4)
+Component U4 Pin U4-4 (PB7)
+Component U4 Pin U4-1 (PB6)
+Component U4 Pin U4-57 (PB5)
+Component U4 Pin U4-58 (PB4)
+Component U4 Pin U4-48 (PB3)
+Component U4 Pin U4-47 (PB2)
+Component U4 Pin U4-46 (PB1)
+Component U4 Pin U4-45 (PB0)
+Component U4 Pin U4-13 (PC7)
+Component U4 Pin U4-14 (PC6)
+Component U4 Pin U4-15 (PC5)
+Component U4 Pin U4-16 (PC4)
+Component U4 Pin U4-10 (PD7)
+Component U4 Pin U4-53 (PD6)
+Component U4 Pin U4-44 (PD5)
+Component U4 Pin U4-43 (PD4)
+Component U4 Pin U4-64 (PD3)
+Component U4 Pin U4-63 (PD2)
+Component U4 Pin U4-62 (PD1)
+Component U4 Pin U4-61 (PD0)
+Component U4 Pin U4-60 (PE5)
+Component U4 Pin U4-59 (PE4)
+Component U4 Pin U4-6 (PE3)
+Component U4 Pin U4-7 (PE2)
+Component U4 Pin U4-8 (PE1)
+Component U4 Pin U4-9 (PE0)
+Component U4 Pin U4-36 (XOSC1)
+Component U4 Pin U4-33 (HIB*)
+
+Unconnected pins found : 40
+
+End Of Report.

@@ -1,0 +1,33 @@
+Forward Design Changes Report
+-----------------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6 (PCB - Forward Design Changes Report).txt
+Report Written:     Friday, March 09, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6.pcb
+Design Title:       
+Created:            3/5/2018 1:25:41 PM
+Last Saved:         3/7/2018 12:12:48 AM
+Editing Time:       1215 min
+Units:              mil (precision 0)
+
+Disconnected pin "SW1-3" from net "RST".
+Disconnected pin "SW1-4" from net "RST".
+Disconnected pin "SW1-1" from net "GND".
+Disconnected pin "SW1-2" from net "GND".
+Disconnected pin "J6-1" from net "N1118".
+Disconnected pin "J7-1" from net "N1116".
+
+Deleted component reference "SW1".
+
+Deleted net "N1116".
+Deleted net "N1118".
+
+Added component reference "J4" of component "Header2", package "SIP".
+
+Connected pin "J6-1" to net "GND".
+Connected pin "J7-1" to net "GND".
+Connected pin "J4-1" to net "RST".
+Connected pin "J4-2" to net "GND".
+
+
+End Of Report.

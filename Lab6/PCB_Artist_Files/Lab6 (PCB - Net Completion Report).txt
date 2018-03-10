@@ -1,0 +1,15 @@
+Net Completion Report
+---------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6 (PCB - Net Completion Report).txt
+Report Written:     Friday, March 09, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab6\PCB\Lab6.pcb
+Design Title:       
+Created:            3/5/2018 1:25:41 PM
+Last Saved:         3/9/2018 7:14:30 PM
+Editing Time:       1216 min
+Units:              mil (precision 0)
+
+
+No breaks found, all nets are fully routed.
+End Of Report.
