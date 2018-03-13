@@ -2,12 +2,12 @@ Design Consistency Status Report
 --------------------------------
 
 Report File:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7 (PCB - Design Consistency Status Report).txt
-Report Written:     Monday, March 12, 2018
+Report Written:     Tuesday, March 13, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7.pcb
 Design Title:       
 Created:            3/12/2018 11:13:04 PM
-Last Saved:         3/12/2018 11:57:25 PM
-Editing Time:       45 min
+Last Saved:         3/13/2018 12:10:25 AM
+Editing Time:       77 min
 Units:              mil (precision 0)
 
 
