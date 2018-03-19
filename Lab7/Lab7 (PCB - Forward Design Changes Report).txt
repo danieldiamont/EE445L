@@ -2,15 +2,15 @@ Forward Design Changes Report
 -----------------------------
 
 Report File:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7 (PCB - Forward Design Changes Report).txt
-Report Written:     Tuesday, March 13, 2018
+Report Written:     Monday, March 19, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7.pcb
 Design Title:       
 Created:            3/12/2018 11:13:04 PM
-Last Saved:         3/13/2018 12:10:25 AM
-Editing Time:       77 min
+Last Saved:         3/19/2018 1:03:11 PM
+Editing Time:       234 min
 Units:              mil (precision 0)
 
-Changed component reference "J5" from component "Header50", package "USER" to component "Header40", package "MISC".
+The designs are the same, so no design changes to forward.
 
 
 End Of Report.

@@ -2,12 +2,12 @@ Design Rule Check Report
 ------------------------
 
 Report File:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7 (PCB - Design Rule Check Report).txt
-Report Written:     Sunday, March 18, 2018
+Report Written:     Monday, March 19, 2018
 Design Path:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7.pcb
 Design Title:       
 Created:            3/12/2018 11:13:04 PM
-Last Saved:         3/18/2018 10:20:09 PM
-Editing Time:       162 min
+Last Saved:         3/19/2018 1:08:10 PM
+Editing Time:       239 min
 Units:              mil (precision 0)
 
 
