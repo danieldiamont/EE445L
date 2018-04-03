@@ -9,12 +9,15 @@
 #include "PLL.h"
 #include "ST7735.h"
 #include "FiFo.h"
+#include "fixed.h"
 
 void EnableInterrupts(void);
 void DisableInterrupts(void);
 extern void DelayWait10ms(uint32_t n);
 
 void Heartbeat_Init(void) {
+
+	
 				volatile uint8_t delay;
 				SYSCTL_RCGCGPIO_R |= 0x20; //init port f
 				delay = 42;
@@ -34,6 +37,13 @@ void Heartbeat_Init(void) {
 }
 
 
+
+
+uint32_t Convert(uint32_t * ptr){
+	
+	//perform some math here...
+	return 1;
+}
 
 int main(void){      
 
@@ -60,7 +70,19 @@ int main(void){
 	
   EnableInterrupts();
 	
+	uint32_t * data_ptr;
+	
   while(1){
 		
+		if(FiFo_Get(data_ptr) == 1){
+			//begin critical section
+			DisableInterrupts();
+			//perform data conversion
+			uint32_t temp = Convert(data_ptr);
+			//display results on LCD screen
+			ST7735_OutString("Temp: ", ST7735_YELLOW);
+			ST7735_sDecOut2(*data_ptr, ST7735_YELLOW);
+			ST7735_OutString(" degC", ST7735_YELLOW);
+		}		
 	}
 }

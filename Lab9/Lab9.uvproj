@@ -406,54 +406,29 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>startup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\startup.s</FilePath>
-            </File>
-            <File>
-              <FileName>Sound.c</FileName>
+              <FileName>ADCT0ATrigger.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Sound.c</FilePath>
+              <FilePath>.\ADCT0ATrigger.c</FilePath>
             </File>
             <File>
-              <FileName>Lab5.c</FileName>
+              <FileName>FiFo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Lab5.c</FilePath>
+              <FilePath>.\FiFo.c</FilePath>
             </File>
             <File>
-              <FileName>SysTickInts.c</FileName>
+              <FileName>Lab9.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\SysTickInts.c</FilePath>
+              <FilePath>.\Lab9.c</FilePath>
             </File>
             <File>
-              <FileName>Sound.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Sound.h</FilePath>
-            </File>
-            <File>
-              <FileName>SysTickInts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\SysTickInts.h</FilePath>
-            </File>
-            <File>
-              <FileName>TExaS.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TExaS.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm4c123gh6pm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\tm4c123gh6pm.h</FilePath>
-            </File>
-            <File>
-              <FileName>MAX5353.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\MAX5353.h</FilePath>
-            </File>
-            <File>
-              <FileName>MAX5353.c</FileName>
+              <FileName>PLL.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MAX5353.c</FilePath>
+              <FilePath>.\PLL.c</FilePath>
+            </File>
+            <File>
+              <FileName>ST7735.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ST7735.c</FilePath>
             </File>
             <File>
               <FileName>Switch.c</FileName>
@@ -461,9 +436,34 @@
               <FilePath>.\Switch.c</FilePath>
             </File>
             <File>
-              <FileName>Timer1A.c</FileName>
+              <FileName>SysTickInts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Timer1A.c</FilePath>
+              <FilePath>.\SysTickInts.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\startup.s</FilePath>
+            </File>
+            <File>
+              <FileName>ADCT0ATrigger.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ADCT0ATrigger.h</FilePath>
+            </File>
+            <File>
+              <FileName>FiFo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\FiFo.h</FilePath>
+            </File>
+            <File>
+              <FileName>PLL.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\PLL.h</FilePath>
+            </File>
+            <File>
+              <FileName>ST7735.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ST7735.h</FilePath>
             </File>
             <File>
               <FileName>Switch.h</FileName>
@@ -471,21 +471,29 @@
               <FilePath>.\Switch.h</FilePath>
             </File>
             <File>
-              <FileName>Timer1A.h</FileName>
+              <FileName>SysTickInts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Timer1A.h</FilePath>
+              <FilePath>.\SysTickInts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm4c123gh6pm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\tm4c123gh6pm.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\LCD.s</FilePath>
+            </File>
+            <File>
+              <FileName>Print.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Print.s</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Object code</GroupName>
-          <Files>
-            <File>
-              <FileName>texas.o</FileName>
-              <FileType>3</FileType>
-              <FilePath>.\texas.o</FilePath>
-            </File>
-          </Files>
         </Group>
       </Groups>
     </Target>
