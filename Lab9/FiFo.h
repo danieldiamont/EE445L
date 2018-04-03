@@ -19,11 +19,11 @@ void FiFo_Init(void);
 // Input: Character to be inserted
 // Output: 1 for success and 0 for failure
 //         failure is when the buffer is full
-uint32_t FiFo_Put(char data);
+uint32_t FiFo_Put(uint32_t data);
 
 // *********** FIFO_Get**********
 // Gets an element from the FIFO
 // Input: Pointer to a character that will get the character read from the buffer
 // Output: 1 for success and 0 for failure
 //         failure is when the buffer is empty
-uint32_t FiFo_Get(char *datapt);
+uint32_t FiFo_Get(uint32_t *datapt);
