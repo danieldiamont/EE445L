@@ -1,14 +1,15 @@
 import RPi.GPIO as GPIO
+import time
  
 GPIO.setmode(GPIO.BOARD)
 
 #make sure to set the correct GPIO pins according to SCH
-Motor1A = 16
+Motor1A = 12
 Motor1B = 18
-Motor1E = 22
+Motor1E = 16
  
 Motor2A = 23
-Motor2B = 21
+Motor2B = 21 #change later
 Motor2E = 19
 
 #set up GPIO
@@ -64,5 +65,11 @@ def move_backwards():
 def stop_motors():
 	GPIO.output(Motor1E,GPIO.LOW)
 	GPIO.output(Motor2E,GPIO.LOW)
+
+
+while True:
+	move_forwards()
+	time.sleep(2)
+	move_backwards()
  
 GPIO.cleanup()
