@@ -16,7 +16,7 @@
 #include <math.h>
 
 //globals
-static int MinXplot = 0;
+//static int MinXplot = 0;
 static int MaxXplot = 127;
 static int MinYplot = 32;
 static int MaxYplot = 159;
@@ -223,7 +223,7 @@ void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, in
 	//ST7735_PlotClear(minY,maxY);
 	
 	//set the bounds for the plot
-	MinXplot = minX;
+//	MinXplot = minX;
 	MinYplot = MinYplot + minY;
 	MaxXplot = maxX;
 	MaxYplot = MaxYplot + maxY;//check this line
@@ -263,7 +263,7 @@ void ST7735_XYplot(uint32_t num, int32_t bufX[], int32_t bufY[],uint16_t color)
 			
 	}
 	//reset the bounds
-	MinXplot = 0;
+	//MinXplot = 0;
 	MinYplot = 32;
 	MaxXplot = 127;
 	MaxYplot = 159;

@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 
-#define SIZE 9				//need a size 9 buffer because it's supposed to hold 8 elements
+#define SIZE 101				//need a size 100 buffer because it's supposed to hold 8 elements
 int32_t static PutI; //index
 int32_t static GetI; //index
 uint32_t static counter;    //counter keeps track of how full the SW FIFO is

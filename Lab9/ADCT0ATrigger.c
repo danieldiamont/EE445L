@@ -262,9 +262,8 @@ void ADC0_InitTimer0ATriggerSeq3PD3(uint32_t period){
 volatile uint32_t ADCvalue;
 void ADC0Seq3_Handler(void){
   ADC0_ISC_R = 0x08;          // acknowledge ADC sequence 3 completion
-  ADCvalue = ADC0_SSFIFO3_R;  // 12-bit result
 	
 	//store value in fifo
-	FiFo_Put(ADCvalue);
+	FiFo_Put(ADC0_SSFIFO3_R);
 	
 }

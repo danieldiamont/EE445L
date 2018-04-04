@@ -38,19 +38,16 @@ xlabel('Temperature (^oC)');
 ylabel('Resistance (ohm)');
 title('Thermistor (NTC) Model');
 
-%% Code Cell 3 (produce LUT and inverse LUT)
+%% Input Voltage to Temperature (Celsius) graph
+B = 3357.55;
+V0 = 0.268;
+Vt = 0.272:0.233/4096:0.505;
 
-R0 = 104500;      % Nominal Resistance at 25C
-B0 = 3357.33;      % Nominal Beta Constant at 25C
-T0 = 298.15;    % Nominal Temperature 25C in Kelvin
-TC = 0:40;   % Temperature range in Celsius
-T = TC + 273.15;% Temperature range in Kelvin
-% Compute NTC Thermistor Resistance
-R = R0.*exp(B0.*((1./T)-(1/T0)));
-arr = zeros(4096);
+a = (Vt + V0)/2.5;
+num = (500e3*a)./(1 - a);
+denom = 104.5e3*exp(-B/298.15);
 
-for i = 0:4096
-    arr(i) = R0.*exp(B0.*((1./T)-(1/T0)));;
-end    
+tf = (B./(log(num/denom))) - 273.15;
 
-print(R);
+figure()
+plot(Vt,tf)

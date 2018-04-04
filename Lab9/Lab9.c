@@ -10,6 +10,7 @@
 #include "ST7735.h"
 #include "FiFo.h"
 #include "fixed.h"
+#include "UART.h"
 
 void EnableInterrupts(void);
 void DisableInterrupts(void);
@@ -41,7 +42,7 @@ void Heartbeat_Init(void) {
 
 uint32_t Convert(uint32_t * ptr){
 	
-	//perform some math here...
+	//perform some math here... or use LUT
 	return 1;
 }
 
@@ -64,8 +65,9 @@ int main(void){
 	ST7735_FillScreen(ST7735_BLACK);
 	
 	//initialize software fifo
+	UART_Init();
 	FiFo_Init();
-	uint32_t period = 0; //set later
+	uint32_t period = 80000; //sample at 1 KHz
 	ADC0_InitTimer0ATriggerSeq3PD3(period);
 	
   EnableInterrupts();
@@ -80,9 +82,10 @@ int main(void){
 			//perform data conversion
 			uint32_t temp = Convert(data_ptr);
 			//display results on LCD screen
-			ST7735_OutString("Temp: ", ST7735_YELLOW);
-			ST7735_sDecOut2(*data_ptr, ST7735_YELLOW);
-			ST7735_OutString(" degC", ST7735_YELLOW);
+//			ST7735_OutString("Temp: ", ST7735_YELLOW);
+//			ST7735_sDecOut2(temp, ST7735_YELLOW);
+//			ST7735_OutString(" degC", ST7735_YELLOW);
+			UART_OutUDec(temp);
 		}		
 	}
 }

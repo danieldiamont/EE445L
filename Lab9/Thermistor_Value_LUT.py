@@ -5,20 +5,23 @@
 
 #import numpy and matlab plotting capabilities
 
-import math
+import math as m
 import numpy as np
 import matplotlib.pyplot as plt
+import decimal as Decimal
 
-Fs = 1024
-f = 5
-sample = 4096
-x = np.arange(sample)
-y = 1024*np.sin(2*np.pi*f*x/Fs)+1024
+T0 = 25
+beta = 3357.55
+
 wav = []
+LUT = []
 
-for i in range(0,y.size-1):
-    wav.append(int(y[i])*np.exp(-i/1024))
+for i in range(0,4095):
+        y = beta/(np.log((4096-i)/2817)) + T0
+        wav.append(y)
+        LUT.append(int(y))
 
 #plot of sine wave
+print(LUT);
 plt.plot(wav);
 plt.show();
