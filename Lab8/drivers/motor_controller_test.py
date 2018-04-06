@@ -66,10 +66,14 @@ def stop_motors():
 	GPIO.output(Motor1E,GPIO.LOW)
 	GPIO.output(Motor2E,GPIO.LOW)
 
+gpio_setup()
 
 while True:
 	move_forwards()
-	time.sleep(2)
+	print('forward')
+	time.sleep(1)
 	move_backwards()
+	print('backward')
+	time.sleep(1)
  
 GPIO.cleanup()
