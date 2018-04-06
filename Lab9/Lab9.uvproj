@@ -490,6 +490,26 @@
               <FileType>2</FileType>
               <FilePath>.\Print.s</FilePath>
             </File>
+            <File>
+              <FileName>fixed.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\fixed.c</FilePath>
+            </File>
+            <File>
+              <FileName>fixed.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fixed.h</FilePath>
+            </File>
+            <File>
+              <FileName>UART.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\UART.h</FilePath>
+            </File>
+            <File>
+              <FileName>UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UART.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
