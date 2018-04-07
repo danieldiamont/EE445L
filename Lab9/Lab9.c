@@ -72,20 +72,26 @@ int main(void){
 	
   EnableInterrupts();
 	
-	uint32_t * data_ptr;
+	uint32_t data;
+	
+	uint8_t counter = 0;
 	
   while(1){
 		
-		if(FiFo_Get(data_ptr) == 1){
+		if(FiFo_Get(&data) == 1 && counter < 100){
 			//begin critical section
 			DisableInterrupts();
 			//perform data conversion
-			uint32_t temp = Convert(data_ptr);
+//			uint32_t temp = Convert(data_ptr);
 			//display results on LCD screen
 //			ST7735_OutString("Temp: ", ST7735_YELLOW);
 //			ST7735_sDecOut2(temp, ST7735_YELLOW);
 //			ST7735_OutString(" degC", ST7735_YELLOW);
-			UART_OutUDec(temp);
+			UART_OutUDec(data);
+			UART_OutString("\n\r");
+			counter++;
+			
+			EnableInterrupts();
 		}		
 	}
 }
