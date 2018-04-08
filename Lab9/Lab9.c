@@ -11,6 +11,7 @@
 #include "FiFo.h"
 #include "fixed.h"
 #include "UART.h"
+#include "calib.h"
 
 void EnableInterrupts(void);
 void DisableInterrupts(void);
@@ -38,12 +39,11 @@ void Heartbeat_Init(void) {
 }
 
 
-
+extern uint32_t LUT [];
 
 uint32_t Convert(uint32_t * ptr){
 	
-	//perform some math here... or use LUT
-	return 1;
+	return LUT[*ptr] - OFFSET;
 }
 
 int main(void){      
@@ -67,31 +67,33 @@ int main(void){
 	//initialize software fifo
 	UART_Init();
 	FiFo_Init();
-	uint32_t period = 80000; //sample at 1 KHz
+	uint32_t period = 80000; //sample at 1 kHz
 	ADC0_InitTimer0ATriggerSeq3PD3(period);
 	
   EnableInterrupts();
 	
 	uint32_t data;
 	
-	uint8_t counter = 0;
-	
   while(1){
 		
-		if(FiFo_Get(&data) == 1 && counter < 100){
+		if(FiFo_Get(&data) == 1){
 			//begin critical section
 			DisableInterrupts();
 			//perform data conversion
-//			uint32_t temp = Convert(data_ptr);
+			uint32_t temp = Convert(&data);
+			ST7735_SetCursor(0,0);
 			//display results on LCD screen
-//			ST7735_OutString("Temp: ", ST7735_YELLOW);
-//			ST7735_sDecOut2(temp, ST7735_YELLOW);
-//			ST7735_OutString(" degC", ST7735_YELLOW);
-			UART_OutUDec(data);
-			UART_OutString("\n\r");
-			counter++;
+			ST7735_OutString("Temp: ", ST7735_YELLOW);
+			ST7735_sDecOut2(temp, ST7735_YELLOW);
+			ST7735_OutString(" degC", ST7735_YELLOW);
+			ST7735_OutString("\nADC value: ", ST7735_YELLOW);
+			ST7735_OutUDec(data, ST7735_YELLOW);
+//			UART_OutUDec(data);
+//			UART_OutString("\n\r");
+//			counter++;
 			
 			EnableInterrupts();
+			
 		}		
 	}
 }
