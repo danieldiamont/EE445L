@@ -91,7 +91,7 @@ int main(void){
 			ST7735_OutString("\nADC value: ", ST7735_YELLOW);
 			ST7735_OutUDec(data, ST7735_YELLOW);
 			
-			if(counter < 10){
+			if(counter < 12){
 				UART_OutUDec(temp);
 				UART_OutString("\n\r");
 				counter++;
