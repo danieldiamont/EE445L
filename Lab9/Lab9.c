@@ -74,6 +74,8 @@ int main(void){
 	
 	uint32_t data;
 	
+	uint8_t counter = 0;
+	
   while(1){
 		
 		if(FiFo_Get(&data) == 1){
@@ -88,9 +90,12 @@ int main(void){
 			ST7735_OutString(" degC", ST7735_YELLOW);
 			ST7735_OutString("\nADC value: ", ST7735_YELLOW);
 			ST7735_OutUDec(data, ST7735_YELLOW);
-//			UART_OutUDec(data);
-//			UART_OutString("\n\r");
-//			counter++;
+			
+			if(counter < 10){
+				UART_OutUDec(temp);
+				UART_OutString("\n\r");
+				counter++;
+			}
 			
 			EnableInterrupts();
 			
