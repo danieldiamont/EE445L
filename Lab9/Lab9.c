@@ -67,14 +67,18 @@ int main(void){
 	//initialize software fifo
 	UART_Init();
 	FiFo_Init();
-	uint32_t period = 80000; //sample at 1 kHz
+	uint32_t period = 800000; //sample at 100 Hz
 	ADC0_InitTimer0ATriggerSeq3PD3(period);
 	
   EnableInterrupts();
 	
 	uint32_t data;
 	
-	uint8_t counter = 0;
+	//uint8_t counter = 0;
+	uint32_t j = 0;
+	uint8_t N = 128;
+	
+	ST7735_PlotClear(1000,4000);
 	
   while(1){
 		
@@ -87,15 +91,21 @@ int main(void){
 			//display results on LCD screen
 			ST7735_OutString("Temp: ", ST7735_YELLOW);
 			ST7735_sDecOut2(temp, ST7735_YELLOW);
-			ST7735_OutString(" degC", ST7735_YELLOW);
-			ST7735_OutString("\nADC value: ", ST7735_YELLOW);
+			ST7735_OutString(" degC\nADC value:", ST7735_YELLOW);
 			ST7735_OutUDec(data, ST7735_YELLOW);
 			
-			if(counter < 12){
-				UART_OutUDec(temp);
-				UART_OutString("\n\r");
-				counter++;
+//			if(counter < 12){
+//				UART_OutUDec(temp);
+//				UART_OutString("\n\r");
+//				counter++;
+//			}
+			
+			ST7735_PlotPoint(temp);  // Measured temperature
+			ST7735_PlotNext();
+			if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
+				ST7735_PlotClear(2000,4000);  // overwrites N points on same line
 			}
+			j++;                       // counts the number of samples
 			
 			EnableInterrupts();
 			
