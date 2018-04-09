@@ -67,7 +67,7 @@ int main(void){
 	//initialize software fifo
 	UART_Init();
 	FiFo_Init();
-	uint32_t period = 800000; //sample at 100 Hz
+	uint32_t period = 80000; //sample at 1 kHz
 	ADC0_InitTimer0ATriggerSeq3PD3(period);
 	
   EnableInterrupts();
@@ -77,6 +77,9 @@ int main(void){
 	//uint8_t counter = 0;
 	uint32_t j = 0;
 	uint8_t N = 128;
+	
+	#define BUF_SIZE 50 //10 hz cutoff frequency for digital LPF
+	uint32_t buf[BUF_SIZE] = {2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500};
 	
 	ST7735_PlotClear(1000,4000);
 	
@@ -100,7 +103,22 @@ int main(void){
 //				counter++;
 //			}
 			
-			ST7735_PlotPoint(temp);  // Measured temperature
+			uint32_t sum = 0;
+			uint32_t avg = 0;
+			
+			for(int i = 1; i < BUF_SIZE; i++){
+				buf[i] = buf[i-1];
+			}
+			
+			buf[0] = temp;
+			
+			for(int i = 0; i < BUF_SIZE; i++){
+					sum = sum + buf[i];
+			}
+			
+			avg = sum/BUF_SIZE;
+			
+			ST7735_PlotPoint(avg);  // Measured temperature
 			ST7735_PlotNext();
 			if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
 				ST7735_PlotClear(2000,4000);  // overwrites N points on same line
