@@ -1,3 +1,7 @@
+// Daniel Diamont
+// TA: Saadallah Kassir
+
+
 // PeriodMeasure.c
 // Runs on LM4F120/TM4C123
 // Use Timer0A in 24-bit edge time mode to request interrupts on the rising
@@ -26,6 +30,9 @@
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
 #include "PLL.h"
+#include "ST7735.h"
+#include "Controller.h"
+#include "fixed.h"
 
 #define NVIC_EN0_INT19          0x00080000  // Interrupt 19 enable
 #define PF2                     (*((volatile uint32_t *)0x40025010))
@@ -86,6 +93,7 @@ void PeriodMeasure_Init(void){
   NVIC_PRI4_R = (NVIC_PRI4_R&0x00FFFFFF)|0x40000000; // top 3 bits
   NVIC_EN0_R = NVIC_EN0_INT19;     // enable interrupt 19 in NVIC
 }
+
 void Timer0A_Handler(void){
   PF2 = PF2^0x04;  // toggle PF2
   PF2 = PF2^0x04;  // toggle PF2
@@ -96,12 +104,35 @@ void Timer0A_Handler(void){
   PF2 = PF2^0x04;  // toggle PF2
 }
 
-//debug code
+//main
 int main(void){           
   PLL_Init(Bus80MHz);              // 80 MHz clock
   PeriodMeasure_Init();            // initialize 24-bit timer0A in capture mode
+	//initialize controller and PWM at 0% duty cycle
+	Controller_Init(40000,40); //0% duty cycle and 40 MHz PWM clock
+	
+	ST7735_InitR(INITR_REDTAB); //initialzie LCD screen
+	ST7735_FillScreen(ST7735_BLACK);
+	
+	uint32_t j = 0;
+	uint8_t N = 128;
+	
+	ST7735_PlotClear(1000,4000);
+	
   EnableInterrupts();
   while(1){
-    WaitForInterrupt();
+//    ST7735_SetCursor(0,0);
+//			//display results on LCD screen
+//			ST7735_OutString("Temp: ", ST7735_YELLOW);
+//			ST7735_sDecOut2(temp, ST7735_YELLOW);
+//			ST7735_OutString(" degC\nADC value:", ST7735_YELLOW);
+//			ST7735_OutUDec(data, ST7735_YELLOW);
+//			
+//			ST7735_PlotPoint(avg);  // Measured temperature
+//			ST7735_PlotNext();
+//			if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
+//				ST7735_PlotClear(2000,4000);  // overwrites N points on same line
+//			}
+//			j++;                       // counts the number of samples
   }
 }

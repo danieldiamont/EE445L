@@ -27,6 +27,7 @@
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
 #include <stdbool.h>
+#include "controller.h"
 
 #define PF4                     (*((volatile uint32_t *)0x40025040))
 #define GPIO_PORTF_LOCK_R       (*((volatile uint32_t *)0x40025520))
@@ -97,11 +98,6 @@ static void GPIOArm(void){
   GPIO_PORTF_IM_R |= 0x11;      // (f) arm interrupt on PF4 and PF0 *** No IME bit as mentioned in Book ***
   NVIC_PRI7_R = (NVIC_PRI7_R&0xFF00FFFF)|0x00A00000; // (g) priority 5
   NVIC_EN0_R = 0x40000000;      // (h) enable interrupt 30 in NVIC  
-	
-	GPIO_PORTD_ICR_R = 0x0C;//clear flag3 and flag2
-	GPIO_PORTD_IM_R |= 0x0C;//arm interrupt on PD2 and PD3
-	NVIC_PRI0_R = (NVIC_PRI0_R&0x0FFFFFFF)|0xA0000000; //priority 5
-	NVIC_EN0_R = 0x00000008; //enable interrupt 3 in NVIC
 }
 // Initialize switch interface on PF4 
 // Inputs:  pointer to a function to call on //Touch (falling edge),
@@ -133,25 +129,6 @@ void Switch_Init(){
   GPIO_PORTF_IS_R &= ~0x01;     // (d) PF0 is edge-sensitive
   GPIO_PORTF_IBE_R |= 0x01;     //     PF0 is both edges
 
-  GPIO_PORTD_DIR_R &= ~0x08;    // (c) make PD2 PD3 inputs
-  GPIO_PORTD_AFSEL_R &= ~0x08;  //     disable alt funct on PD23
-  GPIO_PORTD_DEN_R |= 0x08;     //     enable digital I/O on PD23   
-  GPIO_PORTD_PCTL_R = 0; // configure PD23 as GPIO
-  GPIO_PORTD_AMSEL_R = 0;       //     disable analog functionality on PD
-  //GPIO_PORTD_PUR_R |= 0x0C;     //     enable weak pull-up on PD23
-  GPIO_PORTD_IS_R &= ~0x08;     // (d) PD23 is edge-sensitive
-  GPIO_PORTD_IBE_R |= 0x08;     //     PD23 is both edges
-	
-	GPIO_PORTD_DIR_R &= ~0x04;    // (c) make PD2 PD3 inputs
-  GPIO_PORTD_AFSEL_R &= ~0x04;  //     disable alt funct on PD23
-  GPIO_PORTD_DEN_R |= 0x04;     //     enable digital I/O on PD23   
-  GPIO_PORTD_PCTL_R = 0; // configure PD23 as GPIO
-  GPIO_PORTD_AMSEL_R = 0;       //     disable analog functionality on PD
-  //GPIO_PORTD_PUR_R |= 0x0C;     //     enable weak pull-up on PD23
-  GPIO_PORTD_IS_R &= ~0x04;     // (d) PD23 is edge-sensitive
-  GPIO_PORTD_IBE_R |= 0x04;     //     PD23 is both edges
-  //PD2, and PD3
-
   GPIOArm();
 
   SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
@@ -179,40 +156,16 @@ void GPIOPortF_Handler(void){
 	if(PF4 == 0)
 	{
 		DelayWait10ms(3);
-
+		SetSP(GetSP() + 5);
 		GPIO_PORTF_ICR_R = 0x10;
 		GPIO_PORTF_IM_R |= 0x11;
 	}
 	else
 	{
 		DelayWait10ms(3);
+		SetSP(GetSP() - 5);
 		GPIO_PORTF_ICR_R = 0xFF;
 		GPIO_PORTF_IM_R |= 0x11;
 		
 	}
-}
-
-void GPIOPortD_Handler(void){
-  
-  GPIO_PORTD_IM_R &= ~0x0C; 
-	if(PD3 == 0)
-	{
-		DelayWait10ms(3);
-		GPIO_PORTD_ICR_R = 0xFF;
-		GPIO_PORTD_IM_R |= 0x0C;
-	}
-	else if(PD2 == 0)
-	{
-		DelayWait10ms(3);
-		GPIO_PORTD_ICR_R = 0xFF;
-		GPIO_PORTD_IM_R |= 0x0C;
-	}
-	else
-	{
-		DelayWait10ms(3);
-		GPIO_PORTD_ICR_R = 0xFF;
-		GPIO_PORTD_IM_R |= 0x0C;
-		
-	}
-	
 }

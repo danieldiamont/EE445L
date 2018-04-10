@@ -52,4 +52,3 @@ void LED_Init(void);
 
 //interrupt handlers
 void GPIOPortF_Handler(void);
-void GPIOPortD_Handler(void);
