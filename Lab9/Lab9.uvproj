@@ -436,11 +436,6 @@
               <FilePath>.\Switch.c</FilePath>
             </File>
             <File>
-              <FileName>SysTickInts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\SysTickInts.c</FilePath>
-            </File>
-            <File>
               <FileName>startup.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\startup.s</FilePath>
