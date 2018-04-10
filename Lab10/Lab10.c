@@ -55,6 +55,8 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
+extern uint32_t Speed;
+extern int32_t setPoint;
 uint32_t Period;              // (1/clock) units
 uint32_t First;               // Timer0A first edge
 int32_t Done;                 // set each rising
@@ -107,6 +109,7 @@ void Timer0A_Handler(void){
 //main
 int main(void){           
   PLL_Init(Bus80MHz);              // 80 MHz clock
+	
   PeriodMeasure_Init();            // initialize 24-bit timer0A in capture mode
 	//initialize controller and PWM at 0% duty cycle
 	Controller_Init(40000,40); //0% duty cycle and 40 MHz PWM clock
@@ -122,17 +125,19 @@ int main(void){
   EnableInterrupts();
   while(1){
     ST7735_SetCursor(0,0);
-			//display results on LCD screen
-//			ST7735_OutString("Temp: ", ST7735_YELLOW);
-//			ST7735_sDecOut2(temp, ST7735_YELLOW);
-//			ST7735_OutString(" degC\nADC value:", ST7735_YELLOW);
-//			ST7735_OutUDec(data, ST7735_YELLOW);
-//			
-//			ST7735_PlotPoint(avg);  // Measured temperature
-			ST7735_PlotNext();
-			if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
-				ST7735_PlotClear(2000,4000);  // overwrites N points on same line
-			}
-			j++;                       // counts the number of samples
+		ST7735_OutString("SW1-\t\t\tSW2+\n", ST7735_YELLOW);
+		ST7735_OutString("rps = ", ST7735_YELLOW);
+		ST7735_OutUDec(Speed,ST7735_BLUE);
+		ST7735_OutString("\tSP = ", ST7735_YELLOW);
+		ST7735_OutUDec(setPoint, ST7735_BLUE);
+		
+		//plot actual speed and desired speed
+		ST7735_PlotPoint(Speed, ST7735_BLACK); //actual speed in BLACK
+		ST7735_PlotPoint(setPoint, ST7735_BLUE); //desired speed in BLUE
+		ST7735_PlotNext();
+		if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
+			ST7735_PlotClear(2000,4000);  // overwrites N points on same line
+		}
+		j++;                       // counts the number of samples		
   }
 }
