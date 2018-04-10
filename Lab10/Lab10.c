@@ -121,18 +121,18 @@ int main(void){
 	
   EnableInterrupts();
   while(1){
-//    ST7735_SetCursor(0,0);
-//			//display results on LCD screen
+    ST7735_SetCursor(0,0);
+			//display results on LCD screen
 //			ST7735_OutString("Temp: ", ST7735_YELLOW);
 //			ST7735_sDecOut2(temp, ST7735_YELLOW);
 //			ST7735_OutString(" degC\nADC value:", ST7735_YELLOW);
 //			ST7735_OutUDec(data, ST7735_YELLOW);
 //			
 //			ST7735_PlotPoint(avg);  // Measured temperature
-//			ST7735_PlotNext();
-//			if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
-//				ST7735_PlotClear(2000,4000);  // overwrites N points on same line
-//			}
-//			j++;                       // counts the number of samples
+			ST7735_PlotNext();
+			if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
+				ST7735_PlotClear(2000,4000);  // overwrites N points on same line
+			}
+			j++;                       // counts the number of samples
   }
 }
