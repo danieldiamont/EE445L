@@ -38,7 +38,7 @@ void SysTick_Init(uint32_t period){long sr;
 }
 
 void SysTick_Handler(void){
-	Speed = 8006000000/Period; //0.1 rps
+	Speed = 200000000/Period; //0.1 rps
 	E = setPoint*10 - Speed;						//0.1 rps
 	U = U + ((3*E)>>6);						//discrete integral
 	if(U < 40) U = 40;				//constrain output (integral anti-windup)
@@ -63,6 +63,7 @@ int32_t GetSP(){
 }
 
 void Controller_Init(uint16_t period, uint16_t duty){
+	SysTick_Init(4000); // PI algorithm should run ten times faster than motor
 	PWM0B_Init(period,duty);
 	setPoint = 0;
 }
