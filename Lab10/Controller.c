@@ -12,10 +12,12 @@ void WaitForInterrupt(void);  // low power mode
 
 //globals used for PID controller
 extern uint32_t Period; //24-bit, 12.5 ns units
+uint8_t N = 100;			//number of teeth
 uint32_t Speed;		//motor speed in 0.1 rps
 int32_t E;				//speed error in 0.1 rps
 int32_t U;				//duty cycle 40 to 39960
 int32_t setPoint; // set point motor speed in 0.1 rps
+
 
 // **************SysTick_Init*********************
 // Initialize SysTick periodic interrupts
@@ -36,8 +38,8 @@ void SysTick_Init(uint32_t period){long sr;
 }
 
 void SysTick_Handler(void){
-	Speed = 800000000/Period; //0.1 rps
-	E = setPoint - Speed;						//0.1 rps
+	Speed = 8006000000/Period; //0.1 rps
+	E = setPoint*10 - Speed;						//0.1 rps
 	U = U + ((3*E)>>6);						//discrete integral
 	if(U < 40) U = 40;				//constrain output (integral anti-windup)
 	if(U > 39960) U = 39960;	// 40 to 39960
@@ -52,12 +54,12 @@ void SetSP(int32_t sp){
 		setPoint = 0;
 	}
 	else{
-		setPoint = sp;
+		setPoint = sp; //sets in rps
 	}
 }
 
 int32_t GetSP(){
-	return setPoint;
+	return setPoint; //returns in rps
 }
 
 void Controller_Init(uint16_t period, uint16_t duty){
