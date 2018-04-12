@@ -104,8 +104,7 @@ int main(void){
 					sum = sum + buf[i];
 			}
 			
-			avg = sum/BUF_SIZE;
-			
+			avg = sum/BUF_SIZE;			
 			
 			ST7735_SetCursor(0,0);
 			//display results on LCD screen
@@ -113,12 +112,6 @@ int main(void){
 			ST7735_sDecOut2(temp, ST7735_YELLOW);
 			ST7735_OutString(" degC\nADC value:", ST7735_YELLOW);
 			ST7735_OutUDec(data, ST7735_YELLOW);
-			
-//			if(counter < 12){
-//				UART_OutUDec(temp);
-//				UART_OutString("\n\r");
-//				counter++;
-//			}
 			
 			ST7735_PlotPoint(avg);  // Measured temperature
 			ST7735_PlotNext();
