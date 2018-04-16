@@ -55,8 +55,9 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
-extern uint32_t Speed;
+extern int32_t Speed;
 extern int32_t setPoint;
+extern int32_t E;
 uint32_t Period;              // (1/clock) units
 uint32_t First;               // Timer0A first edge
 int32_t Done;                 // set each rising
@@ -109,27 +110,40 @@ void Timer0A_Handler(void){
 //main
 int main(void){           
   PLL_Init(Bus80MHz);              // 80 MHz clock
-	
-  PeriodMeasure_Init();            // initialize 24-bit timer0A in capture mode
-	//initialize controller and PWM at 0% duty cycle
-	Controller_Init(40000,40); //0% duty cycle and 40 MHz PWM clock
-	
 	ST7735_InitR(INITR_REDTAB); //initialzie LCD screen
 	ST7735_FillScreen(ST7735_BLACK);
+
+	//initialize controller and PWM at 0% duty cycle
+	Controller_Init(40000,40); //0% duty cycle and 40 MHz PWM clock
+	PeriodMeasure_Init();            // initialize 24-bit timer0A in capture mode
 	
 	uint32_t j = 0;
 	uint8_t N = 128;
 	
-	ST7735_PlotClear(1000,4000);
+	ST7735_PlotClear(2000,4000);
 	
   EnableInterrupts();
   while(1){
     ST7735_SetCursor(0,0);
-		ST7735_OutString("SW1-\t\t\tSW2+\n", ST7735_YELLOW);
-		ST7735_OutString("rps = ", ST7735_YELLOW);
-		ST7735_OutUDec(Speed,ST7735_BLUE);
-		ST7735_OutString("\tSP = ", ST7735_YELLOW);
+		ST7735_OutString("SW1-    SW2+\n", ST7735_YELLOW);
+		if(Speed >= 0){
+			ST7735_OutString("rps = ",ST7735_YELLOW);
+			ST7735_OutUDec(Speed,ST7735_BLUE);
+		}
+		else{
+			ST7735_OutString("rps = -",ST7735_YELLOW);
+			ST7735_OutUDec(Speed*-1,ST7735_BLUE);
+		}
+		ST7735_OutString(" SP = ", ST7735_YELLOW);
 		ST7735_OutUDec(setPoint, ST7735_BLUE);
+		if(E >= 0){
+			ST7735_OutString("\nError = ",ST7735_YELLOW);
+			ST7735_OutUDec(E,ST7735_BLUE);
+		}
+		else{
+			ST7735_OutString("\nError = -",ST7735_YELLOW);
+			ST7735_OutUDec(E*-1,ST7735_BLUE);
+		}
 		
 		//plot actual speed and desired speed
 		ST7735_PlotPoint(Speed, ST7735_BLACK); //actual speed in BLACK

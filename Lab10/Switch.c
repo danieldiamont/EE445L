@@ -29,7 +29,6 @@
 #include <stdbool.h>
 #include "controller.h"
 
-#define PF4                     (*((volatile uint32_t *)0x40025040))
 #define GPIO_PORTF_LOCK_R       (*((volatile uint32_t *)0x40025520))
 #define GPIO_PORTF_CR_R         (*((volatile uint32_t *)0x40025524))
 #define PF0            				 (*((volatile uint32_t *)0x40025004))
@@ -53,7 +52,6 @@ void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 void (*TouchTask)(void);    // user function to be executed on //Touch
 void (*ReleaseTask)(void);  // user function to be executed on release
-void Sound_Play_Song(uint8_t song, uint8_t instrument);
 
 //------------LED_Init------------
 // Initialize GPIO Port F for negative logic switches on PF0 and
@@ -153,19 +151,23 @@ void GPIOPortF_Handler(void){
   GPIO_PORTF_IM_R &= ~0x11;
 	LED_GreenToggle();
 	LED_BlueToggle();
-	if(PF4 == 0)
+	if((((GPIO_PORTF_DATA_R)>>4)&0x01) == 0)
 	{
-		DelayWait10ms(3);
-		SetSP(GetSP() + 5);
-		GPIO_PORTF_ICR_R = 0x10;
-		GPIO_PORTF_IM_R |= 0x11;
-	}
-	else
-	{
-		DelayWait10ms(3);
+		DelayWait10ms(5);
 		SetSP(GetSP() - 5);
 		GPIO_PORTF_ICR_R = 0xFF;
 		GPIO_PORTF_IM_R |= 0x11;
+	}
+	else if((((GPIO_PORTF_DATA_R))&0x01) == 0)
+	{
+		DelayWait10ms(5);
+		SetSP(GetSP() + 5);
+		GPIO_PORTF_ICR_R = 0xFF;
+		GPIO_PORTF_IM_R |= 0x11;
 		
+	}
+	else{
+		GPIO_PORTF_ICR_R = 0xFF;
+		GPIO_PORTF_IM_R |= 0x11;
 	}
 }
