@@ -58,8 +58,9 @@ def frame_capture():
 		((x,y), radius) = cv2.minEnclosingCircle(c)
 	
 		if radius > 20:
-			settings.ref_x = int(x)
-            settings.ref_y = int(y)
+			#settings.ref_x = int(x)
+            #settings.ref_y = int(y)
+            settings.ref = int(x)
 
 	    rawCapture.truncate(0)
 	

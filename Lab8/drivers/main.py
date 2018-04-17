@@ -1,10 +1,13 @@
 #this is the controller
 
-import accelerometer
-import vision
-import motor_controller
+#import project-specific files
+from accelerometer import *
+from vision import *
+from motor_controller import *
+from pid import *
 import settings
 
+#python imports
 import threading
 import time
 
@@ -30,7 +33,23 @@ class motorControlThread(threading.Thread):
 		self.name = name
 		self.counter = counter
 	def run(self):
-        pass
+        #initialize motor driver
+        motor_setup()
+
+        ## add anti-windup?
+        ## add error bounds checking to discard values
+
+        while True:
+            #determine what combination of motors to control
+            if settings.error > settings.threshold_left:
+                #go right
+                move_right(settings.control)
+            elif settings.error < settings.threshold_right:
+                #go left
+                move_left(settings.control)
+            else:
+                #go straight
+                move_forwards(settings.control)
 
 #PID Thread
 class PID_Thread(threading.Thread):
@@ -40,8 +59,12 @@ class PID_Thread(threading.Thread):
 		self.name = name
 		self.counter = counter
 	def run(self):
-        pass
-		# run PID and update motor control value
+        # run PID and update motor control value
+        p = PID(3.0,0.4,1.2)  #set constants for pid control (TBD)
+        p.setPoint(settings.setPoint)
+        while True:
+             settings.control = p.update(settings.ref)
+             settings.error = p.getError(p)
 
 #vision thread
 class visionThread(threading.Thread):
@@ -52,8 +75,8 @@ class visionThread(threading.Thread):
 		self.counter = counter
 	def run(self):            
 		# acquire and process frame
-		vision.init()
-        vision.frame_capture()
+		vision_init()
+        frame_capture()
 
 
 #lock object for thread synchronization
