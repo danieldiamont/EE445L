@@ -24,8 +24,8 @@ def motor_setup():
 	GPIO.setup(Motor2E,GPIO.OUT)
 
     #set up PWM modules
-    leftPWM = GPIO.PWM(12, 0.5) #channel, frequency
-    rightPWM = GPIO.PWM(35, 0.35)
+    leftPWM = GPIO.PWM(12, 100) #channel, frequency
+    rightPWM = GPIO.PWM(35, 100)
 
     leftPWM.start(0) # start at 0% duty cycle
     rightPWM.start(0) # start at 0% duty cycle
