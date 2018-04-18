@@ -146,25 +146,34 @@ void DelayWait10ms(uint32_t n){
     n--;
   }
 }
+
+extern bool increasing;
+extern bool decreasing;
+
+bool touchFlag = false;
+
 void GPIOPortF_Handler(void){
 
   GPIO_PORTF_IM_R &= ~0x11;
 	LED_GreenToggle();
 	LED_BlueToggle();
-	if((((GPIO_PORTF_DATA_R)>>4)&0x01) == 0)
+	if((((GPIO_PORTF_DATA_R)>>4)&0x01) == 0 && !touchFlag)
 	{
-		DelayWait10ms(5);
-		SetSP(GetSP() - 5);
-		GPIO_PORTF_ICR_R = 0xFF;
-		GPIO_PORTF_IM_R |= 0x11;
-	}
-	else if((((GPIO_PORTF_DATA_R))&0x01) == 0)
-	{
-		DelayWait10ms(5);
+		touchFlag = true;
+		DelayWait10ms(10);
 		SetSP(GetSP() + 5);
 		GPIO_PORTF_ICR_R = 0xFF;
 		GPIO_PORTF_IM_R |= 0x11;
-		
+		touchFlag = false;
+	}
+	else if((((GPIO_PORTF_DATA_R))&0x01) == 0 && !touchFlag)
+	{
+		touchFlag = true;
+		DelayWait10ms(10);
+		SetSP(GetSP() - 5);
+		GPIO_PORTF_ICR_R = 0xFF;
+		GPIO_PORTF_IM_R |= 0x11;
+		touchFlag = false;
 	}
 	else{
 		GPIO_PORTF_ICR_R = 0xFF;

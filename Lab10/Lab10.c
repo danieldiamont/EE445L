@@ -56,6 +56,7 @@ void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
 extern int32_t Speed;
+extern int32_t U;
 extern int32_t setPoint;
 extern int32_t E;
 uint32_t Period;              // (1/clock) units
@@ -114,43 +115,46 @@ int main(void){
 	ST7735_FillScreen(ST7735_BLACK);
 
 	//initialize controller and PWM at 0% duty cycle
-	Controller_Init(40000,40); //0% duty cycle and 40 MHz PWM clock
+	Controller_Init(40000,100); //0% duty cycle and 40 MHz PWM clock
 	PeriodMeasure_Init();            // initialize 24-bit timer0A in capture mode
 	
 	uint32_t j = 0;
 	uint8_t N = 128;
 	
-	ST7735_PlotClear(2000,4000);
+	ST7735_PlotClear(0,600);
 	
   EnableInterrupts();
   while(1){
     ST7735_SetCursor(0,0);
-		ST7735_OutString("SW1-    SW2+\n", ST7735_YELLOW);
+		ST7735_OutString("SW1+    SW2-\n", ST7735_YELLOW);
 		if(Speed >= 0){
 			ST7735_OutString("rps = ",ST7735_YELLOW);
 			ST7735_OutUDec(Speed,ST7735_BLUE);
 		}
 		else{
 			ST7735_OutString("rps = -",ST7735_YELLOW);
-			ST7735_OutUDec(Speed*-1,ST7735_BLUE);
+			ST7735_OutUDec((Speed*-1),ST7735_BLUE);
 		}
 		ST7735_OutString(" SP = ", ST7735_YELLOW);
-		ST7735_OutUDec(setPoint, ST7735_BLUE);
+		ST7735_OutUDec(setPoint*10, ST7735_BLUE);
 		if(E >= 0){
 			ST7735_OutString("\nError = ",ST7735_YELLOW);
 			ST7735_OutUDec(E,ST7735_BLUE);
 		}
 		else{
 			ST7735_OutString("\nError = -",ST7735_YELLOW);
-			ST7735_OutUDec(E*-1,ST7735_BLUE);
+			ST7735_OutUDec((E*-1),ST7735_BLUE);
 		}
+		
+		ST7735_OutString("\nU = ",ST7735_YELLOW);
+		ST7735_OutUDec(U,ST7735_YELLOW);
 		
 		//plot actual speed and desired speed
 		ST7735_PlotPoint(Speed, ST7735_BLACK); //actual speed in BLACK
-		ST7735_PlotPoint(setPoint, ST7735_BLUE); //desired speed in BLUE
+		ST7735_PlotPoint(setPoint*10, ST7735_BLUE); //desired speed in BLUE
 		ST7735_PlotNext();
 		if((j&(N-1))==0){          // fs sampling, fs/N samples plotted per second
-			ST7735_PlotClear(2000,4000);  // overwrites N points on same line
+			ST7735_PlotClear(0,600);  // overwrites N points on same line
 		}
 		j++;                       // counts the number of samples		
   }
