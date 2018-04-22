@@ -1,0 +1,16 @@
+Forward Design Changes Report
+-----------------------------
+
+Report File:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7 (PCB - Forward Design Changes Report).txt
+Report Written:     Thursday, March 22, 2018
+Design Path:        C:\Users\daniel\Documents\EE445L\Lab7\Lab7.pcb
+Design Title:       
+Created:            3/12/2018 11:13:04 PM
+Last Saved:         3/22/2018 10:06:54 PM
+Editing Time:       2410 min
+Units:              mil (precision 0)
+
+The designs are the same, so no design changes to forward.
+
+
+End Of Report.

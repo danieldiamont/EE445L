@@ -115,7 +115,7 @@ int main(void){
 	ST7735_FillScreen(ST7735_BLACK);
 
 	//initialize controller and PWM at 0% duty cycle
-	Controller_Init(40000,100); //0% duty cycle and 40 MHz PWM clock
+	Controller_Init(40000,30000); //0% duty cycle and 40 MHz PWM clock
 	PeriodMeasure_Init();            // initialize 24-bit timer0A in capture mode
 	
 	uint32_t j = 0;

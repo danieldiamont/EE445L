@@ -11,6 +11,8 @@ long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
 
+#define PF3                     (*((volatile uint32_t *)0x40025020))
+
 
 //globals used for PID controller
 extern uint32_t Period; //24-bit, 12.5 ns units
@@ -49,6 +51,8 @@ uint32_t buf[BUF_SIZE] = {250,250,250,250,250,250,250,250,250,250,250,250,250,25
 uint32_t avg = 250;
 void SysTick_Handler(void){
 	
+//		PF3 ^= 0x08;
+//		PF3 ^= 0x08;
 		uint32_t sum = 0;
 			
 			for(int i = 1; i < BUF_SIZE; i++){
@@ -81,6 +85,8 @@ void SysTick_Handler(void){
 	if(U < 100) U = 100;				//constrain output (integral anti-windup)
 	if(U > 39960) U = 39960;	// 40 to 39960
 	PWM0B_Duty(U);						// adjust the duty cycle of the PWM output accordingly
+	
+//	PF3 ^= 0x08;
 }
 
 void SetSP(int32_t sp){

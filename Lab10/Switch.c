@@ -126,7 +126,7 @@ void Switch_Init(){
   GPIO_PORTF_PUR_R |= 0x01;     //     enable weak pull-up on PF0
   GPIO_PORTF_IS_R &= ~0x01;     // (d) PF0 is edge-sensitive
   GPIO_PORTF_IBE_R |= 0x01;     //     PF0 is both edges
-
+//	LED_Init();
   GPIOArm();
 
   SYSCTL_RCGCTIMER_R |= 0x01;   // 0) activate TIMER0
