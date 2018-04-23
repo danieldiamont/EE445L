@@ -28,6 +28,10 @@
 #include "tm4c123gh6pm.h"
 #include <stdbool.h>
 #include "controller.h"
+#include "UART.h"
+
+//bool change = false;
+//int32_t switchMail;
 
 #define GPIO_PORTF_LOCK_R       (*((volatile uint32_t *)0x40025520))
 #define GPIO_PORTF_CR_R         (*((volatile uint32_t *)0x40025524))
@@ -162,6 +166,8 @@ void GPIOPortF_Handler(void){
 		touchFlag = true;
 		DelayWait10ms(10);
 		SetSP(GetSP() + 5);
+//		change = true;
+//		switchMail = TIMER1_TAR_R;
 		GPIO_PORTF_ICR_R = 0xFF;
 		GPIO_PORTF_IM_R |= 0x11;
 		touchFlag = false;
@@ -171,6 +177,8 @@ void GPIOPortF_Handler(void){
 		touchFlag = true;
 		DelayWait10ms(10);
 		SetSP(GetSP() - 5);
+//		change = true;
+//		switchMail = TIMER1_TAR_R;
 		GPIO_PORTF_ICR_R = 0xFF;
 		GPIO_PORTF_IM_R |= 0x11;
 		touchFlag = false;

@@ -33,6 +33,8 @@
 #include "ST7735.h"
 #include "Controller.h"
 #include "fixed.h"
+#include <stdbool.h>
+#include "UART.h"
 
 #define NVIC_EN0_INT19          0x00080000  // Interrupt 19 enable
 #define PF2                     (*((volatile uint32_t *)0x40025010))
@@ -62,6 +64,45 @@ extern int32_t E;
 uint32_t Period;              // (1/clock) units
 uint32_t First;               // Timer0A first edge
 int32_t Done;                 // set each rising
+
+//Debug Buffer Set up
+#define BUFFER_SIZE 100
+int32_t Debug_Buffer[BUFFER_SIZE];
+uint32_t Debug_Cnt = 0;
+bool Data_Collection_Complete = false;
+uint32_t Time_Difference[BUFFER_SIZE-1];
+
+void Debug_Dump(void){
+	if(Debug_Cnt < BUFFER_SIZE){
+			Debug_Buffer[Debug_Cnt] = TIMER1_TAR_R;
+//			int32_t val = E;
+//			if(val < 0) val = -1*val;
+//			Debug_Buffer[Debug_Cnt] = val;
+			Debug_Cnt++;
+	}
+	else
+		Data_Collection_Complete = true;
+}
+
+//void Get_Time_Differences(void){
+//	//calculate time differences
+//			for(int i = 0; i < BUFFER_SIZE - 1; i++){
+//				Time_Difference[i] = Debug_Buffer[i] - Debug_Buffer[i+1];
+//			}
+//}
+
+void Timer1_Init(){
+  SYSCTL_RCGCTIMER_R |= 0x02;   // 0) activate TIMER1
+//  PeriodicTask = task;          // user function
+  TIMER1_CTL_R = 0x00000000;    // 1) disable TIMER1A during setup
+  TIMER1_CFG_R = 0x00000000;    // 2) configure for 32-bit mode
+  TIMER1_TAMR_R = 0x00000002;   // 3) configure for periodic mode, default down-count settings
+  TIMER1_TAILR_R = 0xFFFFFFFF;    // 4) reload value
+  TIMER1_TAPR_R = 0;            // 5) bus clock resolution
+  TIMER1_ICR_R = 0x00000001;    // 6) clear TIMER1A timeout flag
+  TIMER1_CTL_R = 0x00000001;    // 10) enable TIMER1A
+}
+
 // max period is (2^24-1)*12.5ns = 209.7151ms
 // min period determined by time to run ISR, which is about 1us
 void PeriodMeasure_Init(void){
@@ -99,6 +140,7 @@ void PeriodMeasure_Init(void){
 }
 
 void Timer0A_Handler(void){
+//	Debug_Dump();
   PF2 = PF2^0x04;  // toggle PF2
   PF2 = PF2^0x04;  // toggle PF2
   TIMER0_ICR_R = TIMER_ICR_CAECINT;// acknowledge timer0A capture match
@@ -106,6 +148,7 @@ void Timer0A_Handler(void){
   First = TIMER0_TAR_R;            // setup for next
   Done = 1;
   PF2 = PF2^0x04;  // toggle PF2
+//	Debug_Dump();
 }
 
 //main
@@ -114,17 +157,36 @@ int main(void){
 	ST7735_InitR(INITR_REDTAB); //initialzie LCD screen
 	ST7735_FillScreen(ST7735_BLACK);
 
+//	UART_Init();
+//	Timer1_Init(); //for debug buffer
+	
 	//initialize controller and PWM at 0% duty cycle
-	Controller_Init(40000,30000); //0% duty cycle and 40 MHz PWM clock
+	Controller_Init(40000,30000); //0% duty cycle
 	PeriodMeasure_Init();            // initialize 24-bit timer0A in capture mode
 	
 	uint32_t j = 0;
 	uint8_t N = 128;
 	
+	UART_Init();
+	Timer1_Init(); //for debug buffer
+	
 	ST7735_PlotClear(0,600);
 	
   EnableInterrupts();
   while(1){
+		
+		if(Data_Collection_Complete){
+			
+			//get time differences
+			//Get_Time_Differences();
+			
+//			 for(int i = 1; i < BUFFER_SIZE-1; i++){
+//				 UART_OutUDec(Debug_Buffer[i]);
+//				 UART_OutString("\r\n");
+//			 }
+			 
+//			 while(1){}
+		}
     ST7735_SetCursor(0,0);
 		ST7735_OutString("SW1+    SW2-\n", ST7735_YELLOW);
 		if(Speed >= 0){

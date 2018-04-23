@@ -4,6 +4,7 @@
 #include "PWM.h"
 #include "Switch.h"
 #include <stdbool.h>
+#include "UART.h"
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -48,12 +49,16 @@ void SysTick_Init(uint32_t period){long sr;
 #define BUF_SIZE 50 //10 hz cutoff frequency for digital LPF
 uint32_t buf[BUF_SIZE] = {250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,};
 
+extern void Debug_Dump(void);
+//extern bool change;
+//extern int32_t switchMail
 uint32_t avg = 250;
 void SysTick_Handler(void){
 	
 //		PF3 ^= 0x08;
 //		PF3 ^= 0x08;
-		uint32_t sum = 0;
+//		Debug_Dump();
+			uint32_t sum = 0;
 			
 			for(int i = 1; i < BUF_SIZE; i++){
 				buf[i] = buf[i-1];
@@ -62,10 +67,6 @@ void SysTick_Handler(void){
 			buf[0] = (200000000/Period);
 			
 			if(buf[0] > 400) buf[0] = buf[1];
-//			if(buf[0] == 250 - 10 || buf[0] == 250 + 10) buf[0] = 0;
-//			if(buf[0] == 277) buf[0] = 0;
-//			if(buf[0] == 312) buf[0] = 0;
-			//if(setPoint == 30) buf[0] = 300;
 			if((buf[0] > avg + 100) || buf[0] < avg - 100) buf[0] = avg;
 			
 			for(int i = 0; i < BUF_SIZE; i++){
@@ -77,6 +78,14 @@ void SysTick_Handler(void){
 	//speed should be between 
 	Speed = avg;//0.1 rps
 	E = setPoint*10 - Speed;						//0.1 rps
+	
+//	if(E < 10 && E > -10 && change == true) {
+//		change = false;
+//		UART_OutUDec(switchMail - TIMER1_TAR_R);
+//		UART_OutString("\r\n");
+//	}
+			
+	//Debug_Dump();
 	if(E > 400) E = 10;
 	if(E < -400) E = -10;
 	Ui = Ui + ((3*E)/64);						//discrete integral
@@ -85,7 +94,7 @@ void SysTick_Handler(void){
 	if(U < 100) U = 100;				//constrain output (integral anti-windup)
 	if(U > 39960) U = 39960;	// 40 to 39960
 	PWM0B_Duty(U);						// adjust the duty cycle of the PWM output accordingly
-	
+//	Debug_Dump();
 //	PF3 ^= 0x08;
 }
 
@@ -107,7 +116,7 @@ int32_t GetSP(){
 
 void Controller_Init(uint16_t period, uint16_t duty){
 	Switch_Init();
-	setPoint = 40;
+	setPoint = 35;
 	SysTick_Init(period/10); // PI algorithm should run ten times faster than motor
 	PWM0B_Init(period,duty);
 }
