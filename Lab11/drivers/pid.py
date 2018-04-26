@@ -4,7 +4,7 @@ import settings
 
 class PID:
 
-	def __init__(self, P=2.0, I=0.0, D=1.0, Derivator=0, Integrator=0, Integrator_max=500, Integrator_min=-500):
+	def __init__(self, P, I, D, Derivator=0, Integrator=0, Integrator_max=500, Integrator_min=-500):
 
 		self.Kp=P
 		self.Ki=I
@@ -38,7 +38,6 @@ class PID:
 		self.I_value = self.Integrator * self.Ki
 
 		PID = self.P_value + self.I_value + self.D_value
-
 		return PID
 
 	def setPoint(self,set_point):

@@ -13,6 +13,7 @@ Motor2B = 36
 Motor2E = 22
 
 #set up GPIO
+
 def motor_setup():
 	#setup motor one
 	GPIO.setup(Motor1A,GPIO.OUT)
@@ -23,46 +24,72 @@ def motor_setup():
 	GPIO.setup(Motor2B,GPIO.OUT)
 	GPIO.setup(Motor2E,GPIO.OUT)
 
-    #set up PWM modules
-    leftPWM = GPIO.PWM(12, 100) #channel, frequency
-    rightPWM = GPIO.PWM(35, 100)
+	#set up PWM modules
+	leftPWM = GPIO.PWM(Motor1A, 50) #channel, frequency
+	rightPWM = GPIO.PWM(Motor2A, 50)
+	
+	leftPWM.start(50) # start at 50% duty cycle
+	rightPWM.start(50) # start at 50% duty cycle
 
-    leftPWM.start(0) # start at 0% duty cycle
-    rightPWM.start(0) # start at 0% duty cycle
+	return leftPWM, rightPWM
 
-def move_forwards(dc):
+def move_forwards(leftPWM,rightPWM,dc):
 	#left motor forwards
+	print('forward')
+	if(dc > 95):
+		dc = 95
+	if(dc < 20):
+		dc = 20
 
-    leftPWM.ChangeDutyCycle(dc)
+	leftPWM.ChangeDutyCycle(50)
+	#GPIO.output(Motor1A,GPIO.HIGH)
 	GPIO.output(Motor1B,GPIO.LOW)
 	GPIO.output(Motor1E,GPIO.HIGH)
 
 	#right motor forwards
-    rightPWM.ChangeDutyCycle(dc)
+	rightPWM.ChangeDutyCycle(50)
+	#GPIO.output(Motor2A,GPIO.HIGH)
 	GPIO.output(Motor2B,GPIO.LOW)
 	GPIO.output(Motor2E,GPIO.HIGH)
  
-def move_right(dc):
-	#left motor forwards
-	leftPWM.ChangeDutyCycle(dc)
+def move_right(leftPWM,rightPWM,dc):
+
+	print('right')
+	if(dc > 95):
+		dc = 95
+	if(dc < 20):
+		dc = 20
+
+	leftPWM.ChangeDutyCycle(0)
+	#GPIO.output(Motor1A,GPIO.HIGH)
 	GPIO.output(Motor1B,GPIO.LOW)
 	GPIO.output(Motor1E,GPIO.HIGH)
-	#right motor stop
-	rightPWM.ChangeDutyCycle(0)
-	GPIO.output(Motor2B,GPIO.LOW)
-	GPIO.output(Motor2E,GPIO.LOW)
 
-def move_left(dc):
-	#left motor stop
-	leftPWM.ChangeDutyCycle(0)
-	GPIO.output(Motor1B,GPIO.LOW)
-	GPIO.output(Motor1E,GPIO.LOW)
-	#right motor high
+	#right motor forwards
+	#GPIO.output(Motor2A,GPIO.LOW)
 	rightPWM.ChangeDutyCycle(dc)
 	GPIO.output(Motor2B,GPIO.LOW)
 	GPIO.output(Motor2E,GPIO.HIGH)
 
-def move_backwards(dc):
+def move_left(leftPWM,rightPWM,dc):
+
+	print('left')
+	if(dc > 95):
+		dc = 95
+	if(dc < 20):
+		dc = 20
+
+	leftPWM.ChangeDutyCycle(dc)
+	GPIO.output(Motor1B,GPIO.LOW)
+	GPIO.output(Motor1E,GPIO.HIGH)
+
+	#right motor forwards
+	rightPWM.ChangeDutyCycle(0)
+	GPIO.output(Motor2B,GPIO.LOW)
+	GPIO.output(Motor2E,GPIO.HIGH)
+
+
+def move_backwards(leftPWM,rightPWM,dc):
 	leftPWM.ChangeDutyCycle(0)
 	GPIO.output(Motor1B,GPIO.HIGH)
 	GPIO.output(Motor1E,GPIO.HIGH)
@@ -75,8 +102,7 @@ def stop_motors():
 	GPIO.output(Motor1E,GPIO.LOW)
 	GPIO.output(Motor2E,GPIO.LOW)
 
-def shutdown_motors():
+def shutdown_motors(leftPWM,rightPWM):
     leftPWM.stop()
     rightPWM.stop()
     GPIO_cleanup()
-

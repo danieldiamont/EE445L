@@ -56,6 +56,7 @@ bus.write_byte_data(address, pwr1, 0)
 
 # printing
 while True:
+	time.sleep(0)
 	print "gyro data"
 	print "---------"
 
