@@ -14,6 +14,8 @@ from picamera import PiCamera
 #python imports
 import threading
 import time
+import socket
+import os
 
 #define a function for each thread below
 #accelerometer thread
@@ -44,20 +46,24 @@ class motorControlThread(threading.Thread):
 	
 		while True:
 			threadLock.acquire()
-			print('dont starve me------------------------')
-			#determine what combination of motors to control
-			if settings.error > settings.threshold_left:
-				#go right
-				print('RIGHT')
-				move_right(L,R,settings.control)
-			elif settings.error < settings.threshold_right:
-				#go left
-				print('LEFT')
-				move_left(L,R,-1*settings.control)
+			if(settings.ctrl == True):
+				print('dont starve me------------------------')
+				#determine what combination of motors to control
+				if settings.error > settings.threshold_left:
+					#go right
+					print('RIGHT')
+					move_right(L,R,settings.control)
+				elif settings.error < settings.threshold_right:
+					#go left
+					print('LEFT')
+					move_left(L,R,-1*settings.control)
+				else:
+					#go straight
+					print('FORWARD')
+					move_forwards(L,R,settings.control)
 			else:
-				#go straight
-				print('FORWARD')
-				move_forwards(L,R,settings.control)
+				stop_motors()
+
 			threadLock.release()
 			time.sleep(0.05)		
 
@@ -70,7 +76,7 @@ class PID_Thread(threading.Thread):
 		self.counter = counter
 	def run(self):
 	        # run PID and update motor control value
-	        p = PID(0.35,0.1,0.4)  #set constants for pid control (TBD)
+	        p = PID(0.10,0.1,0.4)  #set constants for pid control (TBD)
 	        p.setPoint(settings.setPoint)
 	        while True:
 			threadLock.acquire()
@@ -128,8 +134,8 @@ class visionThread(threading.Thread):
 			
 			contours = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)[-2]
 			# Uncomment the line below to see the boundaries found by findContours
-			cv2.drawContours(frame, contours, -1, (0,255,0), 3)
-			cv2.drawContours(mask, contours, -1, (0,255,0), 3)
+			#cv2.drawContours(frame, contours, -1, (0,255,0), 3)
+			#cv2.drawContours(mask, contours, -1, (0,255,0), 3)
 			
 			if len(contours) > 0:
 				c = max(contours, key = cv2.contourArea)
@@ -155,6 +161,32 @@ class visionThread(threading.Thread):
 				break
 
 
+class socketThread(threading.Thread):
+	def __init__(self, threadID, name, counter):
+		threading.Thread.__init__(self)
+		self.threadID = threadID
+		self.name = name
+		self.counter = counter
+	def run(self):
+		HOST='192.168.1.68'
+		PORT=5002
+		s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s.connect((HOST, PORT))
+
+		while 1:
+			#threadLock.acquire()
+			print('we here m8')
+			data=s.recv(8096)
+			if data=='1':
+				settings.ctrl = True
+			elif data=='2':
+				settings.ctrl = False
+			elif data=='3':
+				os._exit(1)
+			
+			#threadLock.release()
+			time.sleep(0.07)
+		
 #lock object for thread synchronization
 threadLock = threading.Lock()
 
@@ -162,6 +194,7 @@ try:
 	#initialize globals
 	settings.init() #call once
 	
+	settings.ctrl = False
 	settings.ref = 150
 	settings.control = 0
 	settings.error = 0
@@ -173,12 +206,15 @@ try:
 	vision = visionThread(1, "Vision", 1)
 	controller = PID_Thread(2, "Controller", 2)
 	driver = motorControlThread(3, "Driver", 3)
+	socketInstance = socketThread(4, "SocketComms", 4)
 	
 	# Start new threads
+	socketInstance.start()
 	vision.start()
 	controller.start()
 	driver.start()
 	
+	socketInstance.join()
 	vision.join()
 	controller.join()
 	driver.join()
