@@ -4,7 +4,7 @@
 import socket
 import Tkinter as tk
 
-HOST='192.168.1.68'
+HOST='192.168.1.159'
 PORT=5002
 s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST, PORT))
