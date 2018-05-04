@@ -43,7 +43,7 @@ class motorControlThread(threading.Thread):
 		
 	        ## add anti-windup?
 	        ## add error bounds checking to discard values
-	
+		
 		while True:
 			threadLock.acquire()
 			if(settings.ctrl == True):
@@ -76,7 +76,7 @@ class PID_Thread(threading.Thread):
 		self.counter = counter
 	def run(self):
 	        # run PID and update motor control value
-	        p = PID(0.10,0.1,0.4)  #set constants for pid control (TBD)
+	        p = PID(0.10,0.075,0.30)  #set constants for pid control (TBD) (0.05, 0.075, 03) work
 	        p.setPoint(settings.setPoint)
 	        while True:
 			threadLock.acquire()
@@ -107,7 +107,7 @@ class visionThread(threading.Thread):
 		rawCapture = PiRGBArray(camera, size=(res_width, res_length))
 		
 		#set margins for HSV (using HSV ColorPicker)
-		blackUpper = (360,360,40) #we want to isolate the color black
+		blackUpper = (360,360,40) #we want to isolate the color black (360,360,40)
 		blackLower = (0,0,0)
 		
 		#allow camera to warm-up
@@ -120,14 +120,20 @@ class visionThread(threading.Thread):
 		    	# Read a frame from the camera
 			frame = frame.array
 		
+			# create basic black image
+			#white_rec = np.zeros(frame.shape, dtype = "uint8")
+			# draw white filled rectangle on image
+			#cv2.rectangle(white_rec, (0,0), (259,200), (255,255,255), -1)
+			#frame = cv2.bitwise_and(frame, white_rec)
+
 			# Convert to HSV (hue, saturation, value) color space
 			frameHSV = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 			
 			# Create a binary image where pixels that fall in range are white and the rest are black
 			mask = cv2.inRange(frameHSV, np.asarray(blackLower), np.asarray(blackUpper))
-			
+
 			kernel_size = 5
-			blur = cv2.GaussianBlur(frame,(kernel_size, kernel_size),0)
+			#mask = cv2.GaussianBlur(frame,(kernel_size, kernel_size),0)
 			# These transformations help clean up a noisy image
 			mask = cv2.erode(mask, None, iterations=2)
 			mask = cv2.dilate(mask, None, iterations=2)
@@ -142,15 +148,15 @@ class visionThread(threading.Thread):
 				((x,y), radius) = cv2.minEnclosingCircle(c)
 			
 				if radius > 20:
-					cv2.circle(frame,(int(x),int(y)),int(radius), (0,255,255),2)
-					cv2.circle(frame, (int(x), int(y)), 5, (0, 0, 255), -1)
-					cv2.circle(mask,(int(x),int(y)),int(radius), (0,255,255),2)
-					cv2.circle(mask, (int(x), int(y)), 5, (0, 0, 255), -1)
+#					cv2.circle(frame,(int(x),int(y)),int(radius), (0,255,255),2)
+#					cv2.circle(frame, (int(x), int(y)), 5, (0, 0, 255), -1)
+#					cv2.circle(mask,(int(x),int(y)),int(radius), (0,255,255),2)
+#					cv2.circle(mask, (int(x), int(y)), 5, (0, 0, 255), -1)
 					settings.ref = int(x)
 			
 			# Display the frame in a window
-			cv2.imshow('image', frame)
-			cv2.imshow('mask', mask)
+#			cv2.imshow('image', frame)
+#			cv2.imshow('mask', mask)
 			
 			rawCapture.truncate(0)
 			threadLock.release()
@@ -168,7 +174,7 @@ class socketThread(threading.Thread):
 		self.name = name
 		self.counter = counter
 	def run(self):
-		HOST='192.168.1.68'
+		HOST='192.168.1.159'
 		PORT=5002
 		s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((HOST, PORT))

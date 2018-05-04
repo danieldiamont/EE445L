@@ -41,13 +41,13 @@ def move_forwards(leftPWM,rightPWM,dc):
 	if(dc < 20):
 		dc = 20
 
-	leftPWM.ChangeDutyCycle(50)
+	leftPWM.ChangeDutyCycle(45)
 	#GPIO.output(Motor1A,GPIO.HIGH)
 	GPIO.output(Motor1B,GPIO.LOW)
 	GPIO.output(Motor1E,GPIO.HIGH)
 
 	#right motor forwards
-	rightPWM.ChangeDutyCycle(50)
+	rightPWM.ChangeDutyCycle(45)
 	#GPIO.output(Motor2A,GPIO.HIGH)
 	GPIO.output(Motor2B,GPIO.LOW)
 	GPIO.output(Motor2E,GPIO.HIGH)
@@ -60,7 +60,7 @@ def move_right(leftPWM,rightPWM,dc):
 	if(dc < 20):
 		dc = 20
 
-	leftPWM.ChangeDutyCycle(0)
+	leftPWM.ChangeDutyCycle(10)
 	#GPIO.output(Motor1A,GPIO.HIGH)
 	GPIO.output(Motor1B,GPIO.LOW)
 	GPIO.output(Motor1E,GPIO.HIGH)
@@ -84,7 +84,7 @@ def move_left(leftPWM,rightPWM,dc):
 	GPIO.output(Motor1E,GPIO.HIGH)
 
 	#right motor forwards
-	rightPWM.ChangeDutyCycle(0)
+	rightPWM.ChangeDutyCycle(10)
 	GPIO.output(Motor2B,GPIO.LOW)
 	GPIO.output(Motor2E,GPIO.HIGH)
 
